@@ -34,6 +34,13 @@ We will need to:
 * Backend: MongoDB
 * Frontend: React-redux, Node.js
 
+Technical challenges:
+
+* Reading data from MongoDB and reorganize the data for frontend use
+* Building a modal for signin and signup
+* Implementing the logic for search functionality on users and publications
+* Implementing joined table such as claps 
+
 
 ## Group Members and Work Breakdown
 Team members:
