@@ -43,6 +43,7 @@ We will need to:
 
 <h2>Group Members and Work Breakdown</h2>
 Team members:
+
 * [Roger](https://github.com/yuichiu416)
 * [Stan](https://github.com/stanbond)
 * [Winnie](https://github.com/chinweenie)
