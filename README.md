@@ -14,7 +14,7 @@ perspectives.
 We will need to:
 
 * Make a MERN stack web app that allows users to login, signup and logout
-* Build a Mongo database that store data of users, publications, reviews and claps
+* Build a Mongo database that store data of users, stories, comments, follows and claps, followers and followees
 * Build responsive frontend components using React
 * Make sure the communication between backend and frontend is instantaneous
 
