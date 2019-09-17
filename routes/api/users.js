@@ -18,8 +18,6 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
 })
 
 router.post('/register', (req, res) => {
-    console.log("register");
-
     const { errors, isValid } = validateRegisterInput(req.body);
     
     if (!isValid) {
@@ -45,7 +43,10 @@ router.post('/register', (req, res) => {
                         if (err) throw err;
                         newUser.password = hash;
                         newUser.save()
-                            .then(user => res.json(user))
+                            .then(user => res.json({
+                                success: true,
+                                currentUser: { id: user.id, name: user.name }
+                            }))
                             .catch(err => console.log(err));
                     })
                 });

@@ -13,12 +13,15 @@ class SessionForm extends React.Component{
     handleSubmit(event){
         event.preventDefault();
         // window.location.href = "http://localhost:3000/#/register";
+        this.props.closeModal();
         if(this.props.formType === "Signup"){
             // this.state.password2 = this.state.password; //TODO: the field is confirm password
             this.props.signup(this.state).then(() => this.props.history.push('/'));
-        }
+            
+            }
         else{
             this.props.login(this.state).then(() => this.props.history.push('/'));
+            
         }
     }
 
@@ -67,10 +70,10 @@ class SessionForm extends React.Component{
 
         } else {
             sessionFormHeader = (
-                <heading className="signup-form-header">
+                <header className="signup-form-header">
                   <h1 className="form-header">Join Medium.</h1>
                   <p className="form-description">Create an account to receive great stories in your inbox, personalize your homepage, and follow authors and topics that you love.</p>
-                </heading>
+                </header>
             );
 
             optionalInputField = (
@@ -117,7 +120,7 @@ class SessionForm extends React.Component{
 
                     {password2Input}
                     
-                    <button onClick={this.handleSubmit} >{buttonText}</button>
+                    <button>{buttonText}</button>
                     
                 </div>
 
