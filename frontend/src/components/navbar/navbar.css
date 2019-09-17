@@ -16,6 +16,11 @@ li.logo {
     font-size: 35px;
 }
 
+li.logo > a {
+    text-decoration: none;
+    color: black;
+}
+
 li.search {
     position: relative;
 }
