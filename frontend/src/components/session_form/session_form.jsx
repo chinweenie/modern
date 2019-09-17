@@ -68,7 +68,7 @@ class SessionForm extends React.Component{
         } else {
             sessionFormHeader = (
                 <header className="signup-form-header">
-                  <h1 className="form-header">Join Medium.</h1>
+                  <h1 className="form-heading">Join Medium.</h1>
                   <p className="form-description">Create an account to receive great stories in your inbox, personalize your homepage, and follow authors and topics that you love.</p>
                 </header>
             );
