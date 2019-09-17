@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link, withRouter, Redirect } from 'react-router-dom';
-import { login, signup } from '../../util/session_api_util';
+import { Link, withRouter } from 'react-router-dom';
 
 class SessionForm extends React.Component{
     constructor(props){
@@ -15,11 +14,11 @@ class SessionForm extends React.Component{
         // window.location.href = "http://localhost:3000/#/register";
         if(this.props.formType === "Signup"){
             this.state.password2 = this.state.password; //TODO: the field is confirm password
-            signup(this.state);
+            this.props.signup(this.state);
         }
         else{
             console.log(this.state);
-            login(this.state);
+            this.props.login(this.state);
         }
 
     }
