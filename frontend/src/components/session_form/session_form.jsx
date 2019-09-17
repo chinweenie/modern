@@ -11,6 +11,7 @@ class SessionForm extends React.Component{
 
     handleSubmit(event){
         event.preventDefault();
+        debugger;
         // window.location.href = "http://localhost:3000/#/register";
         if(this.props.formType === "Signup"){
             // this.state.password2 = this.state.password; //TODO: the field is confirm password
