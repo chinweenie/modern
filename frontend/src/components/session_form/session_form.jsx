@@ -60,17 +60,17 @@ class SessionForm extends React.Component{
             sessionFormFooter = (
                 <footer className="session-form-footer">
                     <p>No account?</p>
-                    <span><Link to="/register">Create one</Link></span>
+                    {this.props.otherForm}
                 </footer>
             );
             buttonText = "Log In";
 
         } else {
             sessionFormHeader = (
-                <header className="signup-form-header">
-                  <h1 className="form-heading">Join Medium.</h1>
+                <heading className="signup-form-header">
+                  <h1 className="form-header">Join Medium.</h1>
                   <p className="form-description">Create an account to receive great stories in your inbox, personalize your homepage, and follow authors and topics that you love.</p>
-                </header>
+                </heading>
             );
 
             optionalInputField = (
@@ -90,7 +90,7 @@ class SessionForm extends React.Component{
             sessionFormFooter = (
                 <footer className="session-form-footer">
                     <p>Already have an account?</p>
-                    <span><Link to="/login">Sign in</Link></span>
+                    {this.props.otherForm}
                 </footer>
             );
             buttonText = "Sign Up";
