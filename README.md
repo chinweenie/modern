@@ -53,7 +53,7 @@ Team members:
 ## Usage:
 `npm install` in the root directory **AND** in the frontend directory
 
-For debugging with VS Code, `npm frontend` to run on port 3000 and leave port 5000 for the debugger.
+For debugging with VS Code, `npm run frontend` to run on port 3000 and leave port 5000 for the debugger.
 
 For regular development purpose, `npm run dev` will run two ports at the same time
 

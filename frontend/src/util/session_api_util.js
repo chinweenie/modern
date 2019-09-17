@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 export const signup = (userData) => {
-  return axios.post('/api/users/register', userData);
+  const user = axios.post('/api/users/register', userData);
+  debugger;
+  return user;
 };
 
 export const login = (userData) => {
