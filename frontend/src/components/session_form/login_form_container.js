@@ -19,7 +19,6 @@ const mapDispatchToProps = dispatch => {
     ),
     closeModal: () => dispatch(closeModal()),
     login: userData => dispatch(login(userData))
-
   }
 }
 

@@ -7,6 +7,7 @@ class SessionForm extends React.Component{
         this.state = { email: "", name: "", password: ""};
         
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleClose = this.handleClose.bind(this);
     }
 
     handleSubmit(event){
@@ -19,6 +20,11 @@ class SessionForm extends React.Component{
         else{
             this.props.login(this.state).then(() => this.props.history.push('/'));
         }
+    }
+
+    handleClose(e) {
+        e.preventDefault();
+        this.props.closeModal();
     }
     
     update(field) {
@@ -39,10 +45,12 @@ class SessionForm extends React.Component{
         let password2Input;
         if (formType === 'Login'){
             sessionFormHeader = (
-                <header className="login-form-header">
-                  <h1 className="form-header">Welcome back.</h1>
+            //   <div className="login-form-container">
+                <header className="form-header">
+                  <h1 className="form-heading">Welcome back.</h1>
                   <p className="form-description">Sign in to get personalized story recommendations, follow authors and topics you love, and interact with stories.</p>
                 </header>
+            //   </div>
             );
 
             optionalInputField = '';
@@ -66,14 +74,14 @@ class SessionForm extends React.Component{
             );
 
             optionalInputField = (
-                    <div className="name">
+                    <div className="login-input">
                         <label htmlFor="name">Name</label>
                         <input type="text" value={this.state.name} id="name" onChange={this.update('name')} required/>
                     </div>
             );
 
             password2Input = (
-                <div className="password2">
+                <div className="login-input">
                     <label htmlFor="password2">Confirm password</label>
                     <input type="password" value={this.state.password2} id="password2" onChange={this.update('password2')} required />
                 </div>
@@ -89,11 +97,12 @@ class SessionForm extends React.Component{
         }
         return (
             <form className="session-form" onSubmit={this.handleSubmit}>
+                <a className='modal-close-button' onClick={this.handleClose}>{String.fromCharCode(10005)}</a>
                 {sessionFormHeader}
 
                 <div className="session-form-inputs">
                     {errorsLi}
-                    <div className="email">
+                    <div className="login-input">
                         <label htmlFor="email">Email</label>
                         <input type="email" value={this.state.email} id="email" onChange={this.update('email')} required />
                     </div>
@@ -101,7 +110,7 @@ class SessionForm extends React.Component{
                     {optionalInputField}
 
 
-                    <div className="password">
+                    <div className="login-input">
                         <label htmlFor="password">Password</label>
                         <input type="password" value={this.state.password} id="password" onChange={this.update('password')} required/>
                     </div>

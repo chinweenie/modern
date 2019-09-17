@@ -1,8 +1,8 @@
 import React from 'react';
 import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
-import LoginFormContainer from '../session/login_form_container';
-import SignupFormContainer from '../session/signup_form_container';
+import LoginFormContainer from '../session_form/login_form_container';
+import SignupFormContainer from '../session_form/signup_form_container';
 
 const Modal = ({modal, closeModal}) => {
     if (!modal){
@@ -10,12 +10,16 @@ const Modal = ({modal, closeModal}) => {
     }
 
     let component;
+    let componentClassName;
+
     switch (modal) {
         case 'login':
-            component = <LoginFormContainer/>
+            component = <LoginFormContainer/>;
+            componentClassName = "modal-child-login"
             break;
         case 'register':
-            component = <SignupFormContainer/>
+            component = <SignupFormContainer/>;
+            componentClassName = "modal-child-signup"
             break;
         default:
             return null;
@@ -23,7 +27,8 @@ const Modal = ({modal, closeModal}) => {
 
     return (
         <div className="modal-background" onClick={closeModal}>
-            <div className="modal-child" onClick={event => event.stopPropagation()}>
+        
+            <div className={componentClassName} onClick={event => event.stopPropagation()}>
                 {component}
             </div>
         </div>
@@ -31,7 +36,7 @@ const Modal = ({modal, closeModal}) => {
 };
 
 const mapStateToProps = state => ({
-    modal: state.ui.modal
+    modal: state.UI.modal
 });
 
 const mapDispatchToProps = dispatch => ({
