@@ -13,8 +13,8 @@ class SessionForm extends React.Component{
         event.preventDefault();
         // window.location.href = "http://localhost:3000/#/register";
         if(this.props.formType === "Signup"){
-            this.state.password2 = this.state.password; //TODO: the field is confirm password
-            this.props.signup(this.state);
+            // this.state.password2 = this.state.password; //TODO: the field is confirm password
+            this.props.signup(this.state); 
         }
         else{
             console.log(this.state);
@@ -38,6 +38,7 @@ class SessionForm extends React.Component{
         let optionalInputField;
         let sessionFormFooter;
         let buttonText;
+        let password2Input;
         if (formType === 'Login'){
             sessionFormHeader = (
                 <header className="login-form-header">
@@ -47,6 +48,8 @@ class SessionForm extends React.Component{
             );
 
             optionalInputField = '';
+
+            password2Input = '';
 
             sessionFormFooter = (
                 <footer className="session-form-footer">
@@ -71,6 +74,13 @@ class SessionForm extends React.Component{
                     </div>
             );
 
+            password2Input = (
+                <div className="password2">
+                    <label htmlFor="password2">Confirm password</label>
+                    <input type="password" value={this.state.password2} id="password2" onChange={this.update('password2')} required />
+                </div>
+            )
+
             sessionFormFooter = (
                 <footer className="session-form-footer">
                     <p>Already have an account?</p>
@@ -92,13 +102,18 @@ class SessionForm extends React.Component{
 
                     {optionalInputField}
 
+
                     <div className="password">
                         <label htmlFor="password">Password</label>
                         <input type="password" value={this.state.password} id="password" onChange={this.update('password')} required/>
                     </div>
+
+                    {password2Input}
+                    
                     <button onClick={this.handleSubmit} >{buttonText}</button>
+                    
                 </div>
-                
+
                 {sessionFormFooter}
             </form>
         )
