@@ -1,8 +1,8 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import './navbar.css';
-import 'font-awesome/css/font-awesome.min.css';
+
+// import 'font-awesome/css/font-awesome.min.css';
 import LoggedOutNavbar from './logged_out_navbar';
 import LoggedInNavbar from './logged_in_navbar';
 import { logout } from '../../actions/session_actions';

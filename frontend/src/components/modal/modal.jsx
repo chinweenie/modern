@@ -3,7 +3,7 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import LoginFormContainer from '../session_form/login_form_container';
 import SignupFormContainer from '../session_form/signup_form_container';
-// import '../../../public/modal.scss'
+import '../../stylesheets/modal.scss'
 
 const Modal = ({modal, closeModal}) => {
     if (!modal){
@@ -15,11 +15,11 @@ const Modal = ({modal, closeModal}) => {
 
     switch (modal) {
         case 'login':
-            component = <LoginFormContainer/>;
+            component = <LoginFormContainer />;
             componentClassName = "modal-child-login"
             break;
         case 'register':
-            component = <SignupFormContainer/>;
+            component = <SignupFormContainer />;
             componentClassName = "modal-child-signup"
             break;
         default:
