@@ -5,12 +5,12 @@ import { Switch } from 'react-router-dom';
 // import MainPage from './main/main_page';
 import SignUpFormContainer from './session_form/signup_form_container';
 import LoginFormContainer from './session_form/login_form_container';
-import navbar from './navbar/navbar';
+import Navbar from './navbar/navbar';
 
 const App = () => (
     <div>
         <header>
-            <navbar />
+            <Navbar />
         </header>
     
     
