@@ -4,7 +4,7 @@ import { Link, withRouter } from 'react-router-dom';
 class SessionForm extends React.Component{
     constructor(props){
         super(props);
-        this.state = { email: "", name: "", password: "", password2: ""};
+        this.state = { email: "", name: "", password: ""};
         
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -13,14 +13,11 @@ class SessionForm extends React.Component{
         event.preventDefault();
         // window.location.href = "http://localhost:3000/#/register";
         if(this.props.formType === "Signup"){
-            this.state.password2 = this.state.password; //TODO: the field is confirm password
-            this.props.signup(this.state);
+            this.props.signup(this.state).then(() => this.props.history.push('/'));
         }
         else{
-            console.log(this.state);
-            this.props.login(this.state);
+            this.props.login(this.state).then(() => this.props.history.push('/'));
         }
-
     }
     
     update(field) {
