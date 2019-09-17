@@ -3,24 +3,23 @@ import { closeModal } from '../../actions/modal_actions';
 import { connect } from 'react-redux';
 import LoginFormContainer from '../session_form/login_form_container';
 import SignupFormContainer from '../session_form/signup_form_container';
-import '../../stylesheets/modal.scss'
+
 
 const Modal = ({modal, closeModal}) => {
     if (!modal){
         return null;
     }
-
     let component;
     let componentClassName;
 
     switch (modal) {
         case 'login':
             component = <LoginFormContainer />;
-            componentClassName = "modal-child-login"
+            componentClassName = "modal-child-login";
             break;
         case 'register':
             component = <SignupFormContainer />;
-            componentClassName = "modal-child-signup"
+            componentClassName = "modal-child-signup";
             break;
         default:
             return null;
