@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { logoutCurrentUser } from '../../actions/session_actions';
 // import Navbar from '../nav_bar/nav_bar';
 import { Link } from 'react-router-dom';
-import './profile.scss';
+import '../../../profile.scss';
 
 export default class profile extends Component {
     constructor(props){
