@@ -1,32 +1,27 @@
 import React from 'react';
 import { Link, withRouter, Redirect } from 'react-router-dom';
-import axios from 'axios';
+import { login, signup } from '../../util/session_api_util';
 
 class SessionForm extends React.Component{
     constructor(props){
         super(props);
-        this.state = { email: "", name: "", password: ""}
+        this.state = { email: "", name: "", password: "", password2: ""};
         
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleSubmit(event){
         event.preventDefault();
-        console.log(event);
-        window.location.href = "http://localhost:3000/#/register";
+        // window.location.href = "http://localhost:3000/#/register";
+        if(this.props.formType === "Signup"){
+            this.state.password2 = this.state.password; //TODO: the field is confirm password
+            signup(this.state);
+        }
+        else{
+            console.log(this.state);
+            login(this.state);
+        }
 
-
-        axios.post('/register', { email:"yuichiu416@gmail.com", password:123456 })
-            .then((result) => {
-                // localStorage.setItem('jwtToken', result.data.token);
-                this.setState({ message: '' });
-                this.props.history.push('/')
-            })
-            .catch((error) => {
-                if (error.response.status === 401) {
-                    this.setState({ message: 'Login failed. Username or password not match' });
-                }
-            });
     }
     
     update(field) {
