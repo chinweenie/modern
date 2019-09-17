@@ -110,7 +110,8 @@ class SessionForm extends React.Component{
 
             sessionFormFooter = (
                 <footer className="session-form-footer">
-                    <p className="footer-bio">Already have an account?</p>
+                    <p className="footer-bio">Already have an account? </p>
+                    <div> </div>
                     {this.props.otherForm}
                 </footer>
             );
