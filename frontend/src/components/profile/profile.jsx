@@ -9,16 +9,20 @@ export default class profile extends Component {
         super(props)
     }
     render() {
-        const { currentUser, followings } = this.props;
+        const { currentUser, followings, stories } = this.props;
+        stories = storeis || <span></span>
         return (
             <div>
                 {/* <NavBar /> */}
                 <div className="profile-page">
-                    <div className="profile-header">
-                        <h1>{currentUser.name}</h1>
-                        <Link to={`/${currentUser.name}/edit`}>Edit profile</Link>
+                    <div className="profile-header-container">
+                        <div className="profile-header">
+                            <h1>{currentUser.name}</h1>
+                            <Link to={`/${currentUser.name}/edit`}>Edit profile</Link>
+                        </div>
+                        <Link to={`/${currentUser.name}/following`}>{followings} following</Link>
+                        <div className="profile-picture">Profile picture</div>
                     </div>
-                    <Link to={`/${currentUser.name}/following`}>{followings} following</Link>
 
                 </div>
             </div>
