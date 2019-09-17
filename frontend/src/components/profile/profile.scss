@@ -1,0 +1,34 @@
+.profile-page{
+    background-color: aliceblue;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100vh;
+    margin: 0 auto;
+}
+
+.profile-header{
+    background-color: bisque;
+    display: flex;
+    width: calc(100% - 150px);
+    flex-direction: row;
+    box-sizing: border-box;
+    h1{
+        font-size: 54px;
+        margin-right: 20px;
+    }
+    a{
+        align-self: center;
+    }
+}
+.profile-header-container{
+    background-color: aquamarine;
+}
+.profile-picture{
+    background-color: aqua;
+    height: 150px;
+    width: 150px;
+    margin: 0;
+    float: right;
+    margin-top: -53.5px;
+}
