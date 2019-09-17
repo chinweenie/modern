@@ -1,0 +1,48 @@
+ul.navbar-ul {
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    justify-content: space-between;
+    margin: 10px 100px;
+    font-size: 20px;
+}
+
+ul.navbar-ul > li {
+    margin-left: 20px;
+}
+
+li.logo {
+    font-weight: bolder;
+    font-size: 35px;
+}
+
+li.logo > a {
+    text-decoration: none;
+    color: black;
+}
+
+li.search {
+    position: relative;
+}
+
+.search-dropdown {
+    display: none;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    width: 200px;
+    height: 30px;
+    margin-left: 40px;
+}
+
+.fa-search {
+    position: absolute;
+    bottom: 15px;
+}
+
+.active .search-dropdown{
+    display: inline-block;
+ }
+
+ #search-icon:hover{
+     cursor: pointer;
+ }

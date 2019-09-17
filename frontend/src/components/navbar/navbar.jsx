@@ -1,22 +1,51 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import './navbar.css';
+import 'font-awesome/css/font-awesome.min.css';
+import LoggedOutNavbar from './logged_out_navbar';
+import LoggedInNavbar from './logged_in_navbar';
+import { logout } from '../../actions/session_actions';
+import {openModal} from '../../actions/modal_actions';
 
 
 class Navbar extends React.Component {
     constructor(props){
-        super(props);
-    };
-
+        super(props)
+        this.handleSearchIconClick = this.handleSearchIconClick.bind(this);
+        
+    }
+    componentDidMount(){
+        this.handleSearchIconClick();
+    }
+   
+    handleSearchIconClick(){
+        const icon = document.getElementById("search-icon");
+        const dropdown = document.getElementById("search-dropdown");
+        const searchBar = document.getElementById("searchBar");
+        
+        icon.addEventListener("click", function (event) {
+            event.preventDefault();
+            dropdown.classList.toggle("active");
+            searchBar.classList.toggle("active");
+        });
+    }
     
     render(){
-        // let { navbar } = this.props;
-
+        let { navbar, openModal,logout } = this.props;
+        const component = !navbar ? <LoggedOutNavbar openModal={openModal}/> : <LoggedInNavbar logout={logout}/>
                 
         return (
             <ul className="navbar-ul">
-                <li>Modern</li>
-                <li><i className="fa fa-search" aria-hidden="true"></i></li>
+                <li className="logo"><a href="/">Modern</a></li>
+                <li className="search" id="search-dropdown" >
+                    <i id="search-icon" className="fa fa-search" aria-hidden="true" ></i>
+                    <span className="search-dropdown" id="searchBar">
+                    </span>
+                </li>
+                <li>
+                    {component}
+                </li>
             </ul>
         )
     }
@@ -26,9 +55,12 @@ const mapStateToProps = state => ({
     navbar: Boolean(state.session.id)
 });
 
-// const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = dispatch => ({
+    logout: () => dispatch(logout()),
+    openModal: (modal) => dispatch(openModal(modal)),
+})
 
-// });
 
-export default withRouter(connect(mapStateToProps, null)(Navbar));
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));
 

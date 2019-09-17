@@ -40,6 +40,9 @@ document.addEventListener('DOMContentLoaded', () => {
         store = configureStore({});
     }
     const root = document.getElementById('root');
-
+    // TESTING START
+    window.getState = store.getState;
+    window.dispatch = store.dispatch;
+    // TESTING END
     ReactDOM.render(<Root store={store} />, root);
 });
