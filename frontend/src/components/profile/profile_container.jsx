@@ -4,7 +4,6 @@ import Profile from './profile';
 import { uploadFile } from '../../actions/upload_actions';
 
 const mapStateToProps = (state) => {
-    console.log(state.UI.files.fileURL);
     return {
         // currentUser: state.session.currentUser
         currentUser: {name: "yui"},

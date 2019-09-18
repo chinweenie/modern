@@ -5,20 +5,15 @@ import { Link } from 'react-router-dom';
 export default class profile extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            fileURL: this.props.fileURL
-        }
     }
     handleUploadFile = (event) => {
         const data = new FormData()
         data.append('file', event.target.files[0])
         data.append('name', 'some value user types')
         data.append('description', 'some value user types')
-        this.props.uploadFile(data).then(() => this.setState({hi: "hihi"}));
+        this.props.uploadFile(data)
     }
-    shouldComponentUpdate(){
-        return true;
-    }
+
     render() {
         let { currentUser, followings, stories } = this.props;
         stories = stories || <h1>{currentUser.name} hasn’t been active on Medium yet. Check back later to see their stories, claps, and highlights.</h1>
@@ -38,7 +33,7 @@ export default class profile extends Component {
                     <div className="stories">
                             {stories}
                         <input type="file" onChange={this.handleUploadFile}/>
-                        <img width='320' src={this.state.fileURL} />
+                        <img width='320' src={this.props.fileURL} />
                     </div>
                 </div>
             </div>
