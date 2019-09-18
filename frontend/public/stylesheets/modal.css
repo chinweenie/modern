@@ -102,15 +102,32 @@
   font-weight: 400;
   font-style: normal;
 }
-.session-form-footer {
-  margin: 3px auto;
-  width: 400px;
-  font-family: sans-serif;
-  letter-spacing: -.02em;
+.session-form-footer, .btn-block {
   font-weight: 400;
   font-style: normal;
-  letter-spacing: 0;
-  font-size: 13px;
+  letter-spacing: 1;
+  font-size: 14px;
   line-height: 20px;
   text-align: center;
+}
+.session-form-footer {
+  display: flex;
+  margin: auto;
+  /* margin-left: 30%; */
+  width: 500px;
+  font-family: sans-serif;
+  color: #232424;
+  justify-content: center;
+
+  /* div {
+    display: none;
+  }; */
+}
+.btn-block {
+  border-width: 0;
+  color: #07a77c;
+  padding: 0;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
 }

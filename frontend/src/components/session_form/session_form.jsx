@@ -63,6 +63,7 @@ class SessionForm extends React.Component{
             sessionFormFooter = (
                 <footer className="session-form-footer">
                     <p>No account?</p>
+                    <div> &nbsp; </div>
                     {this.props.otherForm}
                 </footer>
             );
@@ -103,14 +104,15 @@ class SessionForm extends React.Component{
                         value={this.state.password2} 
                         id="password2" 
                         onChange={this.update('password2')} 
-                        placeholder="Password"
+                        placeholder="Confirm Password"
                         required />
                 </div>
             )
 
             sessionFormFooter = (
                 <footer className="session-form-footer">
-                    <p className="footer-bio">Already have an account?</p>
+                    <p className="footer-bio">Already have an account? </p>
+                    <div> &nbsp; </div>
                     {this.props.otherForm}
                 </footer>
             );
