@@ -18,6 +18,7 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
 })
 
 router.post('/register', (req, res) => {
+    console.log("register");
     const { errors, isValid } = validateRegisterInput(req.body);
     
     if (!isValid) {
@@ -56,7 +57,6 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
     console.log("login");
-
     const { errors, isValid } = validateLoginInput(req.body);
 
     console.log(errors);
