@@ -1,30 +1,23 @@
 import React, { Component } from 'react';
-// import Navbar from '../nav_bar/nav_bar';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 
 export default class profile extends Component {
     constructor(props){
         super(props);
-        this.state = {
-            imageURL: this.props.imageURL
-        }
     }
     handleUploadFile = (event) => {
         const data = new FormData()
         data.append('file', event.target.files[0])
         data.append('name', 'some value user types')
         data.append('description', 'some value user types')
-        axios.post('/files', data).then((response) => {
-            this.setState({
-                imageURL: response.data.fileURL
-            })
-        })
+        this.props.uploadFile(data)
     }
+
     render() {
         let { currentUser, followings, stories } = this.props;
         stories = stories || <h1>{currentUser.name} hasn’t been active on Medium yet. Check back later to see their stories, claps, and highlights.</h1>
+        console.log(this.state);
         return (
             <div>
                 {/* <NavBar /> */}
@@ -40,7 +33,7 @@ export default class profile extends Component {
                     <div className="stories">
                             {stories}
                         <input type="file" onChange={this.handleUploadFile}/>
-                        <img width='320' src={this.state.imageURL} />
+                        <img width='320' src={this.props.fileURL} />
                     </div>
                 </div>
             </div>

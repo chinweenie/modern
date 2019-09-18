@@ -1,19 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Profile from './profile';
+import { uploadFile } from '../../actions/upload_actions';
 
 const mapStateToProps = (state) => {
     return {
         // currentUser: state.session.currentUser
         currentUser: {name: "yui"},
         followings: 2,
-        imageURL: state.imageURL
+        fileURL: state.UI.files.fileURL
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         // fetchImageFromDB  TODO: Need to fetch the image from database 
+        uploadFile: file => dispatch(uploadFile(file))
     }
 }
 
