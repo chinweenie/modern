@@ -9,8 +9,8 @@ export default class profile extends Component {
         super(props)
     }
     render() {
-        const { currentUser, followings, stories } = this.props;
-        stories = stories || <span></span>
+        let { currentUser, followings, stories } = this.props;
+        stories = stories || <h1>{currentUser.name} hasn’t been active on Medium yet. Check back later to see their stories, claps, and highlights.</h1>
         return (
             <div>
                 {/* <NavBar /> */}
@@ -23,7 +23,9 @@ export default class profile extends Component {
                         <Link to={`/${currentUser.name}/following`}>{followings} following</Link>
                         <div className="profile-picture">Profile picture</div>
                     </div>
-
+                    <div className="stories">
+                            {stories}
+                    </div>
                 </div>
             </div>
         )
