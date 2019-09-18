@@ -22,11 +22,13 @@ import { logout } from './actions/session_actions';
 document.addEventListener('DOMContentLoaded', () => {
     let store;
 
+        console.log(localStorage);
+        debugger;
     if (localStorage.jwtToken) {
         setAuthToken(localStorage.jwtToken);
 
         const decodedUser = jwt_decode(localStorage.jwtToken);
-        const preloadedState = { session: { isAuthenticated: true, user: decodedUser } };
+        const preloadedState = { session: { isAuthenticated: true, currentUser: decodedUser } };
 
         store = configureStore(preloadedState);
 
