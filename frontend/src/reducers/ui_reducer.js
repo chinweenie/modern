@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import modalReducer from './modal_reducer';
-import uploadReducer from './uploads_reducer';
+import filesReducer from './files_reducer';
 
 const uiReducer = combineReducers({
     modal: modalReducer,
-    files: uploadReducer
+    files: filesReducer
 })
 
 export default uiReducer;

@@ -2,19 +2,25 @@ const express = require("express");
 const router = express.Router();
 const File = require('../models/File');
 
-router.post('/uploadImage', (req, res) => {
-    console.log('in the server, requst and response');
+//after we got the image url to cloudinary, store it in mongoDB
+
+router.post('/uploadFile', (req, res) => {
     const newFile = new File({
-        URL: req.body.url,
-        user_id: "123",
-        type: "123",
+        URL: req.body.URL,
+        email: req.body.email,
+        type: req.body.type,
         name: req.body.name
     });
-    newFile.save().then(file => 
-        res.json({
-        success: true,
-        URL: newFile.URL
-    }))
+    console.log('in the server, newFile');
+    console.log(newFile);
+
+    newFile.save().then(file => {
+        return res.json({
+            success: true,
+            URL: newFile.URL,
+            email: newFile.email
+        })
+    })
     .catch(err => console.log(err));
 });
 
