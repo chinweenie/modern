@@ -37,13 +37,6 @@ const upload = multer({ storage })
 
 app.post('/files', upload.single('file'), fileUploadMiddleware)
 
-app.post('/uploadImage', (req, res) => {
-    console.log('in the server, requst and response')
-    console.log(req.body)
-    // you can do whatever you want with this data
-    // change profile pic, save to DB, or send it to another API 
-    res.end()
-});
 app.use("/", uploads);
 
 app.use("/api/users", users);
