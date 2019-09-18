@@ -119,9 +119,9 @@
   color: #232424;
   justify-content: center;
 
-  div {
+  /* div {
     display: none;
-  };
+  }; */
 }
 .btn-block {
   border-width: 0;
