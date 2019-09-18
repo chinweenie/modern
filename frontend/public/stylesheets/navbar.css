@@ -37,11 +37,12 @@ li.search {
     width: 200px;
     height: 30px;
     margin-left: 40px;
+    margin-top: 10px;
 }
 
 .fa-search {
     position: absolute;
-    bottom: 13px;
+    bottom: 4px;
 }
 
 .active .search-dropdown{
@@ -52,12 +53,20 @@ li.search {
      cursor: pointer;
  }
 
- ul.logged-in-navbar, ul.logged-out-navbar {
-     display: flex;
-     flex-direction: row;
+ ul.logged-out-navbar {
+    display: flex;
+    flex-direction: row;
+    margin-top: 6px;
  }
 
-ul.logged-out-navbar > li {
+  ul.logged-in-navbar {
+    display: flex;
+    flex-direction: row;
+    margin-top: 15px;
+  }
+
+
+ul.logged-out-navbar > li, ul.logged-in-navbar > li {
     margin-right: 30px;
 }
 
@@ -70,11 +79,14 @@ ul.logged-out-navbar > li > button {
     padding: 10px 10px;
 }
 
- ul.profile-dropdown {
-     display: none;
- }
-
  #get-started-button {
      border: 1px solid #03a87c;
      border-radius: 5px;
  }
+
+ .navbar-right {
+     height: 40px;
+ }
+
+
+
