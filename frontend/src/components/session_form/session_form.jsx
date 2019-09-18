@@ -46,6 +46,8 @@ class SessionForm extends React.Component{
         let sessionFormFooter;
         let buttonText;
         let password2Input;
+        let disclaimer;
+
         if (formType === 'Login'){
             sessionFormHeader = (
             //   <div className="login-form-container">
@@ -66,13 +68,21 @@ class SessionForm extends React.Component{
                     <div> &nbsp; </div>
                     {this.props.otherForm}
                 </footer>
+                
             );
             buttonText = "Log In";
+
+            disclaimer= (
+                <div>
+                    <p className="disclaimer">To make Modern work, we log user data and share it with service providers.
+                        Click “Sign up” above to accept Moderns’s Terms of Service & Privacy Policy.</p>
+                </div>
+            );
 
         } else {
             sessionFormHeader = (
                 <heading className="signup-form-header">
-                  <h1 className="form-heading">Join Medium.</h1>
+                  <h1 className="form-heading">Join Modern.</h1>
                   <p className="form-bio">Create an account to receive great stories in your inbox, personalize your homepage, and follow authors and topics that you love.</p>
                 </heading>
                 // <header className="signup-form-header">
@@ -114,6 +124,8 @@ class SessionForm extends React.Component{
                     <p className="footer-bio">Already have an account? </p>
                     <div> &nbsp; </div>
                     {this.props.otherForm}
+                    {/* <p className="disclaimer">To make Modern work, we log user data and share it with service providers. 
+                        Click “Sign up” above to accept Moderns’s Terms of Service & Privacy Policy.</p> */}
                 </footer>
             );
             buttonText = "Sign Up";
@@ -160,6 +172,7 @@ class SessionForm extends React.Component{
                 </div>
 
                 {sessionFormFooter}
+                {disclaimer}
             </form>
         )
     }

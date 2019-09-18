@@ -133,3 +133,17 @@
   text-decoration: none;
   cursor: pointer;
 }
+.disclaimer {
+  width: 360px;
+  height: 72px;
+  margin: 0 220px 30px 220px;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 350;
+  letter-spacing: 1;
+  text-align: center;
+  font-family: sans-serif;
+  color: rgba(29, 29, 29, 0.76);
+  fill: rgba(0,0,0,.76);
+  margin-top: 5%;
+}
