@@ -19,7 +19,7 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
 
 router.post('/register', (req, res) => {
     const { errors, isValid } = validateRegisterInput(req.body);
-
+    
     if (!isValid) {
         return res.status(400).json(errors);
     }
@@ -43,7 +43,10 @@ router.post('/register', (req, res) => {
                         if (err) throw err;
                         newUser.password = hash;
                         newUser.save()
-                            .then(user => res.json(user))
+                            .then(user => res.json({
+                                success: true,
+                                currentUser: { id: user.id, name: user.name }
+                            }))
                             .catch(err => console.log(err));
                     })
                 });
@@ -52,6 +55,8 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
+    console.log("login");
+
     const { errors, isValid } = validateLoginInput(req.body);
 
     console.log(errors);
@@ -82,7 +87,8 @@ router.post('/login', (req, res) => {
                             (err, token) => {
                                 res.json({
                                     success: true,
-                                    token: 'Bearer ' + token
+                                    token: 'Bearer ' + token,
+                                    currentUser: { id: user.id, name: user.name }
                                 });
                             });
                     } else {
