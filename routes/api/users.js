@@ -98,4 +98,39 @@ router.post('/login', (req, res) => {
         })
 })
 
+
+
+router.delete('/logout', (req, res) => {
+    console.log("out");
+
+    const email = req.body.email;
+    User.findOne({ email })
+        .then(user => {
+
+            bcrypt.compare(password, user.password)
+                .then(isMatch => {
+                    if (isMatch) {
+                        const payload = { id: user.id, name: user.name };
+
+                        jwt.sign(
+                            payload,
+                            keys.secretOrKey,
+                            // Tell the key to expire in one hour
+                            { expiresIn: 3600 },
+                            (err, token) => {
+                                res.json({
+                                    success: true,
+                                    token: 'Bearer ' + token,
+                                    currentUser: { id: user.id, name: user.name }
+                                });
+                            });
+                    } else {
+                        return res.status(400).json({ password: 'Incorrect password' });
+                    }
+                })
+        })
+})
+
+
+
 module.exports = router;

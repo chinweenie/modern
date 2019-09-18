@@ -40,7 +40,6 @@ app.post('/files', upload.single('file'), fileUploadMiddleware)
 app.use("/", uploads);
 
 app.use("/api/users", users);
-
 app.all('*', (req, res) => {
     console.log("Unknown route, bad request");
     return res.sendStatus(404);

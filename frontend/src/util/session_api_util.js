@@ -9,7 +9,7 @@ export const login = (userData) => {
 }
 
 export const logout = () => {
-  return axios.delete('/api/logout');
+  return axios.delete('/api/users/logout');
 }
 
 export const setAuthToken = token => {
