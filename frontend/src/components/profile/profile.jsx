@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
-import { logoutCurrentUser } from '../../actions/session_actions';
 // import Navbar from '../nav_bar/nav_bar';
 import { Link } from 'react-router-dom';
-// import '../../../profile.scss';
+import axios from 'axios';
+
 
 export default class profile extends Component {
     constructor(props){
-        super(props)
+        super(props);
+        this.state = {
+            imageURL: this.props.imageURL
+        }
+    }
+    handleUploadFile = (event) => {
+        const data = new FormData()
+        data.append('file', event.target.files[0])
+        data.append('name', 'some value user types')
+        data.append('description', 'some value user types')
+        axios.post('/files', data).then((response) => {
+            this.setState({
+                imageURL: response.data.fileURL
+            })
+        })
     }
     render() {
         let { currentUser, followings, stories } = this.props;
@@ -25,6 +39,8 @@ export default class profile extends Component {
                     </div>
                     <div className="stories">
                             {stories}
+                        <input type="file" onChange={this.handleUploadFile}/>
+                        <img width='320' src={this.state.imageURL} />
                     </div>
                 </div>
             </div>
