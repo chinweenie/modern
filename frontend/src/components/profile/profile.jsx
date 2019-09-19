@@ -5,12 +5,19 @@ import { Link } from 'react-router-dom';
 export default class profile extends Component {
     constructor(props){
         super(props);
-        this.props.fetchAll(this.props.currentUser.email);
+        this.state = {profileURL: ""};
+        this.props.fetchAll(this.props.currentUser.email)
+        .then( res => {
+            res.files.find(obj => {
+                if(obj.name === "profile")
+                    this.setState({ profileURL: obj.URL });
+            });
+        });
     }
     handleUploadFile = (event) => {
         const data = new FormData()
         data.append('file', event.target.files[0])
-        data.append('name', 'some value user types')
+        data.append('name', 'profile')
         data.append('type', 'image')
         data.append('email', this.props.currentUser.email)
         this.props.uploadFile(data)
@@ -38,7 +45,7 @@ export default class profile extends Component {
                             <Link to={`/${currentUser.name}/edit`}>Edit profile</Link>
                         </div>
                         <Link to={`/${currentUser.name}/following`}>{followings} following</Link>
-                        <div className="profile-picture">Profile picture</div>
+                        <div ><img src={this.state.profileURL} className="profile-picture"/></div>
                     </div>
                     <div className="stories">
                             {stories}

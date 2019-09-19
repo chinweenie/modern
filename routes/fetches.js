@@ -9,11 +9,10 @@ router.get('/fetchAll/:email', (req, res) => {
 
     File.find({ email })
         .then(files => {
-            // res.json({files: files});
-            res.json({
+            res.json(
                 files
-            })
-        })
+            )
+        });
 });
 
 module.exports = router;

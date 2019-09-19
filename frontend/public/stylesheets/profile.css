@@ -26,9 +26,10 @@
 }
 .profile-picture{
     background-color: aqua;
-    height: 150px;
-    width: 150px;
+    max-height: 150px;
+    max-width: 150px;
     margin: 0;
     float: right;
     margin-top: -53.5px;
+
 }
