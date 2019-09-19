@@ -3,8 +3,8 @@ const app = express();
 const db = require('./config/keys').mongoURI;
 const mongoose = require('mongoose');
 const users = require("./routes/api/users");
-const uploads = require("./routes/uploads");
-const fetches = require("./routes/fetches");
+const files = require("./routes/files");
+const profiles = require("./routes/profiles");
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const cloudinary = require('cloudinary');
@@ -38,10 +38,10 @@ const upload = multer({ storage })
 
 app.post('/files', upload.single('file'), fileUploadMiddleware);
 
-app.use("/", uploads);
-app.use('/', fetches); 
+app.use('/', files);
+app.use('/api/users', users);
+app.use('/', profiles);
 
-app.use("/api/users", users);
 app.all('*', (req, res) => {
     console.log("Unknown route, bad request");
     return res.sendStatus(404);

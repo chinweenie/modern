@@ -1,7 +1,8 @@
 import { combineReducers } from 'redux';
-
+import profileReducer from './profile_reducer';
 const entitiesReducer = combineReducers({
-    users: usersReducer,
+    // users: usersReducer,
+    profile: profileReducer
 
 })
 

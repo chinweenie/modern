@@ -20,7 +20,7 @@ export const receiveFileErrors = errors => ({
 });
 
 const uploadAPIRequest = data => (
-    axios.post('/files', data)
+    axios.post('/files', data)   //$.ajax( url: '/files', data: {data})
 );
 
 export const uploadFile = data => dispatch => {
@@ -31,8 +31,8 @@ export const uploadFile = data => dispatch => {
     ));
 };
 
-export const fetchAll = userId => dispatch => {
-    return FilesApiUtil.fetchAll(userId).then(response => (
+export const fetchAll = email => dispatch => {
+    return FilesApiUtil.fetchAll(email).then(response => (
         dispatch(receiveFiles(response.data))
     ), error => (
         dispatch(receiveFileErrors(error.responseJSON))

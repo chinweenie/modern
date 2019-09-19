@@ -4,20 +4,9 @@ const filesReducer = (state = {}, action) => {
     Object.freeze(state);
     switch (action.type) {
         case RECEIVE_FILE:
-            console.log(action);
-            debugger;
-            return Object.assign({}, state, {
-                [action.file.id]: action.file
-            })
+            return Object.assign({}, state, {[action.file.email]: action.file.fileURL})
         case RECEIVE_FILES:
-            debugger
-            const filesArray = action.files.files;
-            const newObject = {};
-            filesArray.forEach(file => {
-                newObject[file.email] = file
-            });
-            // { deposit: Object.values(action.deposits).map(info => info.amount) });
-            return Object.assign({}, newObject);
+            return Object.assign({}, action.files.map(o => { return { URL: o.URL, name: o.name }}));
         default:
             return state;
     }
