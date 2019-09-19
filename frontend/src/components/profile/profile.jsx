@@ -5,19 +5,29 @@ import { Link } from 'react-router-dom';
 export default class profile extends Component {
     constructor(props){
         super(props);
+        this.props.fetchAll(this.props.currentUser.email);
     }
     handleUploadFile = (event) => {
         const data = new FormData()
         data.append('file', event.target.files[0])
         data.append('name', 'some value user types')
-        data.append('description', 'some value user types')
+        data.append('type', 'image')
+        data.append('email', this.props.currentUser.email)
         this.props.uploadFile(data)
     }
 
     render() {
         let { currentUser, followings, stories } = this.props;
+
+        if (!currentUser){
+            return (
+                <div>
+                    Loading...
+                </div>
+            )
+        }
         stories = stories || <h1>{currentUser.name} hasn’t been active on Medium yet. Check back later to see their stories, claps, and highlights.</h1>
-        console.log(this.state);
+        
         return (
             <div>
                 {/* <NavBar /> */}

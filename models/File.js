@@ -6,7 +6,7 @@ const FileSchema = new Schema({
         type: String,
         required: true
     },
-    user_id:{
+    email:{
         type: String,
         require: true
     },

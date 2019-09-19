@@ -25,7 +25,12 @@ const UserSchema = new Schema({
     stories: [{
         type: Schema.Types.ObjectId,
         ref: 'stories'
-    }]
+    }],
+    // profilePicture: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: 'files',
+    //     default: []
+    // }
 });
 
 module.exports = User = mongoose.model('users', UserSchema);

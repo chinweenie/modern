@@ -1,13 +1,19 @@
 import axios from 'axios';
-
+import * as FilesApiUtil from '../util/files_util';
 export const RECEIVE_FILE = "RECEIVE_FILE";
 export const RECEIVE_FILE_ERRORS = "RECEIVE_FILE_ERRORS";
-
+export const RECEIVE_FILES = 'RECEIVE_FILES';
 
 export const receiveFile = file => ({
     type: RECEIVE_FILE,
     file
 });
+
+export const receiveFiles = files => ({
+    type: RECEIVE_FILES,
+    files
+})
+
 export const receiveFileErrors = errors => ({
     type: RECEIVE_FILE_ERRORS,
     errors
@@ -22,5 +28,13 @@ export const uploadFile = data => dispatch => {
         dispatch(receiveFile(response.data))
         ), error => (
             dispatch(receiveFileErrors(error.responseJSON))
+    ));
+};
+
+export const fetchAll = userId => dispatch => {
+    return FilesApiUtil.fetchAll(userId).then(response => (
+        dispatch(receiveFiles(response.data))
+    ), error => (
+        dispatch(receiveFileErrors(error.responseJSON))
     ));
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthRoute } from '../util/route_util';
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import Modal from './modal/modal';
 import { Switch, Route } from 'react-router-dom';
 
@@ -18,7 +18,7 @@ const App = () => (
         </header>
 
         <Switch>
-            <Route exact path="/profile" component={Profile} />
+            <ProtectedRoute exact path="/profile" component={Profile} />
             <AuthRoute exact path="/register" component={SignUpFormContainer}/>
             <AuthRoute exact path="/login" component={LoginFormContainer}/>
         </Switch>

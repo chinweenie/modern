@@ -13,12 +13,11 @@ router.get('/current', passport.authenticate('jwt', { session: false }), (req, r
     res.json({
         name: req.user.name,
         password: req.user.password,
-        email: req.user.email
+        email: req.user.email,
     });
 })
 
 router.post('/register', (req, res) => {
-    console.log("register");
     const { errors, isValid } = validateRegisterInput(req.body);
     
     if (!isValid) {
@@ -46,7 +45,7 @@ router.post('/register', (req, res) => {
                         newUser.save()
                             .then(user => res.json({
                                 success: true,
-                                currentUser: { id: user.id, name: user.name }
+                                currentUser: { id: user.id, name: user.name, email: user.email}
                             }))
                             .catch(err => console.log(err));
                     })
@@ -56,7 +55,6 @@ router.post('/register', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-    console.log("login");
     const { errors, isValid } = validateLoginInput(req.body);
 
     console.log(errors);
@@ -77,7 +75,7 @@ router.post('/login', (req, res) => {
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     if (isMatch) {
-                        const payload = { id: user.id, name: user.name };
+                        const payload = { id: user.id, name: user.name, email: user.email }
 
                         jwt.sign(
                             payload,
@@ -88,7 +86,7 @@ router.post('/login', (req, res) => {
                                 res.json({
                                     success: true,
                                     token: 'Bearer ' + token,
-                                    currentUser: { id: user.id, name: user.name }
+                                    currentUser: { id: user.id, name: user.name, email: user.email }
                                 });
                             });
                     } else {
@@ -121,7 +119,7 @@ router.delete('/logout', (req, res) => {
                                 res.json({
                                     success: true,
                                     token: 'Bearer ' + token,
-                                    currentUser: { id: user.id, name: user.name }
+                                    currentUser: { id: user.id, name: user.name, email: user.email }
                                 });
                             });
                     } else {

@@ -4,6 +4,7 @@ const db = require('./config/keys').mongoURI;
 const mongoose = require('mongoose');
 const users = require("./routes/api/users");
 const uploads = require("./routes/uploads");
+const fetches = require("./routes/fetches");
 const bodyParser = require('body-parser');
 const passport = require('passport');
 const cloudinary = require('cloudinary');
@@ -35,9 +36,10 @@ cloudinary.config({
 const storage = multer.memoryStorage()
 const upload = multer({ storage })
 
-app.post('/files', upload.single('file'), fileUploadMiddleware)
+app.post('/files', upload.single('file'), fileUploadMiddleware);
 
 app.use("/", uploads);
+app.use('/', fetches); 
 
 app.use("/api/users", users);
 app.all('*', (req, res) => {
