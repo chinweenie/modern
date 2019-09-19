@@ -5,8 +5,8 @@ class LoggedOutNavbar extends React.Component {
         let {openModal} = this.props;
         return (
             <ul className="logged-out-navbar">
-                <li><button onClick={() => openModal('login')}>Sign in</button></li>
-                <li><button id="get-started-button" onClick={() => openModal('register')}>Get started</button></li>
+                <li><button className="login-button" onClick={() => openModal('login')}>Sign in</button></li>
+                <li><button className="signup-button" id="get-started-button" onClick={() => openModal('register')}>Get started</button></li>
             </ul>
         )
     }

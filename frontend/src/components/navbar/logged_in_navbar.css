@@ -1,6 +1,7 @@
 .profile-dropdown-main {
     position: relative;
     height: 50px;
+    /* margin-top: 5%; */
 }
 
 .profile-dropdown-menu {
@@ -11,7 +12,7 @@
     padding-right: 20px;
     left: -91px;
     width: 200px;
-    top: 40px;
+    top: 30px;
 }
 
 li.profile-dropdown-main:hover .profile-dropdown-menu {
