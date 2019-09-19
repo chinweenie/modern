@@ -61,7 +61,7 @@ class SessionForm extends React.Component{
         let buttonText;
         let password2Input;
         let disclaimer;
-        // let handleDemo;
+        let demo;
 
         if (formType === 'Login'){
             sessionFormHeader = (
@@ -92,6 +92,26 @@ class SessionForm extends React.Component{
                     <p className="disclaimer">To make Modern work, we log user data and share it with service providers.
                         Click “Sign up” above to accept Moderns’s Terms of Service & Privacy Policy.</p>
                 </div>
+            );
+
+            demo= (
+                <div class="container">
+                    <div class="center">
+                        <button class="btn" onClick={this.handleDemo}>
+                            <svg width="150px" height="35px" viewBox="0 0 150 35" class="border">
+                                <polyline points="149,1 149,34 1,34 1,1 149,1" class="bg-line" />
+                                <polyline points="149,1 149,34 1,34 1,1 149,1" class="hl-line" />
+                            </svg>
+                            <span>Demo Modern</span>
+                        </button>
+                    </div>
+                </div>
+                // <a class="btn-slice" href="#" onClick={this.handleDemo}>
+                //     <div class="top"><span>Demo Modern</span></div>
+                //     <div class="bottom"><span>Demo Modern</span></div>
+                // </a>
+                // <p onClick={this.handleDemo}
+                    // className='demo-link'>DEMO</p>
             );
 
 
@@ -189,12 +209,9 @@ class SessionForm extends React.Component{
                     
                 </div>
 
-                <p onClick={this.handleDemo}
-                    className='demo-button'>DEMO</p>
-
                 {sessionFormFooter}
                 {disclaimer}
-                
+                {demo}
             </form>
         )
     }
