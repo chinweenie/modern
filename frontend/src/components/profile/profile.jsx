@@ -10,11 +10,14 @@ export default class profile extends Component {
         };
         this.props.fetchAll(this.props.currentUser.email)
         .then( response => {
+            response.files = response.files || [];
             response.files.map(obj => {
                 if(obj.name === "profile")
                     this.setState({profileURL: obj.URL});
             });
         });
+        this.props.getProfile("yuichiu416");
+        
     }
     handleUploadFile = (event) => {
         const data = new FormData()
@@ -27,7 +30,6 @@ export default class profile extends Component {
 
     render() {
         let { currentUser, followings, stories } = this.props;
-
         if (!currentUser){
             return (
                 <div>

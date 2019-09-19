@@ -20,7 +20,7 @@ export const receiveFileErrors = errors => ({
 });
 
 const uploadAPIRequest = data => (
-    axios.post('/files', data)
+    axios.post('/files', data)   //$.ajax( url: '/files', data: {data})
 );
 
 export const uploadFile = data => dispatch => {
