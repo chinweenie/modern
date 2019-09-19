@@ -5,13 +5,13 @@ import { Link } from 'react-router-dom';
 export default class profile extends Component {
     constructor(props){
         super(props);
-        this.state = {profileURL: ""};
         this.props.fetchAll(this.props.currentUser.email)
-        .then( res => {
-            res.files.find(obj => {
+        .then( files => {
+            files.find(obj => {
                 if(obj.name === "profile")
-                    this.setState({ profileURL: obj.URL });
+                    return obj.URL;
             });
+            
         });
     }
     handleUploadFile = (event) => {
@@ -37,7 +37,6 @@ export default class profile extends Component {
         
         return (
             <div>
-                {/* <NavBar /> */}
                 <div className="profile-page">
                     <div className="profile-header-container">
                         <div className="profile-header">
@@ -45,7 +44,7 @@ export default class profile extends Component {
                             <Link to={`/${currentUser.name}/edit`}>Edit profile</Link>
                         </div>
                         <Link to={`/${currentUser.name}/following`}>{followings} following</Link>
-                        <div ><img src={this.state.profileURL} className="profile-picture"/></div>
+                        <div className="profile-picture"><img src={this.state.profileURL} /></div>
                     </div>
                     <div className="stories">
                             {stories}

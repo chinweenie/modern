@@ -29,7 +29,7 @@ router.post('/register', (req, res) => {
         .then(user => {
             if (user) {
                 // Throw a 400 error if the email address already exists
-                return res.status(400).json({ email: "A user has already registered with this address" })
+                return res.status(400).json({ email: "A user has already registered with this email" })
             } else {
                 // Otherwise create a new user
                 const newUser = new User({
@@ -57,8 +57,6 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
     const { errors, isValid } = validateLoginInput(req.body);
 
-    console.log(errors);
-
     if (!isValid) {
         return res.status(400).json(errors);
     }
@@ -71,14 +69,13 @@ router.post('/login', (req, res) => {
             if (!user) {
                 return res.status(404).json({ email: 'This user does not exist' });
             }
-
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     if (isMatch) {
-                        const payload = { id: user.id, name: user.name, email: user.email }
+                        const currentUser = { id: user.id, name: user.name, email: user.email };
 
                         jwt.sign(
-                            payload,
+                            currentUser,
                             keys.secretOrKey,
                             // Tell the key to expire in one hour
                             { expiresIn: 3600 },
@@ -86,7 +83,7 @@ router.post('/login', (req, res) => {
                                 res.json({
                                     success: true,
                                     token: 'Bearer ' + token,
-                                    currentUser: { id: user.id, name: user.name, email: user.email }
+                                    currentUser: currentUser
                                 });
                             });
                     } else {
@@ -95,40 +92,5 @@ router.post('/login', (req, res) => {
                 })
         })
 })
-
-
-
-router.delete('/logout', (req, res) => {
-    console.log("out");
-
-    const email = req.body.email;
-    User.findOne({ email })
-        .then(user => {
-
-            bcrypt.compare(password, user.password)
-                .then(isMatch => {
-                    if (isMatch) {
-                        const payload = { id: user.id, name: user.name };
-
-                        jwt.sign(
-                            payload,
-                            keys.secretOrKey,
-                            // Tell the key to expire in one hour
-                            { expiresIn: 3600 },
-                            (err, token) => {
-                                res.json({
-                                    success: true,
-                                    token: 'Bearer ' + token,
-                                    currentUser: { id: user.id, name: user.name, email: user.email }
-                                });
-                            });
-                    } else {
-                        return res.status(400).json({ password: 'Incorrect password' });
-                    }
-                })
-        })
-})
-
-
 
 module.exports = router;
