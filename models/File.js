@@ -14,7 +14,7 @@ const FileSchema = new Schema({
         type: String,
         required: true
     },
-    name: {
+    filename: {
         type: String,
         require: false
     },

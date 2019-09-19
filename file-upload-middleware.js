@@ -13,7 +13,7 @@ function fileUploadMiddleware(req, res) {
                 URL: result.secure_url,
                 email: req.body.email,
                 type: req.body.type,
-                name: req.body.name
+                filename: req.body.filename
         })
         .then((response) => {
             // you can handle external API response here

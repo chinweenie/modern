@@ -12,22 +12,26 @@ export default class profile extends Component {
         .then( response => {
             response.files = response.files || [];
             response.files.map(obj => {
-                if(obj.name === "profile")
+                if(obj.filename === "profile")
                     this.setState({profileURL: obj.URL});
             });
         });
+        this.handleDeleteFile = this.handleDeleteFile.bind(this);
+        this.handleUploadFile = this.handleUploadFile.bind(this);
         this.props.getProfile("yuichiu416");
-        
     }
-    handleUploadFile = (event) => {
-        const data = new FormData()
-        data.append('file', event.target.files[0])
-        data.append('name', 'profile')
-        data.append('type', 'image')
-        data.append('email', this.props.currentUser.email)
-        this.props.uploadFile(data)
+    handleDeleteFile(e){
+        this.props.deleteFile(this.props.currentUser.email, "profile")
+            .then(this.setState({ profileURL: ""}));
     }
-
+    handleUploadFile(event){
+        const data = new FormData();
+        data.append('file', event.target.files[0]);
+        data.append('filename', 'profile');
+        data.append('type', 'image');
+        data.append('email', this.props.currentUser.email);
+        this.props.uploadFile(data);
+    }
     render() {
         let { currentUser, followings, stories } = this.props;
         if (!currentUser){
@@ -55,6 +59,7 @@ export default class profile extends Component {
                         <input type="file" onChange={this.handleUploadFile}/>
                         <img width='320' src={this.props.fileURL} />
                     </div>
+                <button onClick={this.handleDeleteFile}>Delete profile picture</button>
                 </div>
             </div>
         )
