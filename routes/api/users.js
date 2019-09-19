@@ -56,9 +56,8 @@ router.post('/register', (req, res) => {
 
 router.post('/login', (req, res) => {
     const { errors, isValid } = validateLoginInput(req.body);
-
     if (!isValid) {
-        return res.status(400).json(errors);
+        return res.status(422).json(errors);
     }
 
     const email = req.body.email;
@@ -87,7 +86,7 @@ router.post('/login', (req, res) => {
                                 });
                             });
                     } else {
-                        return res.status(400).json({ password: 'Incorrect password' });
+                        return res.status(422).json({ password: 'Incorrect password' });
                     }
                 })
         })

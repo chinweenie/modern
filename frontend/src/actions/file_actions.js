@@ -28,7 +28,6 @@ export const deleteFile = (email, filename) => dispatch => {
     return FilesApiUtil.deleteFileByEmailAndFileName(email, filename).then(response => (
         dispatch(receiveDeleteFile(response.data))
         ), error => {
-
             dispatch(receiveFileErrors(error.responseJSON));
         });
 };
