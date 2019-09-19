@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
     Story
         .find()
         .sort({date: -1})
+        .then(stories => res.json(stories))
         .catch(error => res.status(404).json({noStoriesFound: 'No stories found'}));
 });
 

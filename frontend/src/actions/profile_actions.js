@@ -20,6 +20,6 @@ export const getProfile = username => dispatch => {
     return getProfileRequest(username).then(response => {
         dispatch(receiveProfile(response.data))
     }, error => (
-        dispatch(receiveProfileErrors(error.responseJSON))
+        dispatch(receiveProfileErrors(error.response.data))
     ));
 };

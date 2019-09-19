@@ -28,7 +28,7 @@ export const deleteFile = (email, filename) => dispatch => {
     return FilesApiUtil.deleteFileByEmailAndFileName(email, filename).then(response => (
         dispatch(receiveDeleteFile(response.data))
         ), error => {
-            dispatch(receiveFileErrors(error.responseJSON));
+            dispatch(receiveFileErrors(error.response.data));
         });
 };
 
@@ -36,7 +36,7 @@ export const uploadFile = data => dispatch => {
     return FilesApiUtil.postToCloudinary(data).then(response => (
         dispatch(receiveFile(response.data))
         ), error => (
-            dispatch(receiveFileErrors(error.responseJSON))
+            dispatch(receiveFileErrors(error.response.data))
     ));
 };
 
@@ -44,6 +44,6 @@ export const fetchAll = email => dispatch => {
     return FilesApiUtil.getAllFilesByEmail(email).then(response => (
         dispatch(receiveFiles(response.data))
     ), error => (
-        dispatch(receiveFileErrors(error.responseJSON))
+        dispatch(receiveFileErrors(error.response.data))
     ));
 };
