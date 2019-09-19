@@ -11,8 +11,6 @@ router.post('/uploadFile', (req, res) => {
         type: req.body.type,
         name: req.body.name
     });
-    console.log('in the server, newFile');
-    console.log(newFile);
 
     newFile.save().then(file => {
         return res.json({
@@ -23,5 +21,11 @@ router.post('/uploadFile', (req, res) => {
     })
     .catch(err => console.log(err));
 });
+
+router.get('/fetchAll/:email', (req, res) => {
+    const email = req.params.email;
+    File.find({ email }).then(files => (res.json(files)));
+});
+
 
 module.exports = router;

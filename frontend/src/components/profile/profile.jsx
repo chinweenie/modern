@@ -5,13 +5,15 @@ import { Link } from 'react-router-dom';
 export default class profile extends Component {
     constructor(props){
         super(props);
+        this.state = {
+            profileURL: ""
+        };
         this.props.fetchAll(this.props.currentUser.email)
-        .then( files => {
-            files.find(obj => {
+        .then( response => {
+            response.files.map(obj => {
                 if(obj.name === "profile")
-                    return obj.URL;
+                    this.setState({profileURL: obj.URL});
             });
-            
         });
     }
     handleUploadFile = (event) => {
@@ -44,7 +46,7 @@ export default class profile extends Component {
                             <Link to={`/${currentUser.name}/edit`}>Edit profile</Link>
                         </div>
                         <Link to={`/${currentUser.name}/following`}>{followings} following</Link>
-                        <div className="profile-picture"><img src={this.state.profileURL} /></div>
+                        <img src={this.state.profileURL} className="profile-picture"/>
                     </div>
                     <div className="stories">
                             {stories}
