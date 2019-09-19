@@ -4,7 +4,7 @@ export const getAllFilesByEmail = email => {
 };
 
 export const postToCloudinary = data => (
-    axios.post('/files', data) //to cloudinary
+    axios.post('/files', data)
 );
 
 export const deleteFileByEmailAndFileName = (email, filename) => (
