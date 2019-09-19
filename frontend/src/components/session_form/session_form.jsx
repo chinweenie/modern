@@ -8,7 +8,21 @@ class SessionForm extends React.Component{
         
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleDemo = this.handleDemo.bind(this);
     }
+
+    handleDemo(e) {
+        e.preventDefault();
+        // debugger
+        // console.log("shit")
+        let user = {
+            name: 'Guest',
+            email: 'demouser@modern.com',
+            password: 'password'
+        };
+        this.props.login(user);
+    }
+
 
     handleSubmit(event){
         event.preventDefault();
@@ -47,6 +61,7 @@ class SessionForm extends React.Component{
         let buttonText;
         let password2Input;
         let disclaimer;
+        let handleDemo;
 
         if (formType === 'Login'){
             sessionFormHeader = (
@@ -78,6 +93,7 @@ class SessionForm extends React.Component{
                         Click “Sign up” above to accept Moderns’s Terms of Service & Privacy Policy.</p>
                 </div>
             );
+
 
         } else {
             sessionFormHeader = (
@@ -168,11 +184,14 @@ class SessionForm extends React.Component{
                     
                     {/* <button className="session-submit" onClick={this.handleSubmit} >{buttonText}</button> */}
                     <button className="session-submit">{buttonText}</button>
+                    <p onClick={this.handleDemo}
+                        className='demo-button'>DEMO</p>
                     
                 </div>
 
                 {sessionFormFooter}
                 {disclaimer}
+                
             </form>
         )
     }
