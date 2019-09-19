@@ -63,3 +63,5 @@ typings/
 .next
 
 /config/keys.js
+
+package-lock.json

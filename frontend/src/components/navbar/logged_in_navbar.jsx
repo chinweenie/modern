@@ -1,6 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import './logged_in_navbar.css'
+import { Link } from 'react-router-dom';
 
 
 class LoggedInNavbar extends React.Component {
@@ -22,7 +23,7 @@ class LoggedInNavbar extends React.Component {
                             <li>Stories</li>
                             <li>Bookmarks</li>
                             <li>Publications</li>
-                            <li>Profile</li>
+                            <li><Link to="/profile" >Profile</Link></li>
                             <li onClick={logout}>Sign out</li>
                         </ul>
                     </ul>
