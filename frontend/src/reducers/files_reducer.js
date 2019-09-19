@@ -1,4 +1,4 @@
-import { RECEIVE_FILE, RECEIVE_FILES  } from '../actions/file_actions';
+import { RECEIVE_FILE, RECEIVE_FILES, DELETE_FILE } from '../actions/file_actions';
 
 const filesReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -6,7 +6,10 @@ const filesReducer = (state = {}, action) => {
         case RECEIVE_FILE:
             return Object.assign({}, state, {[action.file.email]: action.file.fileURL})
         case RECEIVE_FILES:
-            return Object.assign({}, action.files.map(o => { return { URL: o.URL, name: o.name }}));
+            return Object.assign({}, action.files.map(o => { return { URL: o.URL, filename: o.name }}));
+        case DELETE_FILE:
+
+            return state;
         default:
             return state;
     }

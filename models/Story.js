@@ -14,6 +14,5 @@ const StorySchema = new Schema({
         type: String,
         required: true
     }
-})
-//maybe add image, video, embedded links here, or just address in FE
+});
 module.exports = Company = mongoose.model('stories', StorySchema);

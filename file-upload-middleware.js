@@ -12,11 +12,13 @@ function fileUploadMiddleware(req, res) {
         axios.post(`${url}/uploadFile`, {
                 URL: result.secure_url,
                 email: req.body.email,
-                type: req.body.type,
-                name: req.body.name
+                filename: req.body.filename,
+                etag: result.etag,
+                public_id: result.public_id,
+                resource_type: result.resource_type,
+                signature: result.signature
         })
         .then((response) => {
-            // you can handle external API response here
             res.status(200).json({ success: true, fileURL: result.secure_url, email: email })
         }).catch((error) => {
             console.log(error)

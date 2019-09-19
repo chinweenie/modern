@@ -10,13 +10,25 @@ const FileSchema = new Schema({
         type: String,
         require: true
     },
-    type:{ // image, audio, etc
-        type: String,
-        required: true
-    },
-    name: {
+    filename: {
         type: String,
         require: false
+    },
+    etag: {
+        type: String,
+        require: true
+    },
+    public_id: {
+        type: String,
+        require: true
+    },
+    resource_type: {
+        type: String,
+        require: true
+    },
+    signature: {
+        type: String,
+        require: true
     },
     date: {
         type: Date,
