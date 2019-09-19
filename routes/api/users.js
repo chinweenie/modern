@@ -45,7 +45,7 @@ router.post('/register', (req, res) => {
                         newUser.save()
                             .then(user => res.json({
                                 success: true,
-                                currentUser: { id: user.id, name: user.name, email: user.email}
+                                currentUser: { id: user.id, name: user.name, email: user.email, username: email.split("@")[0] }
                             }))
                             .catch(err => console.log(err));
                     })
@@ -71,7 +71,7 @@ router.post('/login', (req, res) => {
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     if (isMatch) {
-                        const currentUser = { id: user.id, name: user.name, email: user.email };
+                        const currentUser = { id: user.id, name: user.name, email: user.email, username: email.split("@")[0] };
 
                         jwt.sign(
                             currentUser,

@@ -29,7 +29,6 @@ router.delete('/deleteFile/:email/:filename', (req, res) => {
 
     File.findOneAndDelete( { email: email, filename: filename} ).then(file => {
         res.json(file);
-        debugger;
         cloudinary.v2.api.delete_resources(file.public_id);
     });
 });

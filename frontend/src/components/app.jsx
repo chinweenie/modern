@@ -18,7 +18,7 @@ const App = () => (
         </header>
 
         <Switch>
-            <ProtectedRoute exact path="/profile" component={Profile} />
+            <ProtectedRoute path="/@:username" component={Profile} />
             <AuthRoute exact path="/register" component={SignUpFormContainer}/>
             <AuthRoute exact path="/login" component={LoginFormContainer}/>
         </Switch>

@@ -3,7 +3,6 @@ import { RECEIVE_ALL_STORIES, RECEIVE_STORY, REMOVE_STORY } from "../actions/sto
 const storiesReducer = (state = {}, action) => {
     Object.freeze(state);
     let newObject;
-    debugger
     switch (action.type) {
         case RECEIVE_ALL_STORIES:
             const storiesArray = action.stories;

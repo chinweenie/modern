@@ -4,12 +4,13 @@ import Profile from './profile';
 import { uploadFile, fetchAll, deleteFile } from '../../actions/file_actions';
 import { getProfile } from '../../actions/profile_actions';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
     const currentUser = state.session.currentUser;
     return {
         currentUser: currentUser,
         followings: 2,
-        fileURL: state.UI.files[currentUser.email]
+        fileURL: state.UI.files[currentUser.email],
+        profileOwnerUsername: ownProps.match.params.username
     };
 };
 
