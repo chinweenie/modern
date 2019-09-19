@@ -13,14 +13,14 @@ class SessionForm extends React.Component{
 
     handleDemo(e) {
         e.preventDefault();
-        // debugger
-        // console.log("shit")
+        this.props.closeModal();
+    
         let user = {
             name: 'Guest',
             email: 'demouser@modern.com',
             password: 'password'
         };
-        this.props.login(user);
+        this.props.login(user).then(() => this.props.history.push('/'));
     }
 
 
@@ -61,7 +61,7 @@ class SessionForm extends React.Component{
         let buttonText;
         let password2Input;
         let disclaimer;
-        let handleDemo;
+        // let handleDemo;
 
         if (formType === 'Login'){
             sessionFormHeader = (
@@ -184,10 +184,13 @@ class SessionForm extends React.Component{
                     
                     {/* <button className="session-submit" onClick={this.handleSubmit} >{buttonText}</button> */}
                     <button className="session-submit">{buttonText}</button>
-                    <p onClick={this.handleDemo}
-                        className='demo-button'>DEMO</p>
+                    {/* <p onClick={this.handleDemo}
+                        className='demo-button'>DEMO</p> */}
                     
                 </div>
+
+                <p onClick={this.handleDemo}
+                    className='demo-button'>DEMO</p>
 
                 {sessionFormFooter}
                 {disclaimer}
