@@ -27,7 +27,7 @@ export const signup = (user) => dispatch => {
     const decoded = jwt_decode(token);
     dispatch(receiveCurrentUser(decoded))
   }, error => (
-    dispatch(recieveSessionErrors(error.responseJSON))
+    dispatch(recieveSessionErrors(error.response.data))
   ))
 };
 
@@ -38,9 +38,10 @@ export const login = (user) => dispatch => (
     SessionApiUtil.setAuthToken(token);
     const decoded = jwt_decode(token);
     dispatch(receiveCurrentUser(decoded))
-  }, error => (
-    dispatch(recieveSessionErrors(error.responseJSON))
-  ))
+  }, error => {
+    debugger
+     return dispatch(recieveSessionErrors(error.response.data))
+  })
 );
 export const logout = () => dispatch => {
   // Remove the token from local storage
