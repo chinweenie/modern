@@ -36,22 +36,27 @@ class Navbar extends React.Component {
         const component = !navbar ? <LoggedOutNavbar openModal={openModal}/> : <LoggedInNavbar logout={logout}/>
                 
         return (
+            
             <div className="navbar">
                 <ul className="navbar-left">
                     <li className="logo"><a href="/">Modern</a></li>
-                </ul>
-
-                <ul className="navbar-right">
                     <li className="search" id="search-dropdown" >
                         <i id="search-icon" className="fa fa-search" aria-hidden="true" ></i>
                         <span className="search-dropdown" id="searchBar">
                         </span>
                     </li>
+                </ul>
+
+                <ul className="navbar-right">
+                    {/* <li className="search" id="search-dropdown" >
+                        <i id="search-icon" className="fa fa-search" aria-hidden="true" ></i>
+                        <span className="search-dropdown" id="searchBar">
+                        </span>
+                    </li> */}
                     <li>
                         {component}
                     </li>
                 </ul>
-                
             </div>
         )
     }

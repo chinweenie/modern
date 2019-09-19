@@ -8,7 +8,21 @@ class SessionForm extends React.Component{
         
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleClose = this.handleClose.bind(this);
+        this.handleDemo = this.handleDemo.bind(this);
     }
+
+    handleDemo(e) {
+        e.preventDefault();
+        this.props.closeModal();
+    
+        let user = {
+            name: 'Guest',
+            email: 'demouser@modern.com',
+            password: 'password'
+        };
+        this.props.login(user).then(() => this.props.history.push('/'));
+    }
+
 
     handleSubmit(event){
         event.preventDefault();
@@ -46,6 +60,9 @@ class SessionForm extends React.Component{
         let sessionFormFooter;
         let buttonText;
         let password2Input;
+        let disclaimer;
+        // let handleDemo;
+
         if (formType === 'Login'){
             sessionFormHeader = (
             //   <div className="login-form-container">
@@ -66,13 +83,22 @@ class SessionForm extends React.Component{
                     <div> &nbsp; </div>
                     {this.props.otherForm}
                 </footer>
+                
             );
             buttonText = "Log In";
+
+            disclaimer= (
+                <div>
+                    <p className="disclaimer">To make Modern work, we log user data and share it with service providers.
+                        Click “Sign up” above to accept Moderns’s Terms of Service & Privacy Policy.</p>
+                </div>
+            );
+
 
         } else {
             sessionFormHeader = (
                 <heading className="signup-form-header">
-                  <h1 className="form-heading">Join Medium.</h1>
+                  <h1 className="form-heading">Join Modern.</h1>
                   <p className="form-bio">Create an account to receive great stories in your inbox, personalize your homepage, and follow authors and topics that you love.</p>
                 </heading>
                 // <header className="signup-form-header">
@@ -114,6 +140,8 @@ class SessionForm extends React.Component{
                     <p className="footer-bio">Already have an account? </p>
                     <div> &nbsp; </div>
                     {this.props.otherForm}
+                    {/* <p className="disclaimer">To make Modern work, we log user data and share it with service providers. 
+                        Click “Sign up” above to accept Moderns’s Terms of Service & Privacy Policy.</p> */}
                 </footer>
             );
             buttonText = "Sign Up";
@@ -156,10 +184,17 @@ class SessionForm extends React.Component{
                     
                     {/* <button className="session-submit" onClick={this.handleSubmit} >{buttonText}</button> */}
                     <button className="session-submit">{buttonText}</button>
+                    {/* <p onClick={this.handleDemo}
+                        className='demo-button'>DEMO</p> */}
                     
                 </div>
 
+                <p onClick={this.handleDemo}
+                    className='demo-button'>DEMO</p>
+
                 {sessionFormFooter}
+                {disclaimer}
+                
             </form>
         )
     }

@@ -64,9 +64,10 @@
   font-size: 16px;
   line-height: 24px;
   font-weight: 350;
+  letter-spacing: 1;
   text-align: center;
   font-family: sans-serif;
-  color: rgba(0,0,0,.76);
+  color: rgba(29, 29, 29, 0.76);
   fill: rgba(0,0,0,.76);
 }
 .login-form-container {
@@ -91,8 +92,9 @@
 .session-submit {
   display: flex;
   margin: 15px auto 15px auto;
-  background: rgba(211, 210, 210, 0.84);
-  border-color: rgba(121, 120, 120, 0.84);
+  margin-top: 3%;
+  background: rgba(224, 223, 223, 0.84);
+  border-color: rgba(133, 131, 131, 0.84);
   color: rgba(20, 20, 20, 0.97);
   height: 25px;
   font-size: 13px;
@@ -116,7 +118,7 @@
   /* margin-left: 30%; */
   width: 500px;
   font-family: sans-serif;
-  color: #232424;
+  color: rgba(29, 29, 29, 0.76);
   justify-content: center;
 
   /* div {
@@ -130,4 +132,18 @@
   text-align: left;
   text-decoration: none;
   cursor: pointer;
+}
+.disclaimer {
+  width: 360px;
+  height: 72px;
+  margin: 0 220px 30px 220px;
+  font-size: 14px;
+  line-height: 24px;
+  font-weight: 350;
+  letter-spacing: 1;
+  text-align: center;
+  font-family: sans-serif;
+  color: rgba(29, 29, 29, 0.76);
+  fill: rgba(0,0,0,.76);
+  margin-top: 5%;
 }
