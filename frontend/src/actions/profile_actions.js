@@ -13,7 +13,7 @@ export const receiveProfileErrors = errors => ({
 });
 
 const getProfileRequest = username => (
-    axios.get(`/@${username}`)   //$.ajax( url: '/files', data: {data})
+    axios.get(`/@${username}`)
 );
 
 export const getProfile = username => dispatch => {

@@ -1,15 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const File = require('../models/File');
+const cloudinary = require('cloudinary');
 
 router.post('/uploadFile', (req, res) => {
     const newFile = new File({
         URL: req.body.URL,
         email: req.body.email,
-        type: req.body.type,
-        filename: req.body.filename
+        filename: req.body.filename,
+        etag: req.body.etag,
+        public_id: req.body.public_id,
+        resource_type: req.body.resource_type,
+        signature: req.body.signature
     });
-
     newFile.save().then(file => {
             res.json({
             success: true,
@@ -24,9 +27,10 @@ router.delete('/deleteFile/:email/:filename', (req, res) => {
     const email = req.params.email;
     const filename = req.params.filename;
 
-    File.findOneAndDelete( { email: email, name: filename} ).then(files => {
-        console.log(files);
-        res.json(files) 
+    File.findOneAndDelete( { email: email, filename: filename} ).then(file => {
+        res.json(file);
+        debugger;
+        cloudinary.v2.api.delete_resources(file.public_id);
     });
 });
 
