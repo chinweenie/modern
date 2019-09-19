@@ -3,7 +3,6 @@ const router = express.Router();
 
 router.get('/([\@]):username', (req, res) => {
     res.json({username: req.params.username});
-    
 });
 
 

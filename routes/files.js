@@ -7,7 +7,7 @@ router.post('/uploadFile', (req, res) => {
         URL: req.body.URL,
         email: req.body.email,
         type: req.body.type,
-        name: req.body.name
+        filename: req.body.filename
     });
 
     newFile.save().then(file => {
@@ -18,6 +18,16 @@ router.post('/uploadFile', (req, res) => {
         });
     })
     .catch(err => console.log(err));
+});
+
+router.delete('/deleteFile/:email/:filename', (req, res) => {
+    const email = req.params.email;
+    const filename = req.params.filename;
+
+    File.findOneAndDelete( { email: email, name: filename} ).then(files => {
+        console.log(files);
+        res.json(files) 
+    });
 });
 
 router.get('/fetchAll/:email', (req, res) => {
