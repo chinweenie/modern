@@ -6,8 +6,8 @@ const FileSchema = new Schema({
         type: String,
         required: true
     },
-    email:{
-        type: String,
+    user_id:{
+        type: Schema.Types.ObjectId,
         require: true
     },
     filename: {

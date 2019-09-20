@@ -5,7 +5,7 @@ import filesReducer from './files_reducer';
 const uiReducer = combineReducers({
     modal: modalReducer,
     files: filesReducer
-})
+});
 
 export default uiReducer;
 

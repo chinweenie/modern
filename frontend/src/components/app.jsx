@@ -1,7 +1,7 @@
 import React from 'react';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import Modal from './modal/modal';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
 
 // import MainPage from './main/main_page';
 import SignUpFormContainer from './session_form/signup_form_container';
@@ -19,7 +19,7 @@ const App = () => (
         </header>
 
         <Switch>
-            <ProtectedRoute exact path="/profile" component={Profile} />
+            <ProtectedRoute path="/@:username" component={Profile} />
             <AuthRoute exact path="/register" component={SignUpFormContainer}/>
             <AuthRoute exact path="/login" component={LoginFormContainer}/>
             <Route exact path="/stories/new" component={CreateStoryContainer}/>

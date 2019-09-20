@@ -4,18 +4,14 @@ const filesReducer = (state = {}, action) => {
     Object.freeze(state);
     switch (action.type) {
         case RECEIVE_FILE:
-            return Object.assign({}, state, {[action.file.email]: action.file.fileURL})
+            return Object.assign({}, state, { [action.file.user_id]: action.file.fileURL})
         case RECEIVE_FILES:
             return Object.assign({}, action.files.map(o => { return { URL: o.URL, filename: o.name }}));
         case DELETE_FILE:
-
-            return state;
+            return Object.assitn({}, { deletedFile: action.data.filename});
         default:
             return state;
     }
 };
 
 export default filesReducer;
-
-
-// { fileURL: action.file.fileURL };

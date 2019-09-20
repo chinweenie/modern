@@ -13,7 +13,6 @@ class Navbar extends React.Component {
     constructor(props){
         super(props)
         this.handleSearchIconClick = this.handleSearchIconClick.bind(this);
-        
     }
     componentDidMount(){
         this.handleSearchIconClick();
@@ -32,8 +31,8 @@ class Navbar extends React.Component {
     }
     
     render(){
-        let { navbar, openModal,logout } = this.props;
-        const component = !navbar ? <LoggedOutNavbar openModal={openModal}/> : <LoggedInNavbar logout={logout}/>
+        let { navbar, openModal, logout, currentUser } = this.props;
+        const component = !navbar ? <LoggedOutNavbar openModal={openModal}/> : <LoggedInNavbar currentUser={currentUser} logout={logout}/>
                 
         return (
             
@@ -63,7 +62,8 @@ class Navbar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    navbar: Boolean(state.session.currentUser)
+    navbar: Boolean(state.session.currentUser),
+    currentUser: state.session.currentUser
 });
 
 const mapDispatchToProps = dispatch => ({

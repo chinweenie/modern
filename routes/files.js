@@ -6,7 +6,7 @@ const cloudinary = require('cloudinary');
 router.post('/uploadFile', (req, res) => {
     const newFile = new File({
         URL: req.body.URL,
-        email: req.body.email,
+        user_id: req.body.user_id,
         filename: req.body.filename,
         etag: req.body.etag,
         public_id: req.body.public_id,
@@ -17,26 +17,25 @@ router.post('/uploadFile', (req, res) => {
             res.json({
             success: true,
             URL: newFile.URL,
-            email: newFile.email
+            user_id: newFile.user_id
         });
     })
-    .catch(err => console.log(err));
+    .catch(err => res.json(err));
 });
 
-router.delete('/deleteFile/:email/:filename', (req, res) => {
-    const email = req.params.email;
+router.delete('/deleteFile/:user_id/:filename', (req, res) => {
+    const user_id = req.params.user_id;
     const filename = req.params.filename;
 
-    File.findOneAndDelete( { email: email, filename: filename} ).then(file => {
+    File.findOneAndDelete( { user_id: user_id, filename: filename} ).then(file => {
         res.json(file);
-        debugger;
         cloudinary.v2.api.delete_resources(file.public_id);
     });
 });
 
-router.get('/fetchAll/:email', (req, res) => {
-    const email = req.params.email;
-    File.find({ email }).then(files => (res.json(files)));
+router.get('/fetchAll/:user_id', (req, res) => {
+    const user_id = req.params.user_id;
+    File.find({ user_id }).then(files => (res.json(files)));
 });
 
 

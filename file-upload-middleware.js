@@ -2,16 +2,16 @@ const axios = require('axios')
 const cloudinary = require('cloudinary')
 
 function fileUploadMiddleware(req, res) {
-    let email;
+    let user_id;
     let url = req.headers.origin;
     if(url[url.length - 1] === '/')
         url = url.slice(0, -1);
 
     cloudinary.uploader.upload_stream((result) => {
-        email = req.body.email;
+        user_id = req.body.user_id;
         axios.post(`${url}/uploadFile`, {
                 URL: result.secure_url,
-                email: req.body.email,
+                user_id: req.body.user_id,
                 filename: req.body.filename,
                 etag: result.etag,
                 public_id: result.public_id,
@@ -19,9 +19,8 @@ function fileUploadMiddleware(req, res) {
                 signature: result.signature
         })
         .then((response) => {
-            res.status(200).json({ success: true, fileURL: result.secure_url, email: email })
+            res.status(200).json({ success: true, fileURL: result.secure_url, user_id: user_id })
         }).catch((error) => {
-            console.log(error)
             res.status(500).json(error.response.data);
         });
     }).end(req.file.buffer);

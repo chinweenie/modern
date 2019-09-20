@@ -29,7 +29,15 @@ export const fetchStories = () => dispatch => {
         .then(response => (dispatch(receiveAllStories(response.data))
         ), error => (
             dispatch(receiveStoriesErrors(error.response.data))
-        ))
+        ));
+};
+
+export const fetchStoriesOfOneUser = (user_id) => dispatch => {
+    return StoriesApiUtil.fetchStories(user_id)
+        .then(response => (dispatch(receiveAllStories(response.data))
+        ), error => (
+            dispatch(receiveStoriesErrors(error.response.data))
+        ));
 };
 
 export const fetchStory = storyId => dispatch => {
@@ -38,7 +46,7 @@ export const fetchStory = storyId => dispatch => {
             dispatch(receiveStory(response.data))
         ), error => (
             dispatch(receiveStoriesErrors(error.response.data))
-        ))
+        ));
 };
 
 export const createStory = storyData => dispatch => {

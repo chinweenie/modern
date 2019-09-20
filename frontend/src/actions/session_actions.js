@@ -25,7 +25,7 @@ export const signup = (user) => dispatch => {
     localStorage.setItem('jwtToken', token);
     SessionApiUtil.setAuthToken(token);
     const decoded = jwt_decode(token);
-    dispatch(receiveCurrentUser(decoded))
+    dispatch(receiveCurrentUser(decoded));
   }, error => (
     dispatch(recieveSessionErrors(error.response.data))
   ))
@@ -37,16 +37,16 @@ export const login = (user) => dispatch => (
     localStorage.setItem('jwtToken', token);
     SessionApiUtil.setAuthToken(token);
     const decoded = jwt_decode(token);
-    dispatch(receiveCurrentUser(decoded))
+    dispatch(receiveCurrentUser(decoded));
   }, error => {
      return dispatch(recieveSessionErrors(error.response.data))
   })
 );
 export const logout = () => dispatch => {
   // Remove the token from local storage
-  localStorage.removeItem('jwtToken')
+  localStorage.removeItem('jwtToken');
   // Remove the token from the common axios header
-  SessionApiUtil.setAuthToken(false)
+  SessionApiUtil.setAuthToken(false);
   // Dispatch a logout action
-  dispatch(logoutUser())
+  dispatch(logoutUser());
 };

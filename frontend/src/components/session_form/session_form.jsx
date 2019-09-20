@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class SessionForm extends React.Component{
     constructor(props){
@@ -90,7 +90,7 @@ class SessionForm extends React.Component{
             disclaimer= (
                 <div>
                     <p className="disclaimer">To make Modern work, we log user data and share it with service providers.
-                        Click “Sign up” above to accept Moderns’s Terms of Service & Privacy Policy.</p>
+                        Click “Sign up” above to accept Modern’s Terms of Service & Privacy Policy.</p>
                 </div>
             );
 
@@ -168,7 +168,7 @@ class SessionForm extends React.Component{
         }
         return (
             <form className="session-form" onSubmit={this.handleSubmit}>
-                <a className='modal-close-button' onClick={this.handleClose}>{String.fromCharCode(10005)}</a>
+                <span className='modal-close-button' onClick={this.handleClose}>{String.fromCharCode(10005)}</span>
                 {sessionFormHeader}
 
                 <div className="session-form-inputs">
