@@ -1,0 +1,1 @@
+export const selectStoryAuthor = (allUsers, story)
