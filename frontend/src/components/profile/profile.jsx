@@ -1,17 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-
 export default class profile extends Component {
     constructor(props){
         super(props);
         this.state = {
-            profileURL: ""
+            profileURL: this.props.fileURL || "/favicon.JPG"
         };
-        this.props.fetchAll(this.props.currentUser.email)
+        this.props.fetchAll(this.props.currentUser.user_id)
         .then( response => {
             response.files = response.files || [];
-            response.files.map(obj => {
+            response.files.forEach(obj => {
                 if(obj.filename === "profile")
                     this.setState({profileURL: obj.URL});
             });
@@ -19,20 +18,22 @@ export default class profile extends Component {
         this.handleDeleteFile = this.handleDeleteFile.bind(this);
         this.handleUploadFile = this.handleUploadFile.bind(this);
         this.props.getProfile("yuichiu416");
+        this.props.getStories(this.props.currentUser);
     }
     handleDeleteFile(e){
-        this.props.deleteFile(this.props.currentUser.email, "profile")
-            .then(this.setState({ profileURL: ""}));
+        this.props.deleteFile(this.props.currentUser.user_id, "profile")
+            .then(this.setState({ profileURL: "/favicon.JPG" }));
     }
     handleUploadFile(event){
         const data = new FormData();
         data.append('file', event.target.files[0]);
         data.append('filename', 'profile');
         data.append('type', 'image');
-        data.append('email', this.props.currentUser.email);
-        this.props.uploadFile(data);
+        data.append('user_id', this.props.currentUser.is);
+        this.props.uploadFile(data).then(response => this.setState({ profileURL: response.file.fileURL}));
     }
     render() {
+
         let { currentUser, followings, stories } = this.props;
         if (!currentUser){
             return (
@@ -41,7 +42,29 @@ export default class profile extends Component {
                 </div>
             )
         }
-        stories = stories || <h1 className="non-active-user">{currentUser.name} hasn’t been active on Modern yet. Check back later to see their stories, claps, and highlights.</h1>
+
+        if(stories){
+            stories = 
+            <table>
+                {stories.map((story, idx) => {
+                    return  <tbody key={story.title + idx}>
+                                <tr>
+                                <th>Title</th>
+                                </tr>
+                                <tr>
+                                    <td>{story.title}</td>
+                                </tr>
+                                <tr>
+                                    <th>Body</th>
+                                </tr>
+                                <tr>
+                                    <td>{story.body}</td>
+                                </tr>
+                            </tbody>
+                })}
+            </table>
+        } else
+            stories = <h1 className="non-active-user">{currentUser.name} hasn’t been active on Modern yet. Check back later to see their stories, claps, and highlights.</h1>
         
         return (
             <div>
@@ -63,33 +86,32 @@ export default class profile extends Component {
                         </div>
                         
                         {/* </div> */}
-                        <img src={this.state.profileURL} className="profile-picture"/>
+                        <img src={this.state.profileURL} className="profile-picture" alt="profile"/>
                     </div>
                     <div className="profile-pic-changes">
-                        <div class="box-1">
+                        <div className="box-1">
                             
-                            <label for="upload">
-                                <div class="pro-btn btn-one">
+                            <label htmlFor="upload">
+                                <div className="pro-btn btn-one">
                                 <input className="hidden-input" id="upload" type="file" onChange={this.handleUploadFile} />
-                                <span for="upload">Upload Profile Picture</span>
-                                <img width='320' src={this.props.fileURL} />
+                                <span>Upload Profile Picture</span>
                                 </div>
                             </label>
                             
                         </div>
                         {/* <input className="upload-profile-pic-button" type="file" onChange={this.handleUploadFile} /> */}
                         {/* <img width='320' src={this.props.fileURL} /> */}
-                        <div class="box-2">
-                            <div onClick={this.handleDeleteFile} class="pro-btn btn-two">
+                        <div className="box-2">
+                            <div onClick={this.handleDeleteFile} className="pro-btn btn-two">
                                 <span>Delete Profile Picture</span>
                             </div>
                         </div>
                     </div>
                     <div className="profile-break"></div>
                     <div className="stories">
-                            {stories}
-                        {/* <div class="box-2">
-                            <div onClick={this.handleDeleteFile} class="pro-btn btn-two">
+                           {stories}
+                        {/* <div className="box-2">
+                            <div onClick={this.handleDeleteFile} className="pro-btn btn-two">
                                 <span>Delete Profile Picture</span>
                             </div>
                         </div> */}

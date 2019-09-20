@@ -1,4 +1,3 @@
-import axios from 'axios';
 import * as FilesApiUtil from '../util/files_util';
 export const RECEIVE_FILE = "RECEIVE_FILE";
 export const RECEIVE_FILE_ERRORS = "RECEIVE_FILE_ERRORS";
@@ -13,7 +12,7 @@ export const receiveFile = file => ({
 export const receiveFiles = files => ({
     type: RECEIVE_FILES,
     files
-})
+});
 
 export const receiveFileErrors = errors => ({
     type: RECEIVE_FILE_ERRORS,
@@ -24,26 +23,27 @@ export const receiveDeleteFile = (data) => ({
     data
 });
 
-export const deleteFile = (email, filename) => dispatch => {
-    return FilesApiUtil.deleteFileByEmailAndFileName(email, filename).then(response => (
+export const deleteFile = (user_id, filename) => dispatch => (
+    FilesApiUtil.deleteFileByUserIdAndFileName(user_id, filename)
+    .then(response => (
         dispatch(receiveDeleteFile(response.data))
         ), error => {
-            dispatch(receiveFileErrors(error.responseJSON));
-        });
-};
+            dispatch(receiveFileErrors(error.response.data));
+    })
+);
 
-export const uploadFile = data => dispatch => {
-    return FilesApiUtil.postToCloudinary(data).then(response => (
+export const uploadFile = data => dispatch => (
+    FilesApiUtil.postToCloudinary(data).then(response => (
         dispatch(receiveFile(response.data))
         ), error => (
-            dispatch(receiveFileErrors(error.responseJSON))
-    ));
-};
+            dispatch(receiveFileErrors(error.response.data))
+    ))
+);
 
-export const fetchAll = email => dispatch => {
-    return FilesApiUtil.getAllFilesByEmail(email).then(response => (
+export const fetchAll = user_id => dispatch => {
+    return FilesApiUtil.getAllFilesByUserId(user_id).then(response => (
         dispatch(receiveFiles(response.data))
     ), error => (
-        dispatch(receiveFileErrors(error.responseJSON))
+        dispatch(receiveFileErrors(error.response.data))
     ));
 };

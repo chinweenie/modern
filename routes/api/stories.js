@@ -11,6 +11,7 @@ router.get('/', (req, res) => {
     Story
         .find()
         .sort({date: -1})
+        .then(stories => res.json(stories))
         .catch(error => res.status(404).json({noStoriesFound: 'No stories found'}));
 });
 
@@ -28,7 +29,6 @@ router.get('/:story_id', (req, res) => {
 // @desc    Create a new story 
 // @access  Private
 router.post('/', passport.authenticate('jwt', {session: false}), (req, res) => {
-    console.log(req.body);
     const {errors, isValid} = validateStoryInput(req.body);
     if (!isValid) {
         return res

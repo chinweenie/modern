@@ -23,12 +23,10 @@ router.post('/register', (req, res) => {
     if (!isValid) {
         return res.status(400).json(errors);
     }
-
     // Check to make sure nobody has already registered with a duplicate email
     User.findOne({ email: req.body.email })
         .then(user => {
             if (user) {
-                // Throw a 400 error if the email address already exists
                 return res.status(400).json({ email: "A user has already registered with this email" })
             } else {
                 // Otherwise create a new user
@@ -45,10 +43,10 @@ router.post('/register', (req, res) => {
                         newUser.save()
                             .then(user => res.json({
                                 success: true,
-                                currentUser: { id: user.id, name: user.name, email: user.email}
+                                currentUser: { id: user.id, name: user.name, email: user.email, username: email.split("@")[0] }
                             }))
-                            .catch(err => console.log(err));
-                    })
+                            .catch(err => res.json(err));
+                    });
                 });
             }
         });
@@ -71,7 +69,7 @@ router.post('/login', (req, res) => {
             bcrypt.compare(password, user.password)
                 .then(isMatch => {
                     if (isMatch) {
-                        const currentUser = { id: user.id, name: user.name, email: user.email };
+                        const currentUser = { id: user.id, name: user.name, email: user.email, username: email.split("@")[0] };
 
                         jwt.sign(
                             currentUser,
@@ -88,8 +86,8 @@ router.post('/login', (req, res) => {
                     } else {
                         return res.status(422).json({ password: 'Incorrect password' });
                     }
-                })
-        })
+                });
+        });
 })
 
 module.exports = router;
