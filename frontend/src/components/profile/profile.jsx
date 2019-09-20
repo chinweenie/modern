@@ -11,7 +11,7 @@ export default class profile extends Component {
         this.props.fetchAll(this.props.currentUser.email)
         .then( response => {
             response.files = response.files || [];
-            response.files.map(obj => {
+            response.files.forEach(obj => {
                 if(obj.filename === "profile")
                     this.setState({profileURL: obj.URL});
             });
@@ -63,23 +63,23 @@ export default class profile extends Component {
                         </div>
                         
                         {/* </div> */}
-                        <img src={this.state.profileURL} className="profile-picture"/>
+                        <img src={this.state.profileURL} className="profile-picture" alt="profile"/>
                     </div>
                     <div className="profile-pic-changes">
-                        <div class="box-1">
+                        <div className="box-1">
                             
-                            <label for="upload">
-                                <div class="pro-btn btn-one">
+                            <label htmlFor="upload">
+                                <div className="pro-btn btn-one">
                                 <input className="hidden-input" id="upload" type="file" onChange={this.handleUploadFile} />
-                                <span for="upload">Upload Profile Picture</span>
+                                <span>Upload Profile Picture</span>
                                 </div>
                             </label>
                             
                         </div>
                         {/* <input className="upload-profile-pic-button" type="file" onChange={this.handleUploadFile} /> */}
                         {/* <img width='320' src={this.props.fileURL} /> */}
-                        <div class="box-2">
-                            <div onClick={this.handleDeleteFile} class="pro-btn btn-two">
+                        <div className="box-2">
+                            <div onClick={this.handleDeleteFile} className="pro-btn btn-two">
                                 <span>Delete Profile Picture</span>
                             </div>
                         </div>
@@ -87,8 +87,8 @@ export default class profile extends Component {
                     <div className="profile-break"></div>
                     <div className="stories">
                             {stories}
-                        {/* <div class="box-2">
-                            <div onClick={this.handleDeleteFile} class="pro-btn btn-two">
+                        {/* <div className="box-2">
+                            <div onClick={this.handleDeleteFile} className="pro-btn btn-two">
                                 <span>Delete Profile Picture</span>
                             </div>
                         </div> */}

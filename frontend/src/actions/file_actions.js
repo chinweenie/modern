@@ -1,4 +1,3 @@
-import axios from 'axios';
 import * as FilesApiUtil from '../util/files_util';
 export const RECEIVE_FILE = "RECEIVE_FILE";
 export const RECEIVE_FILE_ERRORS = "RECEIVE_FILE_ERRORS";
