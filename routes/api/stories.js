@@ -57,7 +57,7 @@ router.patch('/:story_id', passport.authenticate('jwt', {session: false}), (req,
             .status(400)
             .json(errors);
     };
-    
+    debugger
     // const story = Story.findById(req.params.story_id);
     Story.update({_id: req.params.story_id}, {$set: {title: req.body.title, body: req.body.body}}, {multi: true, new: true})
         .then(story => res.json(story))
