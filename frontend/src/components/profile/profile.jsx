@@ -6,7 +6,7 @@ export default class profile extends Component {
     constructor(props){
         super(props);
         this.state = {
-            profileURL: ""
+            profileURL: this.props.fileURL
         };
         this.props.fetchAll(this.props.currentUser.email)
         .then( response => {
@@ -30,7 +30,7 @@ export default class profile extends Component {
         data.append('filename', 'profile');
         data.append('type', 'image');
         data.append('email', this.props.currentUser.email);
-        this.props.uploadFile(data);
+        this.props.uploadFile(data).then(response => this.setState({ profileURL: response.file.fileURL}));
     }
     render() {
         let { currentUser, followings, stories } = this.props;
@@ -72,7 +72,6 @@ export default class profile extends Component {
                                 <div class="pro-btn btn-one">
                                 <input className="hidden-input" id="upload" type="file" onChange={this.handleUploadFile} />
                                 <span for="upload">Upload Profile Picture</span>
-                                <img width='320' src={this.props.fileURL} />
                                 </div>
                             </label>
                             
