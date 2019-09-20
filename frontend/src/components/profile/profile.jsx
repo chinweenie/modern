@@ -52,11 +52,13 @@ export default class profile extends Component {
                             <h1 className="profile-username">{currentUser.name}</h1>
                             <p className="profile-user-bio"> The smallest company in the world can look as large as the largest company on the web. -Steve Jobs</p>
                             <div className="profile-left-content">
-                                
                                 {/* <h1 className="profile-username">{currentUser.name}</h1> */}
-                                <Link className="profile-edit-link" to={`/${currentUser.name}/edit`}>Edit Profile</Link>
+                                {/* <div className="pro-btn btn-three"> */}
+                                
+                                <Link className="profile-following" to={`/${currentUser.name}/following`}>{followings} followers</Link>
                                 <div> &nbsp; </div>
-                                <Link className="profile-following" to={`/${currentUser.name}/following`}>{followings} following</Link>
+                                <div> &nbsp; </div>
+                                <Link className="profile-edit-link" to={`/${currentUser.name}/edit`}>Edit Profile</Link>
                             </div>
                         </div>
                         

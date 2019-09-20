@@ -37,7 +37,7 @@
   width: 350px;
   display: flex;
   position: fixed;
-  margin: 4% auto;
+  margin: 4.5% auto;
   font-size: 16px;
   line-height: 20px;
   font-family: "Lucida Grande";
@@ -61,6 +61,11 @@
   color: rgba(0, 0, 0, 0.69);
   fill: rgba(0, 0, 0, 0.69);
 }
+.profile-following:hover, .profile-edit-link:hover {
+  color: rgb(7, 7, 7);
+  font-size: 94%;
+  
+}
 .non-active-user {
   width: 1000px;
   height: 72px;
@@ -80,7 +85,7 @@
   color: black;
   fill: black;
   width: 680px;
-  padding-bottom: 10px;
+  /* padding-bottom: 5px; */
   border-bottom: 1px solid rgba(0,0,0,.13);
 }
 @import 'https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300';
