@@ -115,9 +115,10 @@ class StoryForm extends React.Component {
                     value={this.state.body}
                     onChange={this.handleQuillChange}
                     modules={this.modules}
-                    formats={this.formats}/>
-
-                <button>Publish</button>
+                    formats={this.formats} />
+     
+                
+                <button className="publish-button">Publish</button>
             </form>
         )
     };

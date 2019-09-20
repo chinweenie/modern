@@ -58,9 +58,6 @@
     margin: auto;
     width: 85%;
     text-align: center;
-    /* background-color: palevioletred; */
-    /* margin-top: 4%; */
-    /* border: 1px solid lightgrey; */
 }
 
 .story-form input {
@@ -94,4 +91,26 @@
    margin-left: 40px;
    margin-right: 40px;
 }
-
+.publish-button{
+    margin-top: 1%;
+    display: inline-flex;
+    width: 150px;
+    height: 35px;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid rgb(146, 147, 148);
+    outline: none;
+    transition: 1s ease-in-out;
+    color: rgba(29, 29, 29, 0.76);
+    fill: rgba(0,0,0,.76);
+    font-size: 16px;
+    font-weight: 100;
+    letter-spacing: 1;
+    text-align: center;
+    padding-left: 3.4%;
+}
+.publish-button:hover {
+    background-color: rgb(46, 245, 178);
+    color: rgb(59, 59, 59);
+    padding-left: 6%;
+}
