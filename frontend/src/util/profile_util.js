@@ -1,11 +1,7 @@
 import axios from 'axios';
 
-export const getProfileRequest = username => (
-    axios.get(`/@${username}`)
-);
-
-export const fetchStoriesOfOneUser = currentUser => {
-    return axios.get(`/@${currentUser.username}/stories/${currentUser.id}`);
+export const fetchStoriesOfOneUser = user => {
+    return axios.get(`/@${user.username}/stories/${user.id}`);
 };
 
 export const updateStory = storyData => {
