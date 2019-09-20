@@ -1,20 +1,47 @@
+import React from 'react'
+import './editor.css';
+import './quill.snow.css';
+import ReactQuill from 'react-quill';
 
-import React, { Component } from 'react'
 
-export default class StoryForm extends Component {
+class StoryForm extends React.Component {
     constructor(props){
         super(props);
-        this.state = this.props.story;
+        this.state = Object.assign({
+            imageUrl: undefined,
+            imageFile: undefined
+        }, this.props.story);
+
+        this.modules = {
+            toolbar: [
+                [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+                [{ size: [] }],
+                ['bold', 'italic', 'underline', 'strike', 'blockquote'],
+                [{ 'list': 'ordered' }, { 'list': 'bullet' },
+                { 'indent': '-1' }, { 'indent': '+1' }],
+                ['link', 'image', 'video'],
+                ['clean']
+            ]
+            
+        };
+
+        this.formats = [
+            'header', 'font', 'size',
+            'bold', 'italic', 'underline', 'strike', 'blockquote',
+            'list', 'bullet', 'indent',
+            'link', 'image', 'video'
+        ];
+        this.handleQuillChange = this.handleQuillChange.bind(this);
     };
 
-    componentDidMount(){
-        this.props.fetchStory(this.props.match.params.storyId);
-    };
+    handleQuillChange(value) {
+        this.setState({ body: value })
+    }
     
-    handleSubmit(event){
-        event.preventDefault();
-        this.props.processForm(this.state);
-    };
+    // handleSubmit(event){
+    //     event.preventDefault();
+    //     this.props.processForm(this.state);
+    // };
 
     update(field){
         return event => {
@@ -22,34 +49,26 @@ export default class StoryForm extends Component {
         }
     };
 
-    insertImageTag(event){
-        event.preventDefault();
-        return (
-            <img src={event.target.value}/>
-        )
-    };
-
-    insertVideoTag(){
-
-    };
-
-    insertEmbeddedLinkTag(event){
-        event.preventDefault();
-        return (
-            <a href={event.target.value}></a>
-        )
-    };
-
-    insertCodeSnippet(){
-
-    };
-
     render() {
         return (
-            <div>
-                
+            <div className="story-form">
+                <link href={"https://cdn.quilljs.com/1.3.6/quill.snow.css"} rel="stylesheet" />
+
+                <input type="text" placeholder="Title" value={this.state.title}
+                 onChange={this.update('title')} className="title-input"/>
+            
+                <br/>
+                <ReactQuill
+                    theme="snow"
+                    value={this.state.body}
+                    onChange={this.handleQuillChange}
+                    modules={this.modules}
+                    formats={this.formats} />
             </div>
         )
     };
 }
+
+
+export default StoryForm;
 

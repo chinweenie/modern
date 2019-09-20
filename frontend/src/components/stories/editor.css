@@ -1,0 +1,52 @@
+.story-form .ql-editor {
+    min-height: 18em;
+    border: 1px solid #ccc;
+    border-radius: 0.5em;
+}
+
+.story-form .title-input {
+    border: none;
+    width: 75%;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.story-form {
+    display: block;
+    margin: auto;
+    width: 85%;
+    text-align: center;
+}
+
+.story-form input {
+    outline: none;
+}
+
+.story-form h1 {
+    display: block;
+    font-size: 2em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.story-form h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.story-form blockquote {
+    display: block;
+   margin-top: 1em;
+   margin-bottom: 1em;
+   margin-left: 40px;
+   margin-right: 40px;
+}
+
