@@ -52,11 +52,15 @@ class StoryForm extends React.Component {
     render() {
         return (
             <div className="story-form">
+                <div className="profile-shadow"></div>
                 <link href={"https://cdn.quilljs.com/1.3.6/quill.snow.css"} rel="stylesheet" />
-
+                <div className="border-title-head">
+                <div class="cursor">
                 <input type="text" placeholder="Title" value={this.state.title}
                  onChange={this.update('title')} className="title-input"/>
-            
+                    <i></i>
+                </div>
+                </div>
                 <br/>
                 <ReactQuill
                     theme="snow"
@@ -64,6 +68,7 @@ class StoryForm extends React.Component {
                     onChange={this.handleQuillChange}
                     modules={this.modules}
                     formats={this.formats} />
+                    
             </div>
         )
     };
