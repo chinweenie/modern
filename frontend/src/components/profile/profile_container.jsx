@@ -5,7 +5,7 @@ import { getProfile, getStories } from '../../actions/profile_actions';
 
 const mapStateToProps = (state, ownProps) => {
     const currentUser = state.session.currentUser;
-    const stories = state.entites.profile ? state.entites.profile.stories : [];
+    const stories = state.entities.profile ? state.entities.profile.stories : [];
     return {
         currentUser: currentUser,
         followings: 2,

@@ -3,7 +3,7 @@ import './editor.css';
 import './quill.snow.css';
 import './quill.bubble.css';
 import ReactQuill from 'react-quill';
-
+import { withRouter } from 'react-router-dom'; 
 
 class StoryForm extends React.Component {
     constructor(props){
@@ -40,6 +40,7 @@ class StoryForm extends React.Component {
     handleSubmit(event){
         event.preventDefault();
         this.props.action(this.state);
+        this.props.history.push('/');
     };
 
     update(field){
@@ -69,5 +70,5 @@ class StoryForm extends React.Component {
 }
 
 
-export default StoryForm;
+export default withRouter(StoryForm);
 
