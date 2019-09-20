@@ -1,0 +1,97 @@
+.profile-shadow {
+  position: relative;
+  display: block;
+  height: 12px;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.05);
+  /* bottom: 10px */
+  margin-top: 1.5%;
+}
+.story-form .ql-editor {
+    min-height: 18em;
+    /* border: 1px solid #ccc; */
+    /* border-radius: 0.5em; */
+}
+@import url('https://fonts.googleapis.com/css?family=Literata:600&display=swap');
+.story-form .title-input {
+    border: none;
+    font-family: 'Literata', serif;
+    /* border-bottom: none; */
+    width: 97%;
+    font-size: 28px;
+    font-weight: 300px;
+    padding-left: 2%;
+    color: black;
+    /* margin-top: 3%; */
+    
+}
+.cursor {
+    position: relative;
+}
+.cursor i {
+    position: absolute;
+    width: 1px;
+    height: 60%;
+    background-color: gray;
+    left: 104px;
+    top: 21%;
+    animation-name: blink;
+    animation-duration: 800ms;
+    animation-iteration-count: infinite;
+    opacity: 1;
+}
+
+.cursor input:focus + i {
+    display: none;
+}
+
+@keyframes blink {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+.border-title-head {
+    margin-top: 3%;
+    border: 1px solid lightgrey;
+}
+.story-form {
+    display: block;
+    margin: auto;
+    width: 85%;
+    text-align: center;
+    /* background-color: palevioletred; */
+    /* margin-top: 4%; */
+    /* border: 1px solid lightgrey; */
+}
+
+.story-form input {
+    outline: none;
+}
+
+.story-form h1 {
+    display: block;
+    font-size: 2em;
+    margin-top: 0.67em;
+    margin-bottom: 0.67em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.story-form h2 {
+    display: block;
+    font-size: 1.5em;
+    margin-top: 0.83em;
+    margin-bottom: 0.83em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+}
+
+.story-form blockquote {
+    display: block;
+   margin-top: 1em;
+   margin-bottom: 1em;
+   margin-left: 40px;
+   margin-right: 40px;
+}
+
