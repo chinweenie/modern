@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Story = require("../models/Story");
+const passport = require("passport");
 
 router.get('/([\@]):username', (req, res) => {
     res.json({username: req.params.username, message: "I'm readty to work!"});
@@ -16,4 +17,6 @@ router.get('/([\@]):username/stories/:author', (req, res) => {
         .then(response => res.json(response))
         .catch(error => res.status(422).json({ noStoriesFound: 'No stories found' }));
 });
+
+
 module.exports = router; 

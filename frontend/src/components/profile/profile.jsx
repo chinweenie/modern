@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
 
 export default class profile extends Component {
     constructor(props){
@@ -17,8 +18,9 @@ export default class profile extends Component {
         });
         this.handleDeleteFile = this.handleDeleteFile.bind(this);
         this.handleUploadFile = this.handleUploadFile.bind(this);
-        this.props.getProfile("yuichiu416");
-        this.props.getStories(this.props.currentUser);
+        this.getProfileUser = this.getProfileUser.bind(this);
+        this.props.fetchAllUsers();
+        this.props.getStoriesByUsernameAndId(this.getProfileUser());
     }
     handleDeleteFile(e){
         this.props.deleteFile(this.props.currentUser.user_id, "profile")
@@ -32,8 +34,17 @@ export default class profile extends Component {
         data.append('user_id', this.props.currentUser.is);
         this.props.uploadFile(data).then(response => this.setState({ profileURL: response.file.fileURL}));
     }
+    getProfileUser(){
+        const users = this.props.users;
+        const demoUser = { id: "5d82c28d92828f66bd554727", username: "demouser" };
+        if (Object.keys(users).length === 0 && users.constructor === Object )
+            return demoUser;//return the demo profile if it's empty
+        else{
+            const user = users.find(obj => obj.username === this.props.profileOwnerUsername);
+            return user === undefined ? demoUser : user;
+        }   
+    }
     render() {
-
         let { currentUser, followings, stories } = this.props;
         if (!currentUser){
             return (
@@ -58,7 +69,7 @@ export default class profile extends Component {
                                     <th>Body</th>
                                 </tr>
                                 <tr>
-                                    <td>{story.body}</td>
+                                    <td>{ReactHtmlParser(story.body)}</td>
                                 </tr>
                             </tbody>
                 })}

@@ -1,4 +1,4 @@
-import { getProfileRequest, fetchStoriesOfOneUser } from '../util/profile_util';
+import { fetchStoriesOfOneUser } from '../util/profile_util';
 
 export const RECEIVE_PROFILE = "RECEIVE_PROFILE";
 export const RECEIVE_PROFILE_ERRORS = "RECEIVE_PROFILE_ERRORS";
@@ -18,17 +18,9 @@ export const receiveProfileErrors = errors => ({
     errors
 });
 
-export const getStories = user => dispatch => {
-    fetchStoriesOfOneUser(user).then(response => {
+export const getStoriesByUsernameAndId = user => dispatch => {
+    fetchStoriesOfOneUser({username: user.username, id: user.id}).then(response => {
         dispatch(receiveStories(response.data))
-    }, error => (
-        dispatch(receiveProfileErrors(error.response.data))
-    ));
-};
-
-export const getProfile = username => dispatch => {
-    return getProfileRequest(username).then(response => {
-        dispatch(receiveProfile(response.data))
     }, error => (
         dispatch(receiveProfileErrors(error.response.data))
     ));

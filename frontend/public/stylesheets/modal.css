@@ -197,7 +197,7 @@
   transition: 1s ease-in-out;
 }
 
-svg {
+.modal-svg {
   position: absolute;
   left: 0;
   top: 0;
