@@ -98,7 +98,7 @@ class SessionForm extends React.Component{
                 <div class="container">
                     <div class="center">
                         <button class="btn" onClick={this.handleDemo}>
-                            <svg width="150px" height="35px" viewBox="0 0 150 35" class="border">
+                            <svg className="modal-svg" width="150px" height="35px" viewBox="0 0 150 35" >
                                 <polyline points="149,1 149,34 1,34 1,1 149,1" class="bg-line" />
                                 <polyline points="149,1 149,34 1,34 1,1 149,1" class="hl-line" />
                             </svg>
