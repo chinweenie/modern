@@ -63,6 +63,7 @@ li.search {
     width: 200px;
     height: 30px;
     margin-left: 30px;
+    background-color: antiquewhite;
 }
 
 .fa-search {
@@ -94,7 +95,7 @@ li.search {
     display: flex;
     flex-direction: row;
     margin-top: 15px;
-    margin-right: 70px;
+    margin-right: 110px;
     padding-left: 15%;
   }
 
