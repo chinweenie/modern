@@ -9,7 +9,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         currentUser: currentUser,
         followings: 2,
-        fileURL: state.UI.files[currentUser.email],
+        fileURL: state.UI.files[currentUser.id],
         profileOwnerUsername: ownProps.match.params.username,
         stories: stories
     };
@@ -18,9 +18,9 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
     return {
         uploadFile: file => dispatch(uploadFile(file)),
-        fetchAll: email => dispatch(fetchAll(email)),
+        fetchAll: user_id => dispatch(fetchAll(user_id)),
         getProfile: username => dispatch(getProfile(username)),
-        deleteFile: (email, filename) => dispatch(deleteFile(email, filename)),
+        deleteFile: (user_id, filename) => dispatch(deleteFile(user_id, filename)),
         getStories: user => dispatch(getStories(user))
     }
 };

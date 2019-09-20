@@ -23,8 +23,8 @@ export const receiveDeleteFile = (data) => ({
     data
 });
 
-export const deleteFile = (email, filename) => dispatch => (
-    FilesApiUtil.deleteFileByEmailAndFileName(email, filename)
+export const deleteFile = (user_id, filename) => dispatch => (
+    FilesApiUtil.deleteFileByUserIdAndFileName(user_id, filename)
     .then(response => (
         dispatch(receiveDeleteFile(response.data))
         ), error => {
@@ -40,8 +40,8 @@ export const uploadFile = data => dispatch => (
     ))
 );
 
-export const fetchAll = email => dispatch => {
-    return FilesApiUtil.getAllFilesByEmail(email).then(response => (
+export const fetchAll = user_id => dispatch => {
+    return FilesApiUtil.getAllFilesByUserId(user_id).then(response => (
         dispatch(receiveFiles(response.data))
     ), error => (
         dispatch(receiveFileErrors(error.response.data))

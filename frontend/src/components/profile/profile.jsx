@@ -7,7 +7,7 @@ export default class profile extends Component {
         this.state = {
             profileURL: this.props.fileURL || "/favicon.JPG"
         };
-        this.props.fetchAll(this.props.currentUser.email)
+        this.props.fetchAll(this.props.currentUser.user_id)
         .then( response => {
             response.files = response.files || [];
             response.files.forEach(obj => {
@@ -21,7 +21,7 @@ export default class profile extends Component {
         this.props.getStories(this.props.currentUser);
     }
     handleDeleteFile(e){
-        this.props.deleteFile(this.props.currentUser.email, "profile")
+        this.props.deleteFile(this.props.currentUser.user_id, "profile")
             .then(this.setState({ profileURL: "/favicon.JPG" }));
     }
     handleUploadFile(event){
@@ -29,7 +29,7 @@ export default class profile extends Component {
         data.append('file', event.target.files[0]);
         data.append('filename', 'profile');
         data.append('type', 'image');
-        data.append('email', this.props.currentUser.email);
+        data.append('user_id', this.props.currentUser.is);
         this.props.uploadFile(data).then(response => this.setState({ profileURL: response.file.fileURL}));
     }
     render() {
@@ -46,8 +46,8 @@ export default class profile extends Component {
         if(stories){
             stories = 
             <table>
-                {stories.map(story => {
-                    return  <tr>
+                {stories.map((story, idx) => {
+                    return  <tbody key={story.title + idx}>
                                 <tr>
                                 <th>Title</th>
                                 </tr>
@@ -60,7 +60,7 @@ export default class profile extends Component {
                                 <tr>
                                     <td>{story.body}</td>
                                 </tr>
-                            </tr>
+                            </tbody>
                 })}
             </table>
         } else
