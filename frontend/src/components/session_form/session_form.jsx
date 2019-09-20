@@ -90,7 +90,7 @@ class SessionForm extends React.Component{
             disclaimer= (
                 <div>
                     <p className="disclaimer">To make Modern work, we log user data and share it with service providers.
-                        Click “Sign up” above to accept Moderns’s Terms of Service & Privacy Policy.</p>
+                        Click “Sign up” above to accept Modern’s Terms of Service & Privacy Policy.</p>
                 </div>
             );
 
