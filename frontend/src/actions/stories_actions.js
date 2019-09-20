@@ -32,6 +32,14 @@ export const fetchStories = () => dispatch => {
         ));
 };
 
+export const fetchStoriesOfOneUser = (user_id) => dispatch => {
+    return StoriesApiUtil.fetchStories(user_id)
+        .then(response => (dispatch(receiveAllStories(response.data))
+        ), error => (
+            dispatch(receiveStoriesErrors(error.response.data))
+        ));
+};
+
 export const fetchStory = storyId => dispatch => {
     return StoriesApiUtil.fetchStory(storyId)
         .then(response => (

@@ -18,6 +18,7 @@ export default class profile extends Component {
         this.handleDeleteFile = this.handleDeleteFile.bind(this);
         this.handleUploadFile = this.handleUploadFile.bind(this);
         this.props.getProfile("yuichiu416");
+        this.props.getStories(this.props.currentUser);
     }
     handleDeleteFile(e){
         this.props.deleteFile(this.props.currentUser.email, "profile")
@@ -32,6 +33,7 @@ export default class profile extends Component {
         this.props.uploadFile(data).then(response => this.setState({ profileURL: response.file.fileURL}));
     }
     render() {
+
         let { currentUser, followings, stories } = this.props;
         if (!currentUser){
             return (
@@ -40,7 +42,29 @@ export default class profile extends Component {
                 </div>
             )
         }
-        stories = stories || <h1 className="non-active-user">{currentUser.name} hasn’t been active on Modern yet. Check back later to see their stories, claps, and highlights.</h1>
+
+        if(stories){
+            stories = 
+            <table>
+                {stories.map(story => {
+                    return  <tr>
+                                <tr>
+                                <th>Title</th>
+                                </tr>
+                                <tr>
+                                    <td>{story.title}</td>
+                                </tr>
+                                <tr>
+                                    <th>Body</th>
+                                </tr>
+                                <tr>
+                                    <td>{story.body}</td>
+                                </tr>
+                            </tr>
+                })}
+            </table>
+        } else
+            stories = <h1 className="non-active-user">{currentUser.name} hasn’t been active on Modern yet. Check back later to see their stories, claps, and highlights.</h1>
         
         return (
             <div>
@@ -85,7 +109,7 @@ export default class profile extends Component {
                     </div>
                     <div className="profile-break"></div>
                     <div className="stories">
-                            {stories}
+                           {stories}
                         {/* <div className="box-2">
                             <div onClick={this.handleDeleteFile} className="pro-btn btn-two">
                                 <span>Delete Profile Picture</span>
