@@ -410,7 +410,7 @@
   border: none;
   cursor: pointer;
   display: inline-block;
-  float: left;
+  /* float: left; */
   height: 24px;
   padding: 3px 5px;
   width: 28px;
@@ -520,10 +520,12 @@
   .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke-miter,
   .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke-miter {
     stroke: #444;
+    
   }
 }
 .ql-snow {
   box-sizing: border-box;
+  
 }
 .ql-snow * {
   box-sizing: border-box;

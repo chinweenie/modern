@@ -18,6 +18,7 @@ import configureStore from './store/store';
 import jwt_decode from 'jwt-decode';
 import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
+import {fetchStories} from './actions/stories_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
     let store;
@@ -45,3 +46,5 @@ document.addEventListener('DOMContentLoaded', () => {
     // TESTING END
     ReactDOM.render(<Root store={store} />, root);
 });
+
+window.fetchStories = fetchStories;
