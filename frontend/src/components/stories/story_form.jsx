@@ -1,16 +1,14 @@
 import React from 'react'
 import './editor.css';
 import './quill.snow.css';
+import './quill.bubble.css';
 import ReactQuill from 'react-quill';
 
 
 class StoryForm extends React.Component {
     constructor(props){
         super(props);
-        this.state = Object.assign({
-            imageUrl: undefined,
-            imageFile: undefined
-        }, this.props.story);
+        this.state = this.props.story;
 
         this.modules = {
             toolbar: [
@@ -32,16 +30,17 @@ class StoryForm extends React.Component {
             'link', 'image', 'video'
         ];
         this.handleQuillChange = this.handleQuillChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     };
 
     handleQuillChange(value) {
         this.setState({ body: value })
     }
     
-    // handleSubmit(event){
-    //     event.preventDefault();
-    //     this.props.processForm(this.state);
-    // };
+    handleSubmit(event){
+        event.preventDefault();
+        this.props.action(this.state);
+    };
 
     update(field){
         return event => {
@@ -51,9 +50,7 @@ class StoryForm extends React.Component {
 
     render() {
         return (
-            <div className="story-form">
-                <link href={"https://cdn.quilljs.com/1.3.6/quill.snow.css"} rel="stylesheet" />
-
+            <form className="story-form" onSubmit={this.handleSubmit}>
                 <input type="text" placeholder="Title" value={this.state.title}
                  onChange={this.update('title')} className="title-input"/>
             
@@ -64,7 +61,9 @@ class StoryForm extends React.Component {
                     onChange={this.handleQuillChange}
                     modules={this.modules}
                     formats={this.formats} />
-            </div>
+                
+                <button>Publish</button>
+            </form>
         )
     };
 }

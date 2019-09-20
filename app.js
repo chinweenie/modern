@@ -24,9 +24,8 @@ mongoose
 
 
 const port = process.env.PORT || 5000;
-
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '50mb' }));
 
 cloudinary.config({
     cloud_name: 'yuichiu416',
