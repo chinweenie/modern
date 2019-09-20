@@ -41,25 +41,60 @@ export default class profile extends Component {
                 </div>
             )
         }
-        stories = stories || <h1>{currentUser.name} hasn’t been active on Medium yet. Check back later to see their stories, claps, and highlights.</h1>
+        stories = stories || <h1 className="non-active-user">{currentUser.name} hasn’t been active on Modern yet. Check back later to see their stories, claps, and highlights.</h1>
         
         return (
             <div>
+                <div className="profile-shadow"></div>
                 <div className="profile-page">
                     <div className="profile-header-container">
                         <div className="profile-header">
-                            <h1>{currentUser.name}</h1>
-                            <Link to={`/${currentUser.name}/edit`}>Edit profile</Link>
+                            <h1 className="profile-username">{currentUser.name}</h1>
+                            <p className="profile-user-bio"> The smallest company in the world can look as large as the largest company on the web. -Steve Jobs</p>
+                            <div className="profile-left-content">
+                                {/* <h1 className="profile-username">{currentUser.name}</h1> */}
+                                {/* <div className="pro-btn btn-three"> */}
+                                
+                                <Link className="profile-following" to={`/${currentUser.name}/following`}>{followings} followers</Link>
+                                <div> &nbsp; </div>
+                                <div> &nbsp; </div>
+                                <Link className="profile-edit-link" to={`/${currentUser.name}/edit`}>Edit Profile</Link>
+                            </div>
                         </div>
-                        <Link to={`/${currentUser.name}/following`}>{followings} following</Link>
+                        
+                        {/* </div> */}
                         <img src={this.state.profileURL} className="profile-picture"/>
                     </div>
+                    <div className="profile-pic-changes">
+                        <div class="box-1">
+                            
+                            <label for="upload">
+                                <div class="pro-btn btn-one">
+                                <input className="hidden-input" id="upload" type="file" onChange={this.handleUploadFile} />
+                                <span for="upload">Upload Profile Picture</span>
+                                <img width='320' src={this.props.fileURL} />
+                                </div>
+                            </label>
+                            
+                        </div>
+                        {/* <input className="upload-profile-pic-button" type="file" onChange={this.handleUploadFile} /> */}
+                        {/* <img width='320' src={this.props.fileURL} /> */}
+                        <div class="box-2">
+                            <div onClick={this.handleDeleteFile} class="pro-btn btn-two">
+                                <span>Delete Profile Picture</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="profile-break"></div>
                     <div className="stories">
                             {stories}
-                        <input type="file" onChange={this.handleUploadFile}/>
-                        <img width='320' src={this.props.fileURL} />
+                        {/* <div class="box-2">
+                            <div onClick={this.handleDeleteFile} class="pro-btn btn-two">
+                                <span>Delete Profile Picture</span>
+                            </div>
+                        </div> */}
                     </div>
-                <button onClick={this.handleDeleteFile}>Delete profile picture</button>
+                  {/* <button onClick={this.handleDeleteFile}>Delete profile picture</button> */}
                 </div>
             </div>
         )

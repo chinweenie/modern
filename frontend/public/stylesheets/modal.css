@@ -202,7 +202,8 @@ svg {
   left: 0;
   top: 0;
   fill: none;
-  stroke: rgb(250, 248, 248);
+  stroke: #07a77c;
+  /* rgb(250, 248, 248); */
   stroke-dasharray: 150 480;
   stroke-dashoffset: 150;
   transition: 1s ease-in-out;
