@@ -29,7 +29,6 @@ router.get('/:story_id', (req, res) => {
 // @desc    Create a new story 
 // @access  Private
 router.post('/', passport.authenticate('jwt', {session: false}), (req, res) => {
-    console.log(req.body);
     const {errors, isValid} = validateStoryInput(req.body);
     if (!isValid) {
         return res

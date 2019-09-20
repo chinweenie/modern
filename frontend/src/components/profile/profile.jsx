@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-
 export default class profile extends Component {
     constructor(props){
         super(props);
         this.state = {
-            profileURL: this.props.fileURL
+            profileURL: this.props.fileURL || "/favicon.JPG"
         };
         this.props.fetchAll(this.props.currentUser.email)
         .then( response => {
@@ -22,7 +21,7 @@ export default class profile extends Component {
     }
     handleDeleteFile(e){
         this.props.deleteFile(this.props.currentUser.email, "profile")
-            .then(this.setState({ profileURL: ""}));
+            .then(this.setState({ profileURL: "/favicon.JPG" }));
     }
     handleUploadFile(event){
         const data = new FormData();

@@ -21,7 +21,6 @@ function fileUploadMiddleware(req, res) {
         .then((response) => {
             res.status(200).json({ success: true, fileURL: result.secure_url, email: email })
         }).catch((error) => {
-            console.log(error)
             res.status(500).json(error.response.data);
         });
     }).end(req.file.buffer);

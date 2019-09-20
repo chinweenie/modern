@@ -20,7 +20,7 @@ router.post('/uploadFile', (req, res) => {
             email: newFile.email
         });
     })
-    .catch(err => console.log(err));
+    .catch(err => res.json(err));
 });
 
 router.delete('/deleteFile/:email/:filename', (req, res) => {

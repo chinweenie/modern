@@ -8,14 +8,10 @@ const filesReducer = (state = {}, action) => {
         case RECEIVE_FILES:
             return Object.assign({}, action.files.map(o => { return { URL: o.URL, filename: o.name }}));
         case DELETE_FILE:
-
-            return state;
+            return Object.assitn({}, { deletedFile: action.data.filename});
         default:
             return state;
     }
 };
 
 export default filesReducer;
-
-
-// { fileURL: action.file.fileURL };
