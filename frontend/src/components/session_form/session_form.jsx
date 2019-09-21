@@ -23,18 +23,14 @@ class SessionForm extends React.Component{
         this.props.login(user).then(() => this.props.fetchAllUsers()).then(() => this.props.history.push('/'));
     }
 
-
     handleSubmit(event){
         event.preventDefault();
-        // window.location.href = "http://localhost:3000/#/register";
         this.props.closeModal();
         if(this.props.formType === "Signup"){
-            // this.state.password2 = this.state.password; //TODO: the field is confirm password
             this.props.signup(this.state).then(() => this.props.fetchAllUsers()).then(() => this.props.history.push('/'));
             }
         else{
             this.props.login(this.state).then(() => this.props.fetchAllUsers()).then(() => this.props.history.push('/'));
-            
         }
     }
 

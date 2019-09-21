@@ -1,12 +1,14 @@
 import { connect } from 'react-redux';
 import Profile from './profile';
 import { uploadFile, fetchAll, deleteFile } from '../../actions/file_actions';
-import { getStoriesByUsernameAndId } from '../../actions/profile_actions';
+import { getStoriesByUsernameAndId } from '../../actions/stories_actions';
 import { fetchAllUsers } from '../../actions/users_actions';
 
 const mapStateToProps = (state, ownProps) => {
     const currentUser = state.session.currentUser;
-    const stories = state.entities.profile ? state.entities.profile.stories : [];
+    let stories = state.entities.stories ? state.entities.stories.stories : [];
+    // if (Object.keys(stories).length === 0 && stories.constructor === Object)
+    //     stories = []
     return {
         currentUser: currentUser,
         followings: 2,
