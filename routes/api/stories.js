@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Story = require("../../models/Story");
 const validateStoryInput = require('../../validation/story');
+const validateResponseInput = require('../../validation/response')
 const passport = require("passport");
 
 // @route   GET api/stories (index) 
@@ -97,6 +98,16 @@ router.patch('/claps/:story_id', passport.authenticate('jwt', { session: false }
     }); 
     
 });
+
+
+// @route   POST api/stories/responses/:story_id
+// @desc    Create new response of a story
+// @access  Private
+router.post('/responses/:story_id',
+            passport.authenticate('jwt', { session: false }),
+            (req, res) => {
+
+            });
 
 
 module.exports = router;
