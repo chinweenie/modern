@@ -8,7 +8,7 @@ export default class profile extends Component {
         this.state = {
             profileURL: this.props.fileURL || "/favicon.JPG"
         };
-        this.props.fetchAll(this.props.currentUser.user_id)
+        this.props.fetchAll(this.props.currentUser.id)
         .then( response => {
             response.files = response.files || [];
             response.files.forEach(obj => {
@@ -23,7 +23,7 @@ export default class profile extends Component {
         this.props.getStoriesByUsernameAndId(this.getProfileUser());
     }
     handleDeleteFile(e){
-        this.props.deleteFile(this.props.currentUser.user_id, "profile")
+        this.props.deleteFile(this.props.currentUser.id, "profile")
             .then(this.setState({ profileURL: "/favicon.JPG" }));
     }
     handleUploadFile(event){
@@ -31,7 +31,7 @@ export default class profile extends Component {
         data.append('file', event.target.files[0]);
         data.append('filename', 'profile');
         data.append('type', 'image');
-        data.append('user_id', this.props.currentUser.is);
+        data.append('user_id', this.props.currentUser.id);
         this.props.uploadFile(data).then(response => this.setState({ profileURL: response.file.fileURL}));
     }
     getProfileUser(){
@@ -53,7 +53,6 @@ export default class profile extends Component {
                 </div>
             )
         }
-
         if(stories){
             stories = 
             <table>

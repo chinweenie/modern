@@ -1,5 +1,7 @@
 import { connect } from 'react-redux';
 import { updateStory, fetchStory } from '../../actions/stories_actions';
+import { getEmbedDocumentByURL } from '../../actions/embed_actions';
+
 import StoryForm from './story_form';
 import React from 'react';
 
@@ -27,23 +29,23 @@ class EditStoryForm extends React.Component {
 
         return(
             <div>
-                <StoryForm story={story} action={action}/>
+                <StoryForm story={story} action={action} getEmbedDocumentByURL={getEmbedDocumentByURL}/>
             </div>
         )
     }
 }
 
 const mapStateToProps = (state, ownProps) => {
-    debugger
     const story = state.entities.stories[ownProps.match.params.storyId]
     return {
-        story
+        story: story,
     }
 }
 
 const mapDispatchToProps = dispatch => ({
     action: story => dispatch(updateStory(story)),
-    fetchStory: storyId => dispatch(fetchStory(storyId))
+    fetchStory: storyId => dispatch(fetchStory(storyId)),
+    getEmbedDocumentByURL: URL => dispatch(getEmbedDocumentByURL(URL))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditStoryForm);

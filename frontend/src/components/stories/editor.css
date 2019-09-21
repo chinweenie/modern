@@ -32,7 +32,7 @@
     width: 1px;
     height: 60%;
     background-color: gray;
-    left: 104px;
+    left: 101px;
     top: 21%;
     animation-name: blink;
     animation-duration: 800ms;
@@ -93,6 +93,7 @@
 }
 .publish-button{
     margin-top: 1%;
+    /* text-align: center; */
     display: inline-flex;
     width: 150px;
     height: 35px;
@@ -106,11 +107,11 @@
     font-size: 16px;
     font-weight: 100;
     letter-spacing: 1;
-    text-align: center;
-    padding-left: 3.4%;
+    padding-left: 4%;
 }
 .publish-button:hover {
-    background-color: rgb(46, 245, 178);
+    background-color: rgb(122, 248, 172);
     color: rgb(59, 59, 59);
-    padding-left: 6%;
+    padding-left: 6.7%;
+    padding-right: 0.3%;
 }

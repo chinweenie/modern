@@ -1,8 +1,10 @@
 import * as StoriesApiUtil from '../util/stories_api_util';
+
 export const RECEIVE_ALL_STORIES = 'RECEIVE_ALL_STORIES';
 export const RECEIVE_STORY = 'RECEIVE_STORY';
 export const REMOVE_STORY = 'REMOVE_STORY';
 export const RECEIVE_STORIES_ERRORS = 'RECEIVE_STORIES_ERRORS';
+export const RECEIVE_STORIES = "RECEIVE_STORIES";
 
 export const receiveAllStories = stories => ({
     type: RECEIVE_ALL_STORIES,
@@ -22,6 +24,11 @@ export const removeStory = story => ({
 export const receiveStoriesErrors = errors => ({
     type: RECEIVE_STORIES_ERRORS,
     errors
+});
+
+export const receiveStories = stories => ({
+    type: RECEIVE_STORIES,
+    stories
 });
 
 export const fetchStories = () => dispatch => {
@@ -76,3 +83,10 @@ export const deleteStory = storyId => dispatch => {
         ))
 };
 
+export const getStoriesByUsernameAndId = user => dispatch => {
+    return StoriesApiUtil.fetchStoriesOfOneUser({ username: user.username, id: user.id }).then(response => {
+        dispatch(receiveStories(response.data))
+    }, error => (
+        dispatch(receiveStoriesErrors(error.response.data))
+    ));
+};
