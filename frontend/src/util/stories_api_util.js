@@ -13,7 +13,6 @@ export const createStory = storyData => {
 };
 
 export const updateStory = storyData => {
-    debugger
     return axios.patch(`/api/stories/${storyData._id}`, storyData);
 };
 

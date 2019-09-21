@@ -13,6 +13,25 @@ const StorySchema = new Schema({
     body: {
         type: String,
         required: true
-    }
+    },
+    claps:{
+        type: Map
+    },
+    responses: [
+       {
+           user: {
+               type: Schema.Types.ObjectId,
+               ref: 'users'
+           },
+           body: {
+               type: String,
+               required: true
+           },
+           created_date: {
+               type: Date,
+               default: Date.now
+           }
+       }
+    ]
 });
 module.exports = Company = mongoose.model('stories', StorySchema);

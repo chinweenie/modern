@@ -40,11 +40,10 @@ router.post('/', passport.authenticate('jwt', {session: false}), (req, res) => {
     const title = req.body.title;
     const body = req.body.body;
 
-    const newStory = new Story({title: req.body.title, author: req.user.id, body: req.body.body})
-
-    newStory
-        .save()
-        .then(story => res.json(story));
+    const newStory = new Story({title: req.body.title, author: req.user.id, body: req.body.body, claps: { master: true}})
+    newStory.save().then(story => {
+            res.json(story);
+        })
 });
 
 // @route   PATCH api/stories/:story_id (update) 
@@ -57,7 +56,6 @@ router.patch('/:story_id', passport.authenticate('jwt', {session: false}), (req,
             .status(400)
             .json(errors);
     };
-    debugger
     // const story = Story.findById(req.params.story_id);
     Story.update({_id: req.params.story_id}, {$set: {title: req.body.title, body: req.body.body}}, {multi: true, new: true})
         .then(story => res.json(story))
@@ -68,15 +66,55 @@ router.patch('/:story_id', passport.authenticate('jwt', {session: false}), (req,
 // @route   DELETE api/stories/:story_id (delete)
 // @desc    Remove a story
 // @access  Private
-router.delete('/:story_id',
-              passport.authenticate('jwt', { session: false }),
-              (req, res) => {
+router.delete('/:story_id', passport.authenticate('jwt', { session: false }), (req, res) => {
 
-                const story = Story.findById(req.params.story_id);
-                
-                story.remove()
-                     .then(story => res.json(story))
-                     .catch(error => res.status(404).json({ cannotFindStory: 'Cannot find story with that ID'}))
-              });
+    const story = Story.findById(req.params.story_id);
+    story.remove()
+            .then(story => res.json(story))
+            .catch(error => res.status(404).json({ cannotFindStory: 'Cannot find story with that ID'}))
+});
+
+
+// @route   PUT api/stories/clap/:story_id (put)
+// @desc    Add a clap to the story
+// @access Private
+router.patch('/claps/:story_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+    Story.findById(req.params.story_id).exec(function (err, story){
+
+
+        const user_id = req.user.id;
+        const claps = story.claps
+        const clap = Boolean(claps[user_id])  //will either return true or false
+        // // toggle clap for each user
+        debugger
+        if (!clap) {//clap is {master: true}
+            claps[user_id] = true;
+        } else {  //clap is {master: true, someid: true}
+            delete claps[user_id];
+        } //clap is {master: true}
+
+        console.log("master is ");
+        console.log(story.claps.get("master"));
+  
+
+
+        Story.update({ _id: req.params.story_id }, { claps: claps }, { multi: true, new: true })
+            .then(story => res.json(story))
+            .catch(error => res.status(422).json({ cannotUpdateStory: "Cannot update the story" }))
+
+
+    });
+
+
+
+
+    
+    // res.json({
+    //     total_claps: Object.values(story.claps).length,
+    //     clappers: Object.keys(story.claps)
+    // })
+    // .catch(err => res.json(err));;                          
+});
+
 
 module.exports = router;

@@ -5,7 +5,6 @@ import { selectStoryAuthor } from '../../reducers/selectors';
 import { fetchAllUsers } from '../../actions/users_actions';
 
 const mapStateToProps = (state, ownProps) => {
-    debugger
     const story = state.entities.stories[ownProps.match.params.storyId];
     const author = selectStoryAuthor(state.entities.users, story);
     return {

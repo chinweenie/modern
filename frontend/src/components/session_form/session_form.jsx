@@ -94,16 +94,16 @@ class SessionForm extends React.Component{
                     <div className="center">
                         <button className="btn" onClick={this.handleDemo}>
                             <svg className="modal-svg" width="150px" height="35px" viewBox="0 0 150 35" >
-                                <polyline points="149,1 149,34 1,34 1,1 149,1" class="bg-line" />
-                                <polyline points="149,1 149,34 1,34 1,1 149,1" class="hl-line" />
+                                <polyline points="149,1 149,34 1,34 1,1 149,1" className="bg-line" />
+                                <polyline points="149,1 149,34 1,34 1,1 149,1" className="hl-line" />
                             </svg>
                             <span>Demo Modern</span>
                         </button>
                     </div>
                 </div>
-                // <a class="btn-slice" href="#" onClick={this.handleDemo}>
-                //     <div class="top"><span>Demo Modern</span></div>
-                //     <div class="bottom"><span>Demo Modern</span></div>
+                // <a className="btn-slice" href="#" onClick={this.handleDemo}>
+                //     <div className="top"><span>Demo Modern</span></div>
+                //     <div className="bottom"><span>Demo Modern</span></div>
                 // </a>
                 // <p onClick={this.handleDemo}
                     // className='demo-link'>DEMO</p>

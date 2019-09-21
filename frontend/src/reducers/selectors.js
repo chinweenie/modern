@@ -1,5 +1,4 @@
 export const selectStoryAuthor = (allUsers, story) => {
-    debugger
     const authorId = story.author;
     let author;
     const usersArray = Object.keys(allUsers).map(id => allUsers[id]);

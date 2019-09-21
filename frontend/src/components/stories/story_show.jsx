@@ -34,7 +34,6 @@ class StoryShow extends React.Component {
             )
         })
 
-        debugger
         return (
             <div className="story-show">
                 <div className="title">
