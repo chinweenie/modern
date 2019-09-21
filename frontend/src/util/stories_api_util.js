@@ -21,3 +21,6 @@ export const deleteStory = storyId => {
     return axios.delete(`/api/stories/${storyId}`);
 };
 
+export const fetchStoriesOfOneUser = user => {
+    return axios.get(`/@${user.username}/stories/${user.id}`);
+};

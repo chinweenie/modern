@@ -8,7 +8,13 @@ import {withRouter} from 'react-router-dom';
 class StoryForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = this.props.story;
+        this.state = Object.assign({}, this.props.story, {
+            embed: {
+                title: "",
+                description: "",
+                url: "",
+                image: ""
+        }});
 
         this.modules = {
             toolbar: [
@@ -70,7 +76,8 @@ class StoryForm extends React.Component {
         this.handleSubmit = this
             .handleSubmit
             .bind(this);
-    };
+        this.handleEmbedForm = this.handleEmbedForm.bind(this)
+    }
 
     handleQuillChange(value) {
         this.setState({body: value})
@@ -85,13 +92,20 @@ class StoryForm extends React.Component {
             .props
             .history
             .push('/');
-    };
+    }
+    handleEmbedForm(e){
+        e.stopPropagation();
+        this.props.getEmbedDocumentByURL(document.getElementById("URL").value)
+        .then(response => {
+            this.setState({ embed: response.embed })
+        });
+    }
 
     update(field) {
         return event => {
             this.setState({[field]: event.target.value})
         }
-    };
+    }
 
     render() {
         return (
@@ -99,7 +113,7 @@ class StoryForm extends React.Component {
                 <div className="profile-shadow"></div>
                 <link href={"https://cdn.quilljs.com/1.3.6/quill.snow.css"} rel="stylesheet"/>
                 <div className="border-title-head">
-                    <div class="cursor">
+                    <div className="cursor">
                         <input
                             type="text"
                             placeholder="Title"
@@ -110,14 +124,30 @@ class StoryForm extends React.Component {
                     </div>
                 </div>
                 <br/>
+
+                <label>
+                    Input a URL to embed a wepage:
+                    <input type="text" id="URL" />
+                    <span type="submit" value="Embed" onClick={this.handleEmbedForm}>click to embed</span>
+                </label>
+
                 <ReactQuill
                     theme="snow"
                     value={this.state.body}
                     onChange={this.handleQuillChange}
                     modules={this.modules}
-                    formats={this.formats} />
-     
-                
+                    formats={this.formats} >
+                    {/* place holder, when there's an embed item, replace it with the div */}
+                </ReactQuill>
+
+                {/* <div id="embed">
+                    <p>title:{this.state.embed.title}</p>
+                    <p>description{this.state.embed.description}</p>
+                    <img src={this.state.embed.image} />
+                    <p>url: {this.state.embed.url}</p>
+                </div> */}
+
+               
                 <button className="publish-button">Publish</button>
             </form>
         )

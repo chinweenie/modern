@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 export const getAllFilesByUserId = user_id => (
     axios.get(`/fetchAll/${user_id}`)
 );
