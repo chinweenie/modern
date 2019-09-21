@@ -79,16 +79,15 @@ router.delete('/:story_id', passport.authenticate('jwt', { session: false }), (r
 router.patch('/claps/:story_id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Story.findById(req.params.story_id).exec(function (err, story) {
 
-
         const user_id = req.user.id;
-        const claps = story.claps
-        const clap = claps.get(user_id)
+        const claps = story.claps;
+        const clap = claps.get(user_id);
 
-        if (!clap) {
-            claps.set(user_id, true);
-        } else {
+        if (clap) 
             claps.delete(user_id);
-        }
+        else 
+            claps.set(user_id, true);
+        
         Story.update({ _id: req.params.story_id }, { claps: claps }, { multi: true, new: true })
             .then(story => res.json(story))
             .catch(error => res.status(422).json({ cannotUpdateStory: "Cannot update the story" }))
