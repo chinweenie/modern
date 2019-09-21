@@ -6,9 +6,9 @@ import { fetchAllUsers } from '../../actions/users_actions';
 
 const mapStateToProps = (state, ownProps) => {
     const currentUser = state.session.currentUser;
-    let stories = state.entities.stories ? state.entities.stories.stories : [];
-    // if (Object.keys(stories).length === 0 && stories.constructor === Object)
-    //     stories = []
+    let stories = state.entities.stories
+    if (Object.keys(stories).length === 0 && stories.constructor === Object)
+        stories = [];
     return {
         currentUser: currentUser,
         followings: 2,

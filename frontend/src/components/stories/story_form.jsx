@@ -139,13 +139,13 @@ class StoryForm extends React.Component {
                     formats={this.formats} >
                     {/* place holder, when there's an embed item, replace it with the div */}
                 </ReactQuill>
+                    <div id="embed">
+                        <p>title:{this.state.embed.title}</p>
+                        <p>description{this.state.embed.description}</p>
+                        <img src={this.state.embed.image} />
+                        <p>url: {this.state.embed.url}</p>
+                    </div>
 
-                {/* <div id="embed">
-                    <p>title:{this.state.embed.title}</p>
-                    <p>description{this.state.embed.description}</p>
-                    <img src={this.state.embed.image} />
-                    <p>url: {this.state.embed.url}</p>
-                </div> */}
 
                
                 <button className="publish-button">Publish</button>

@@ -84,25 +84,17 @@ router.patch('/claps/:story_id', passport.authenticate('jwt', { session: false }
 
         const user_id = req.user.id;
         const claps = story.claps
-        const clap = Boolean(claps[user_id])  //will either return true or false
-        // // toggle clap for each user
-        debugger
-        if (!clap) {//clap is {master: true}
-            claps[user_id] = true;
-        } else {  //clap is {master: true, someid: true}
-            delete claps[user_id];
-        } //clap is {master: true}
-
-        console.log("master is ");
-        console.log(story.claps.get("master"));
-  
-
+        const clap = claps.get(user_id)
+        
+        if (!clap) {
+            claps.set(user_id, true);
+        } else {  
+            claps.delete(user_id);
+        }
 
         Story.update({ _id: req.params.story_id }, { claps: claps }, { multi: true, new: true })
             .then(story => res.json(story))
             .catch(error => res.status(422).json({ cannotUpdateStory: "Cannot update the story" }))
-
-
     });
 
 
