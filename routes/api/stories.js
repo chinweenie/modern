@@ -31,19 +31,17 @@ router.get('/:story_id', (req, res) => {
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
     const { errors, isValid } = validateStoryInput(req.body);
     if (!isValid) {
-        return res
-            .status(422)
-            .json(errors);
-    };
-
-    const user = User.findById(req.user.id);
+        return res.status(422).json(errors);
+    }
+    
+    const author = User.findById(req.user.id);
     const title = req.body.title;
     const body = req.body.body;
 
-    const newStory = new Story({ title: req.body.title, author: req.user.id, body: req.body.body, claps: { master: true } })
+    const newStory = new Story({ title: title, author: author, body: body, claps: { } });
     newStory.save().then(story => {
         res.json(story);
-    })
+    });
 });
 
 // @route   PATCH api/stories/:story_id (update) 
