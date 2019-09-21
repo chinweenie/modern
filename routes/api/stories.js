@@ -10,9 +10,9 @@ const passport = require("passport");
 router.get('/', (req, res) => {
     Story
         .find()
-        .sort({date: -1})
+        .sort({ date: -1 })
         .then(stories => res.json(stories))
-        .catch(error => res.status(404).json({noStoriesFound: 'No stories found'}));
+        .catch(error => res.status(404).json({ noStoriesFound: 'No stories found' }));
 });
 
 // @route   GET api/stories/:story_id (show) 
@@ -22,14 +22,14 @@ router.get('/:story_id', (req, res) => {
     Story
         .findById(req.params.story_id)
         .then(story => res.json(story))
-        .catch(error => res.status(404).json({noStoryFound: 'No story found with that ID'}));
+        .catch(error => res.status(404).json({ noStoryFound: 'No story found with that ID' }));
 });
 
 // @route   POST api/stories (create) 
 // @desc    Create a new story 
 // @access  Private
-router.post('/', passport.authenticate('jwt', {session: false}), (req, res) => {
-    const {errors, isValid} = validateStoryInput(req.body);
+router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+    const { errors, isValid } = validateStoryInput(req.body);
     if (!isValid) {
         return res
             .status(422)
@@ -40,26 +40,26 @@ router.post('/', passport.authenticate('jwt', {session: false}), (req, res) => {
     const title = req.body.title;
     const body = req.body.body;
 
-    const newStory = new Story({title: req.body.title, author: req.user.id, body: req.body.body, claps: { master: true}})
+    const newStory = new Story({ title: req.body.title, author: req.user.id, body: req.body.body, claps: { master: true } })
     newStory.save().then(story => {
-            res.json(story);
-        })
+        res.json(story);
+    })
 });
 
 // @route   PATCH api/stories/:story_id (update) 
 // @desc    Update a story 
 // @access  Private
-router.patch('/:story_id', passport.authenticate('jwt', {session: false}), (req, res) => {
-    const {errors, isValid} = validateStoryInput(req.body);
+router.patch('/:story_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+    const { errors, isValid } = validateStoryInput(req.body);
     if (!isValid) {
         return res
             .status(400)
             .json(errors);
     };
     // const story = Story.findById(req.params.story_id);
-    Story.update({_id: req.params.story_id}, {$set: {title: req.body.title, body: req.body.body}}, {multi: true, new: true})
+    Story.update({ _id: req.params.story_id }, { $set: { title: req.body.title, body: req.body.body } }, { multi: true, new: true })
         .then(story => res.json(story))
-        .catch(error => res.status(422).json({ cannotUpdateStory: "Cannot update the story"})) 
+        .catch(error => res.status(422).json({ cannotUpdateStory: "Cannot update the story" }))
 })
 
 
@@ -70,8 +70,8 @@ router.delete('/:story_id', passport.authenticate('jwt', { session: false }), (r
 
     const story = Story.findById(req.params.story_id);
     story.remove()
-            .then(story => res.json(story))
-            .catch(error => res.status(404).json({ cannotFindStory: 'Cannot find story with that ID'}))
+        .then(story => res.json(story))
+        .catch(error => res.status(404).json({ cannotFindStory: 'Cannot find story with that ID' }))
 });
 
 
@@ -79,41 +79,23 @@ router.delete('/:story_id', passport.authenticate('jwt', { session: false }), (r
 // @desc    Add a clap to the story
 // @access Private
 router.patch('/claps/:story_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-    Story.findById(req.params.story_id).exec(function (err, story){
+    Story.findById(req.params.story_id).exec(function (err, story) {
 
 
         const user_id = req.user.id;
         const claps = story.claps
-        const clap = Boolean(claps[user_id])  //will either return true or false
-        // // toggle clap for each user
-        debugger
-        if (!clap) {//clap is {master: true}
-            claps[user_id] = true;
-        } else {  //clap is {master: true, someid: true}
-            delete claps[user_id];
-        } //clap is {master: true}
+        const clap = claps.get(user_id)
 
-        console.log("master is ");
-        console.log(story.claps.get("master"));
-  
-
-
+        if (!clap) {
+            claps.set(user_id, true);
+        } else {
+            claps.delete(user_id);
+        }
         Story.update({ _id: req.params.story_id }, { claps: claps }, { multi: true, new: true })
             .then(story => res.json(story))
             .catch(error => res.status(422).json({ cannotUpdateStory: "Cannot update the story" }))
-
-
-    });
-
-
-
-
+    }); 
     
-    // res.json({
-    //     total_claps: Object.values(story.claps).length,
-    //     clappers: Object.keys(story.claps)
-    // })
-    // .catch(err => res.json(err));;                          
 });
 
 
