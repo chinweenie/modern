@@ -20,7 +20,7 @@ class LoggedInNavbar extends React.Component {
                                 <i className="fa fa-user-circle" aria-hidden="true"></i>
                                 <span>{`@${username}`}</span>
                             </li>
-                            <li>New Story</li>
+                            <li><Link to="/stories/new">New Story</Link></li>
                             <li>Stories</li>
                             <li>Bookmarks</li>
                             <li>Publications</li>
