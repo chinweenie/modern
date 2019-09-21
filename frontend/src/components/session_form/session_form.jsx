@@ -20,7 +20,7 @@ class SessionForm extends React.Component{
             email: 'demouser@modern.com',
             password: 'password'
         };
-        this.props.login(user).then(() => this.props.history.push('/'));
+        this.props.login(user).then(() => this.props.fetchAllUsers()).then(() => this.props.history.push('/'));
     }
 
 
@@ -30,11 +30,10 @@ class SessionForm extends React.Component{
         this.props.closeModal();
         if(this.props.formType === "Signup"){
             // this.state.password2 = this.state.password; //TODO: the field is confirm password
-            this.props.signup(this.state).then(() => this.props.history.push('/'));
-            
+            this.props.signup(this.state).then(() => this.props.fetchAllUsers()).then(() => this.props.history.push('/'));
             }
         else{
-            this.props.login(this.state).then(() => this.props.history.push('/'));
+            this.props.login(this.state).then(() => this.props.fetchAllUsers()).then(() => this.props.history.push('/'));
             
         }
     }

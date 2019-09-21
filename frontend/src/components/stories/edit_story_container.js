@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import { updateStory, fetchStory } from '../../actions/stories_actions';
 import StoryForm from './story_form';
 import React from 'react';
+import { fetchAllUsers } from '../../actions/users_actions';
 
 class EditStoryForm extends React.Component {
 
@@ -43,7 +44,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
     action: story => dispatch(updateStory(story)),
-    fetchStory: storyId => dispatch(fetchStory(storyId))
+    fetchStory: storyId => dispatch(fetchStory(storyId)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditStoryForm);

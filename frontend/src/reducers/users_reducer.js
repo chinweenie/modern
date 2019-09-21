@@ -1,10 +1,15 @@
 
 import { RECEIVE_USERS, RECEIVE_USERS_ERRORS } from '../actions/users_actions';
 
-const profileReducer = (state = {}, action) => {
+const usersReducer = (state = {}, action) => {
+    Object.freeze(state);
     switch (action.type) {
         case RECEIVE_USERS:
-            return action.users.map(o => { return { id: o._id, email: o.email, username: o.email.split("@")[0] } });
+            const newObject = {};
+            action.users.forEach(user => {
+                newObject[user._id] = user
+            });
+            return newObject;
         case RECEIVE_USERS_ERRORS:
             return action;
         default:
@@ -12,4 +17,4 @@ const profileReducer = (state = {}, action) => {
     }
 };
 
-export default profileReducer;
+export default usersReducer;
