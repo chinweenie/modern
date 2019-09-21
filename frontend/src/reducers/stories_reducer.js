@@ -16,8 +16,7 @@ const storiesReducer = (state = {}, action) => {
                 [action.story._id]: action.story
             });
         case RECEIVE_STORIES:
-            const stories = action.stories.map(o => { return { title: o.title, body: o.body } });
-            return Object.assign({}, { stories: stories });
+            return action.stories.map(o => { return { title: o.title, body: o.body }});
         case REMOVE_STORY:
             newObject = Object.assign({}, state);
             delete newObject[action.storyId];

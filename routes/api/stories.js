@@ -32,19 +32,17 @@ router.get('/:story_id', (req, res) => {
 router.post('/', passport.authenticate('jwt', { session: false }), (req, res) => {
     const { errors, isValid } = validateStoryInput(req.body);
     if (!isValid) {
-        return res
-            .status(422)
-            .json(errors);
-    };
-
-    const user = User.findById(req.user.id);
+        return res.status(422).json(errors);
+    }
+    
+    const author = User.findById(req.user.id);
     const title = req.body.title;
     const body = req.body.body;
 
-    const newStory = new Story({ title: req.body.title, author: req.user.id, body: req.body.body, claps: { master: true } })
+    const newStory = new Story({ title: title, author: author, body: body, claps: { } });
     newStory.save().then(story => {
         res.json(story);
-    })
+    });
 });
 
 // @route   PATCH api/stories/:story_id (update) 
@@ -82,16 +80,15 @@ router.delete('/:story_id', passport.authenticate('jwt', { session: false }), (r
 router.patch('/claps/:story_id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Story.findById(req.params.story_id).exec(function (err, story) {
 
-
         const user_id = req.user.id;
-        const claps = story.claps
-        const clap = claps.get(user_id)
+        const claps = story.claps;
+        const clap = claps.get(user_id);
 
-        if (!clap) {
-            claps.set(user_id, true);
-        } else {
+        if (clap) 
             claps.delete(user_id);
-        }
+        else 
+            claps.set(user_id, true);
+        
         Story.update({ _id: req.params.story_id }, { claps: claps }, { multi: true, new: true })
             .then(story => res.json(story))
             .catch(error => res.status(422).json({ cannotUpdateStory: "Cannot update the story" }))
