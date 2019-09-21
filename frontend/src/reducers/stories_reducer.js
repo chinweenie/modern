@@ -1,4 +1,4 @@
-import { RECEIVE_ALL_STORIES, RECEIVE_STORY, REMOVE_STORY } from "../actions/stories_actions";
+import { RECEIVE_ALL_STORIES, RECEIVE_STORY, REMOVE_STORY, RECEIVE_STORIES } from "../actions/stories_actions";
 
 const storiesReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -15,6 +15,9 @@ const storiesReducer = (state = {}, action) => {
             return Object.assign({}, state, {
                 [action.story._id]: action.story
             });
+        case RECEIVE_STORIES:
+            const stories = action.stories.map(o => { return { title: o.title, body: o.body } });
+            return Object.assign({}, { stories: stories });
         case REMOVE_STORY:
             newObject = Object.assign({}, state);
             delete newObject[action.storyId];
