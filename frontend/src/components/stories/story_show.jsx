@@ -7,20 +7,24 @@ import './story_show.css';
 class StoryShow extends React.Component {
     constructor(props){
         super(props);
+        this.state = {
+            responses: this.props.responses
+        };
     }
     
     componentDidMount() {
-        this.props.fetchResponses(this.props.match.params.storyId);
+        this.props.fetchResponses(this.props.match.params.storyId).then(() => this.setState({ responses: this.props.responses }));
         this.props.fetchStory(this.props.match.params.storyId);
         this.handleDisplayResponse();
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.storyId !== this.props.match.params.storyId) {
-            this.props.fetchResponses(this.props.match.params.storyId);
             this.props.fetchStory(this.props.match.params.storyId);
+            this.props.fetchResponses(this.props.match.params.storyId);
         }
     }
+
     handleDisplayResponse(){
         const responseForm = document.getElementById("response-form");
         const responseBtn = document.getElementById("response-btn");
@@ -29,11 +33,11 @@ class StoryShow extends React.Component {
             event.preventDefault();
             responseForm.classList.toggle("hidden");
         });
-        
     }
 
     render(){
-        let { story, author, responses } = this.props;
+        let { story, author } = this.props;
+        let responses = this.state.responses;
         if (!story || !author || !responses){
             return (
                <LoadingIcon/>
@@ -49,7 +53,7 @@ class StoryShow extends React.Component {
         const responsesLi = responses.map(response => {
             return (
                 <li key={response._id}>
-                    <p>{response.body}</p>
+                    <p>{ReactHtmlParser(response.body)}</p>
                 </li>
             )
         })
@@ -78,7 +82,7 @@ class StoryShow extends React.Component {
 
                 <div className="create-response">
                     <button id="response-btn" >Create new response</button>
-                    <ResponseForm storyId={this.props.match.params.storyId}/>
+                    <ResponseForm storyId={this.props.match.params.storyId} state={this.state}/>
                 </div>
 
                 <div className="responses-dropdown">

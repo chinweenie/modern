@@ -84,8 +84,7 @@ class ResponseForm extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        debugger;
-        this.props.action(this.props.storyId, this.state);
+        this.props.action(this.props.storyId, this.state).then(res => this.setState({responses: res.responses}));
     }
 
     handleEmbedForm(e) {
@@ -140,8 +139,12 @@ class ResponseForm extends React.Component {
     };
 }
 
+const mapStateToProps = state => {
+    debugger;
+    return null;
+}
 const mapDispatchToProps = (dispatch)=> ({
     action: (storyId, response) => dispatch(createResponse(storyId, response))
 });
 
-export default connect(null, mapDispatchToProps)(ResponseForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ResponseForm);
