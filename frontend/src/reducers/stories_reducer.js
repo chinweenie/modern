@@ -1,4 +1,9 @@
-import { RECEIVE_ALL_STORIES, RECEIVE_STORY, REMOVE_STORY, RECEIVE_STORIES } from "../actions/stories_actions";
+import { RECEIVE_ALL_STORIES, 
+    RECEIVE_STORY, 
+    REMOVE_STORY, 
+    RECEIVE_STORIES,
+    RECEIVE_RESPONSES,
+ } from "../actions/stories_actions";
 
 const storiesReducer = (state = {}, action) => {
     Object.freeze(state);

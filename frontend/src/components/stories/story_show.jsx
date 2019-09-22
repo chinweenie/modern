@@ -1,35 +1,55 @@
 import React from 'react'
 import LoadingIcon from '../loading_icon';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
-
+import ResponseForm from './response_form';
+import './story_show.css';
 
 class StoryShow extends React.Component {
     constructor(props){
         super(props);
     }
-
+    
     componentDidMount() {
+        this.props.fetchResponses(this.props.match.params.storyId);
         this.props.fetchStory(this.props.match.params.storyId);
+        this.handleDisplayResponse();
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.storyId !== this.props.match.params.storyId) {
+            this.props.fetchResponses(this.props.match.params.storyId);
             this.props.fetchStory(this.props.match.params.storyId);
         }
     }
+    handleDisplayResponse(){
+        const responseForm = document.getElementById("response-form");
+        const responseBtn = document.getElementById("response-btn");
+
+        responseBtn.addEventListener("click", function (event) {
+            event.preventDefault();
+            responseForm.classList.toggle("hidden");
+        });
+        
+    }
 
     render(){
-        let { story, author } = this.props;
-        if (!story || !author){
+        let { story, author, responses } = this.props;
+        if (!story || !author || !responses){
             return (
                <LoadingIcon/>
             )
         }
-
         const authorStoriesLi = author.stories.map(story => {
             return (
                 <li key={story._id}>
 
+                </li>
+            )
+        });
+        const responsesLi = responses.map(response => {
+            return (
+                <li key={response._id}>
+                    <p>{response.body}</p>
                 </li>
             )
         })
@@ -56,8 +76,16 @@ class StoryShow extends React.Component {
                 </div>
                 <div className="follow-btn"></div>
 
+                <div className="create-response">
+                    <button id="response-btn" >Create new response</button>
+                    <ResponseForm storyId={this.props.match.params.storyId}/>
+                </div>
+
                 <div className="responses-dropdown">
                     <button>See responses (15)</button>
+                    <ul>
+                        {responsesLi}
+                    </ul>
                 </div>
 
                 <div className="suggested-stories">

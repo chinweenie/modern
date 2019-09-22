@@ -10,3 +10,6 @@ export const selectStoryAuthor = (allUsers, story) => {
     return author;
 }
 
+export const selectResponsesArray = (allResponses) => (
+    (Object.keys(allResponses).length === 0 && allResponses.constructor === Object) ? [] : allResponses
+);

@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Story = require("../../models/Story");
 const validateStoryInput = require('../../validation/story');
-const validateResponseInput = require('../../validation/response')
+const validateResponseInput = require('../../validation/response');
 const passport = require("passport");
 
 // @route   GET api/stories (index) 
@@ -78,19 +78,19 @@ router.delete('/:story_id', passport.authenticate('jwt', { session: false }), (r
 // @desc    Add a clap to the story
 // @access Private
 router.patch('/claps/:story_id', passport.authenticate('jwt', { session: false }), (req, res) => {
-    Story.findById(req.params.story_id).exec(function (err, story) {
+    Story.findById(req.params.story_id).exec((err, story) => {
 
         const user_id = req.user.id;
         const claps = story.claps;
         const clap = claps.get(user_id);
 
-        if (clap) 
+        if (clap)
             claps.delete(user_id);
         else 
             claps.set(user_id, true);
         
         Story.update({ _id: req.params.story_id }, { claps: claps }, { multi: true, new: true })
-            .then(story => res.json(story))
+            .then(story => res.json({ total_claps: story.claps.length }))
             .catch(error => res.status(422).json({ cannotUpdateStory: "Cannot update the story" }))
     }); 
     
@@ -100,11 +100,38 @@ router.patch('/claps/:story_id', passport.authenticate('jwt', { session: false }
 // @route   POST api/stories/responses/:story_id
 // @desc    Create new response of a story
 // @access  Private
-router.post('/responses/:story_id',
-            passport.authenticate('jwt', { session: false }),
-            (req, res) => {
+router.post('/responses/:story_id', passport.authenticate('jwt', { session: false }),(req, res) => {
+    const { errors, isValid } = validateResponseInput(req.body);
 
+    if (!isValid){
+        return res.status(422).json(errors);
+    }
+
+    const user = User.findById(req.user.id).exec((err, user) => {
+        const story = Story.findById(req.params.story_id).exec((err, story) => {
+            const newResponse = {
+                user: user.id,
+                body: req.body.body
+            }
+
+            story.responses.unshift(newResponse);
+            story.save().then(story => {
+                return res.json(story.responses);
             });
+        });
+    });
+});
+
+
+// @route   DELETE api/stories/responses/:story_id
+// @desc    delete a response of a story
+// @access  Private
+router.get('/responses/:story_id', (req, res) => {
+    const story = Story.findById(req.params.story_id).exec((err, story) => {
+            return res.json({responses: story.responses});
+    });
+});
+
 
 
 module.exports = router;
