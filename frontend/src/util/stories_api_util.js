@@ -13,7 +13,6 @@ export const createStory = storyData => {
 };
 
 export const updateStory = storyData => {
-    debugger
     return axios.patch(`/api/stories/${storyData._id}`, storyData);
 };
 
@@ -23,4 +22,13 @@ export const deleteStory = storyId => {
 
 export const fetchStoriesOfOneUser = user => {
     return axios.get(`/@${user.username}/stories/${user.id}`);
+};
+
+export const createResponse = (storyId, response) => {
+    
+    return axios.post(`/api/stories/responses/${storyId}`, response);
+};
+
+export const fetchResponses = storyId => {
+    return axios.get(`api/stories/responses/${storyId}`);
 };

@@ -10,6 +10,7 @@ import Navbar from './navbar/navbar';
 import Profile from './profile/profile_container';
 import CreateStoryContainer from './stories/create_story_container';
 import EditStoryContainer from './stories/edit_story_container';
+import StoryShowContainer from './stories/story_show_container';
 
 const App = () => (
     
@@ -25,6 +26,7 @@ const App = () => (
             <AuthRoute exact path="/login" component={LoginFormContainer}/>
             <Route exact path="/stories/new" component={CreateStoryContainer}/>
             <Route exact path="/stories/:storyId/edit" component={EditStoryContainer}/>
+            <Route exact path="/stories/:storyId" component={StoryShowContainer}/>
         </Switch>
     </div>
 )

@@ -4,6 +4,7 @@ import { getEmbedDocumentByURL } from '../../actions/embed_actions';
 
 import StoryForm from './story_form';
 import React from 'react';
+import { fetchAllUsers } from '../../actions/users_actions';
 
 class EditStoryForm extends React.Component {
 
