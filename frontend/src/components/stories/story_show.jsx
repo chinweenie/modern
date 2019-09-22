@@ -1,8 +1,8 @@
 import React from 'react'
 import LoadingIcon from '../loading_icon';
 import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
-import ResponseForm from './response_form';
 import './story_show.css';
+import ResponseIndex from '../response/response_index_container';
 
 class StoryShow extends React.Component {
     constructor(props){
@@ -13,32 +13,30 @@ class StoryShow extends React.Component {
     }
     
     componentDidMount() {
-        this.props.fetchResponses(this.props.match.params.storyId).then(() => this.setState({ responses: this.props.responses }));
         this.props.fetchStory(this.props.match.params.storyId);
-        this.handleDisplayResponse();
+        // this.handleDisplayResponse();
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.match.params.storyId !== this.props.match.params.storyId) {
             this.props.fetchStory(this.props.match.params.storyId);
-            this.props.fetchResponses(this.props.match.params.storyId);
         }
     }
 
-    handleDisplayResponse(){
-        const responseForm = document.getElementById("response-form");
-        const responseBtn = document.getElementById("response-btn");
+    // handleDisplayResponse(){
+    //     const responseForm = document.getElementById("response-form");
+    //     const responseBtn = document.getElementById("response-btn");
 
-        responseBtn.addEventListener("click", function (event) {
-            event.preventDefault();
-            responseForm.classList.toggle("hidden");
-        });
-    }
+    //     responseBtn.addEventListener("click", function (event) {
+    //         event.preventDefault();
+    //         responseForm.classList.toggle("hidden");
+    //     });
+    // }
 
     render(){
         let { story, author } = this.props;
-        let responses = this.state.responses;
-        if (!story || !author || !responses){
+        // let responses = this.state.responses;
+        if (!story || !author){
             return (
                <LoadingIcon/>
             )
@@ -50,13 +48,6 @@ class StoryShow extends React.Component {
                 </li>
             )
         });
-        const responsesLi = responses.map(response => {
-            return (
-                <li key={response._id}>
-                    <p>{ReactHtmlParser(response.body)}</p>
-                </li>
-            )
-        })
 
         return (
             <div className="story-show">
@@ -80,16 +71,15 @@ class StoryShow extends React.Component {
                 </div>
                 <div className="follow-btn"></div>
 
-                <div className="create-response">
-                    <button id="response-btn" >Create new response</button>
-                    <ResponseForm storyId={this.props.match.params.storyId} state={this.state}/>
-                </div>
 
                 <div className="responses-dropdown">
-                    <button>See responses (15)</button>
-                    <ul>
-                        {responsesLi}
-                    </ul>
+                    <button>See responses ({this.props.responses.length})</button>
+                    <ResponseIndex storyId={this.props.match.params.storyId}/>
+
+                {/* <div className="create-response">
+                    <button id="response-btn" >Create new response</button>
+                    <ResponseForm storyId={this.props.match.params.storyId} state={this.state}/>
+                </div> */}
                 </div>
 
                 <div className="suggested-stories">

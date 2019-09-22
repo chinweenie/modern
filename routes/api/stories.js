@@ -35,7 +35,7 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
         return res.status(422).json(errors);
     }
     
-    const author = User.findById(req.user.id);
+    const author = req.user.id;
     const title = req.body.title;
     const body = req.body.body;
 
