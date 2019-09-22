@@ -5,6 +5,8 @@ export const RECEIVE_STORY = 'RECEIVE_STORY';
 export const REMOVE_STORY = 'REMOVE_STORY';
 export const RECEIVE_STORIES_ERRORS = 'RECEIVE_STORIES_ERRORS';
 export const RECEIVE_STORIES = "RECEIVE_STORIES";
+export const RECEIVE_RESPONSES = "RECEIVE_RESPONSES";
+export const RECEIVE_RESPONSE_ERRORS = "RECEIVE_RESPONSE_ERRORS";
 
 export const receiveAllStories = stories => ({
     type: RECEIVE_ALL_STORIES,
@@ -30,6 +32,16 @@ export const receiveStories = stories => ({
     type: RECEIVE_STORIES,
     stories
 });
+
+export const receiveResponses = responses => ({
+    type: RECEIVE_RESPONSES,
+    responses
+});
+
+export const receiveResponsesErrors = errors => ({
+    type: RECEIVE_RESPONSE_ERRORS,
+    errors
+})
 
 export const fetchStories = () => dispatch => {
     return StoriesApiUtil.fetchStories()
@@ -84,9 +96,25 @@ export const deleteStory = storyId => dispatch => {
 };
 
 export const getStoriesByUsernameAndId = user => dispatch => {
-    return StoriesApiUtil.fetchStoriesOfOneUser({ username: user.username, id: user.id }).then(response => {
+    return StoriesApiUtil.fetchStoriesOfOneUser({ username: user.username, id: user.id }).then(response => (
         dispatch(receiveStories(response.data))
-    }, error => (
+    ), error => (
         dispatch(receiveStoriesErrors(error.response.data))
     ));
 };
+
+export const createResponse = (storyId, userResponse) => dispatch => (
+    StoriesApiUtil.createResponse(storyId, userResponse).then(response => {
+       return dispatch(receiveResponses(response.data))
+    }, error => (
+        dispatch(receiveResponsesErrors(error.response.data))
+    ))
+);
+
+export const fetchResponses = (storyId) => dispatch => (
+    StoriesApiUtil.fetchResponses(storyId).then(response => (
+        dispatch(receiveResponses(response.data))
+    ), error => (
+        dispatch(receiveResponsesErrors(error.response.data))
+    ))
+);

@@ -7,7 +7,8 @@ import LoggedOutNavbar from './logged_out_navbar';
 import LoggedInNavbar from './logged_in_navbar';
 import { logout } from '../../actions/session_actions';
 import {openModal} from '../../actions/modal_actions';
-
+import { fetchStories } from '../../actions/stories_actions';
+import { fetchAllUsers } from '../../actions/users_actions';
 
 class Navbar extends React.Component {
     constructor(props){
@@ -15,6 +16,8 @@ class Navbar extends React.Component {
         this.handleSearchIconClick = this.handleSearchIconClick.bind(this);
     }
     componentDidMount(){
+        this.props.fetchStories();
+        this.props.fetchAllUsers();
         this.handleSearchIconClick();
     }
    
@@ -69,9 +72,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     logout: () => dispatch(logout()),
     openModal: (modal) => dispatch(openModal(modal)),
+    fetchStories: () => dispatch(fetchStories()),
+    fetchAllUsers: () => dispatch(fetchAllUsers())
 })
 
 
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));
-

@@ -18,7 +18,7 @@ import configureStore from './store/store';
 import jwt_decode from 'jwt-decode';
 import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
-import {fetchStories} from './actions/stories_actions';
+import {fetchStories, fetchResponses} from './actions/stories_actions';
 import { fetchAllUsers } from './actions/users_actions';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -50,3 +50,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
 window.fetchStories = fetchStories;
 window.fetchAllUsers = fetchAllUsers;
+window.fetchResponses = fetchResponses;

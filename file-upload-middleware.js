@@ -13,10 +13,7 @@ function fileUploadMiddleware(req, res) {
                 URL: result.secure_url,
                 user_id: req.body.user_id,
                 filename: req.body.filename,
-                etag: result.etag,
                 public_id: result.public_id,
-                resource_type: result.resource_type,
-                signature: result.signature
         })
         .then((response) => {
             res.status(200).json({ success: true, fileURL: result.secure_url, user_id: user_id })
