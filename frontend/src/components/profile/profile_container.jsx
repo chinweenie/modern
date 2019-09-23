@@ -3,19 +3,21 @@ import Profile from './profile';
 import { uploadFile, fetchAll, deleteFile } from '../../actions/file_actions';
 import { getStoriesByUsernameAndId } from '../../actions/stories_actions';
 import { fetchAllUsers } from '../../actions/users_actions';
+import {selectStoriesArray, selectUsersArray} from '../../reducers/selectors';
 
 const mapStateToProps = (state, ownProps) => {
     const currentUser = state.session.currentUser;
-    let stories = state.entities.stories
+    let stories = selectStoriesArray(state.entities.stories);
     if (Object.keys(stories).length === 0 && stories.constructor === Object)
         stories = [];
+    const users = selectUsersArray(state.entities.users);
     return {
         currentUser: currentUser,
         followings: 2,
         fileURL: state.UI.files[currentUser.id],
         profileOwnerUsername: ownProps.match.params.username,
         stories: stories,
-        users: state.entities.users
+        users: users
     };
 };
 
