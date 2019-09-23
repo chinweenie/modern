@@ -8,9 +8,9 @@ class HomePage extends React.Component {
         this.handleStoryClick = this.handleStoryClick.bind(this);
     }
 
-    componentDidMount(){
-        this.props.fetchStories();
-    }
+    // componentDidMount(){
+    //     this.props.fetchStories();
+    // }
 
     handleStoryClick(storyId){
         return (event) => {
@@ -28,6 +28,7 @@ class HomePage extends React.Component {
             )
         }
 
+        debugger
         const storiesLi = stories.map(story => {
             const htmlObject = document.createElement('div');
             htmlObject.innerHTML = story.body;

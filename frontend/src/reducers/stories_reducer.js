@@ -9,9 +9,13 @@ const storiesReducer = (state = {}, action) => {
     let newObject;
     switch (action.type) {
         case RECEIVE_ALL_STORIES:
-            const newArr = [];
-            action.stories.forEach(story => newArr.push({ [story._id]: story}));
-            return newArr;
+            newObject = {};
+            action.stories.forEach(story => {
+                newObject[story._id] = story
+            })
+            debugger
+            return newObject;
+
         case RECEIVE_STORY:
             return Object.assign({}, state, {
                 [action.story._id]: action.story
