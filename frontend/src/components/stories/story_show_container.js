@@ -8,12 +8,13 @@ const mapStateToProps = (state, ownProps) => {
     const author = selectStoryAuthor(state.entities.users, story);
     const responses = selectResponsesArray(state.entities.responses);
     const claps = state.entities.claps;
-    
+    const currentUser = state.session.currentUser;
     return {
         story,
         author,
         responses,
-        claps
+        claps,
+        currentUser
     }
 
 }

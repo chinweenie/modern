@@ -9,7 +9,7 @@ class StoryShow extends React.Component {
         super(props);
         this.state = {
             responses: this.props.responses,
-            claps: this.props.claps
+            claps: []
         };
         this.handleClap = this.handleClap.bind(this);
     }
@@ -31,7 +31,7 @@ class StoryShow extends React.Component {
 
     render(){
         let { story, author } = this.props;
-        // let responses = this.state.responses;
+        
         if (!story || !author){
             return (
                <LoadingIcon/>
@@ -40,11 +40,10 @@ class StoryShow extends React.Component {
         const authorStoriesLi = author.stories.map(story => {
             return (
                 <li key={story._id}>
-
                 </li>
             )
         });
-
+        const clapText = this.state.claps.includes(this.props.currentUser.id) ? "Unclap!" : "Clap!";
         return (
             <div className="story-show">
                 <div className="title">
@@ -67,17 +66,12 @@ class StoryShow extends React.Component {
                 </div>
                 <div className="follow-btn"></div>
                 <div>claps ({this.state.claps.length})</div>
-                <button onClick={this.handleClap}>Clap!</button>
+                <button onClick={this.handleClap}>{clapText}</button>
 
 
                 <div className="responses-dropdown">
                     <button>See responses ({this.props.responses.length})</button>
                     <ResponseIndex storyId={this.props.match.params.storyId}/>
-
-                {/* <div className="create-response">
-                    <button id="response-btn" >Create new response</button>
-                    <ResponseForm storyId={this.props.match.params.storyId} state={this.state}/>
-                </div> */}
                 </div>
 
                 <div className="suggested-stories">
