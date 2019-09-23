@@ -28,7 +28,6 @@ class HomePage extends React.Component {
             )
         }
 
-        debugger
         const storiesLi = stories.map(story => {
             const htmlObject = document.createElement('div');
             htmlObject.innerHTML = story.body;
