@@ -6,9 +6,7 @@ const usersReducer = (state = {}, action) => {
     let newObject = {};
     switch (action.type) {
         case RECEIVE_USERS:
-            debugger
             action.users.forEach(user => {
-                debugger
                 newObject[user._id] = user
             })
             return newObject;

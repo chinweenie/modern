@@ -1,6 +1,5 @@
 export const selectStoryAuthor = (allUsers, story) => {
     const authorId = story.authorId;
-    debugger
     let author;
     const usersArray = Object.keys(allUsers).map(id => allUsers[id]);
     usersArray.forEach(user => {
@@ -16,6 +15,9 @@ export const selectResponsesArray = (allResponses) => (
 );
 
 export const selectStoriesArray = (allStories) => {
-    debugger
     return Object.keys(allStories).map(id => allStories[id]);
+}
+
+export const selectUsersArray = allUsers => {
+    return Object.keys(allUsers).map(id => allUsers[id]);
 }

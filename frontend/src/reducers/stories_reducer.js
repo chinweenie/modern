@@ -13,7 +13,6 @@ const storiesReducer = (state = {}, action) => {
             action.stories.forEach(story => {
                 newObject[story._id] = story
             })
-            debugger
             return newObject;
 
         case RECEIVE_STORY:
