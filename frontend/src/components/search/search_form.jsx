@@ -51,7 +51,7 @@ class SearchForm extends React.Component {
     update(event){
         event.preventDefault();
         this.setState({
-            inputVal: event.currentTarget.value,
+            inputVal: event.currentTarget.value.toLowerCase(),
         });
         this.findStoryIdByTitle("Artitle 1");
     }
