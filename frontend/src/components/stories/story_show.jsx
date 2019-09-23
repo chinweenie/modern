@@ -8,13 +8,15 @@ class StoryShow extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            responses: this.props.responses
+            responses: this.props.responses,
+            claps: this.props.claps
         };
+        this.handleClap = this.handleClap.bind(this);
     }
     
     componentDidMount() {
         this.props.fetchStory(this.props.match.params.storyId);
-        // this.handleDisplayResponse();
+        this.props.getTotalClaps(this.props.story._id).then(() => this.setState({claps: this.props.claps}));
     }
 
     componentDidUpdate(prevProps) {
@@ -22,16 +24,10 @@ class StoryShow extends React.Component {
             this.props.fetchStory(this.props.match.params.storyId);
         }
     }
-
-    // handleDisplayResponse(){
-    //     const responseForm = document.getElementById("response-form");
-    //     const responseBtn = document.getElementById("response-btn");
-
-    //     responseBtn.addEventListener("click", function (event) {
-    //         event.preventDefault();
-    //         responseForm.classList.toggle("hidden");
-    //     });
-    // }
+    handleClap(e){
+        e.preventDefault();
+        this.props.patchAClap(this.props.story._id).then(() => this.setState({claps: this.props.claps}));
+    }
 
     render(){
         let { story, author } = this.props;
@@ -70,6 +66,8 @@ class StoryShow extends React.Component {
                     </div>
                 </div>
                 <div className="follow-btn"></div>
+                <div>claps ({this.state.claps.length})</div>
+                <button onClick={this.handleClap}>Clap!</button>
 
 
                 <div className="responses-dropdown">

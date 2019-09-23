@@ -7,6 +7,8 @@ export const RECEIVE_STORIES_ERRORS = 'RECEIVE_STORIES_ERRORS';
 export const RECEIVE_STORIES = "RECEIVE_STORIES";
 export const RECEIVE_RESPONSES = "RECEIVE_RESPONSES";
 export const RECEIVE_RESPONSE_ERRORS = "RECEIVE_RESPONSE_ERRORS";
+export const RECEIVE_CLAPS = "RECEIVE_CLAPS";
+export const RECEIVE_CLAPS_ERRORS = "RECEIVE_CLAPS_ERRORS";
 
 export const receiveAllStories = stories => ({
     type: RECEIVE_ALL_STORIES,
@@ -41,7 +43,17 @@ export const receiveResponses = responses => ({
 export const receiveResponsesErrors = errors => ({
     type: RECEIVE_RESPONSE_ERRORS,
     errors
-})
+});
+
+export const receiveClaps = claps => ({
+    type: RECEIVE_CLAPS,
+    claps
+});
+
+export const receiveClapsErrors = errors => ({
+    type: RECEIVE_CLAPS_ERRORS,
+    errors
+});
 
 export const fetchStories = () => dispatch => {
     return StoriesApiUtil.fetchStories()
@@ -118,3 +130,19 @@ export const fetchResponses = (storyId) => dispatch => (
         dispatch(receiveResponsesErrors(error.response.data))
     ))
 );
+
+export const getTotalClaps = storyId => dispatch => {
+    return StoriesApiUtil.getClaps(storyId).then(response => {
+        return dispatch(receiveClaps(response.data))
+    }, error => (
+        dispatch(receiveClapsErrors(error.response.data))
+    ))
+};
+
+export const patchAClap = storyId => dispatch => {
+    return StoriesApiUtil.patchClap(storyId).then(response => {
+        return dispatch(receiveClaps(response.data))
+    }, error => (
+        dispatch(receiveClapsErrors(error.response.data))
+    ))
+};

@@ -74,12 +74,11 @@ router.delete('/:story_id', passport.authenticate('jwt', { session: false }), (r
 });
 
 
-// @route   PUT api/stories/clap/:story_id (put)
+// @route   PATCH api/stories/clap/:story_id (patch)
 // @desc    Add a clap to the story
 // @access Private
 router.patch('/claps/:story_id', passport.authenticate('jwt', { session: false }), (req, res) => {
     Story.findById(req.params.story_id).exec((err, story) => {
-
         const user_id = req.user.id;
         const claps = story.claps;
         const clap = claps.get(user_id);
@@ -90,10 +89,18 @@ router.patch('/claps/:story_id', passport.authenticate('jwt', { session: false }
             claps.set(user_id, true);
         
         Story.update({ _id: req.params.story_id }, { claps: claps }, { multi: true, new: true })
-            .then(story => res.json({ total_claps: story.claps.length }))
+            .then(response => res.json(story.claps))
             .catch(error => res.status(422).json({ cannotUpdateStory: "Cannot update the story" }))
     }); 
-    
+});
+
+// @route   GET api/stories/clap/:story_id (get)
+// @desc    Get total claps
+// @access Private
+router.get('/claps/:story_id', (req, res) => {
+    Story.findById(req.params.story_id).exec((err, story) => {
+        res.json(story.claps);
+    });
 });
 
 
