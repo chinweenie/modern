@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { updateStory, fetchStory } from '../../actions/stories_actions';
 import { getEmbedDocumentByURL } from '../../actions/embed_actions';
-
 import StoryForm from './story_form';
 import React from 'react';
 
@@ -40,7 +39,7 @@ const mapStateToProps = (state, ownProps) => {
     return {
         story: story,
     }
-}
+};
 
 const mapDispatchToProps = dispatch => ({
     action: story => dispatch(updateStory(story)),
