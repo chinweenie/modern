@@ -9,9 +9,11 @@ class StoryShow extends React.Component {
         super(props);
         this.state = {
             responses: this.props.responses,
-            claps: []
+            claps: [],
+            showingResponses: false,
         };
         this.handleClap = this.handleClap.bind(this);
+        this.toggleResponses = this.toggleResponses.bind(this);
     }
     
     componentDidMount() {
@@ -24,11 +26,17 @@ class StoryShow extends React.Component {
             this.props.fetchStory(this.props.match.params.storyId);
         }
     }
+
     handleClap(e){
         e.preventDefault();
         this.props.patchAClap(this.props.story._id).then(() => this.setState({claps: this.props.claps}));
     }
 
+    toggleResponses(){
+        const responsesList = document.getElementById("responses");        
+        responsesList.classList.toggle("hidden");
+        this.setState({ showingResponses: !this.state.showingResponses })
+    }
     render(){
         let { story, author } = this.props;
         
@@ -44,6 +52,7 @@ class StoryShow extends React.Component {
             )
         });
         const clapText = this.state.claps.includes(this.props.currentUser.id) ? "Unclap!" : "Clap!";
+        const toggleResponsesBtnPrevix = this.state.showingResponses ? "Hide" : "See"
         return (
             <div className="story-show">
                 <div className="title">
@@ -68,10 +77,11 @@ class StoryShow extends React.Component {
                 <div>claps ({this.state.claps.length})</div>
                 <button onClick={this.handleClap}>{clapText}</button>
 
-
                 <div className="responses-dropdown">
-                    <button>See responses ({this.props.responses.length})</button>
-                    <ResponseIndex storyId={this.props.match.params.storyId}/>
+                    <button id="toggle-responses" onClick={this.toggleResponses}>{toggleResponsesBtnPrevix} responses ({this.props.responses.length})</button>
+                    <div id="responses" className="hidden">
+                        <ResponseIndex storyId={this.props.match.params.storyId}/>
+                    </div>
                 </div>
 
                 <div className="suggested-stories">
