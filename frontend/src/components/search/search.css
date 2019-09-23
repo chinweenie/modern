@@ -1,0 +1,41 @@
+.z-index-5 {
+    display: box;
+    position: absolute;
+    background: white;
+    z-index: 5;
+    border-radius: 5px;
+    width: 300px;
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+}
+
+.z-index-5 .hidden-search {
+    display: none;
+}
+
+.search {
+  background-color: white;
+  display: inline-block;
+  margin: auto auto auto 30px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-size: 16px;
+  background-position: 10px 10px; 
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  position: relative;
+}
+.search:hover {
+  cursor: pointer;
+}
+
+strong{
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+.search a {
+    text-decoration: none;
+    color: black;
+}

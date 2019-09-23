@@ -25,7 +25,6 @@ export const fetchStoriesOfOneUser = user => {
 };
 
 export const createResponse = (storyId, response) => {
-    
     return axios.post(`/api/stories/responses/${storyId}`, response);
 };
 

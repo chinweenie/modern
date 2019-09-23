@@ -9,14 +9,30 @@ import { logout } from '../../actions/session_actions';
 import {openModal} from '../../actions/modal_actions';
 import { fetchStories } from '../../actions/stories_actions';
 import { fetchAllUsers } from '../../actions/users_actions';
+import { selectStoriesTitles } from '../../reducers/selectors';
+import SearchForm from '../search/search_form';
 
 class Navbar extends React.Component {
     constructor(props){
         super(props)
+        this.state =  {
+            hashesToCompare: {
+                
+            }
+        };
         this.handleSearchIconClick = this.handleSearchIconClick.bind(this);
     }
+    
     componentDidMount(){
-        this.props.fetchStories();
+        this.props.fetchStories().then((response) => {
+            this.props.storyTitlesArray.map(title => {
+                this.setState({ hashesToCompare: 
+                    Object.assign(this.state.hashesToCompare, {
+                        [title]: this.makeTitlesHash(title)
+                    })
+                });
+            });
+        });
         this.props.fetchAllUsers();
     }
    
@@ -25,6 +41,15 @@ class Navbar extends React.Component {
         const searchBar = document.getElementById("searchBar");
         dropdown.classList.toggle("active");
         searchBar.classList.toggle("active");
+    }
+    makeTitlesHash(str){
+        const hash = {};
+        str.split("").forEach(c => {
+            c = c.toLowerCase();
+            hash[c] = hash[c] || 0;
+            hash[c]++;
+        });
+        return hash;
     }
     
     render(){
@@ -36,13 +61,13 @@ class Navbar extends React.Component {
             <div className="navbar">
                 <ul className="navbar-left">
                     <li className="logo"><a href="/">Modern</a></li>
+                    <SearchForm hashesToCompare={this.state.hashesToCompare} />
                     <li className="search" id="search-dropdown" >
                         <i id="search-icon" className="fa fa-search" aria-hidden="true" onClick={this.handleSearchIconClick}></i>
                         <span className="search-dropdown" id="searchBar">
                         </span>
                     </li>
                 </ul>
-
                 <ul className="navbar-right">
                     {/* <li className="search" id="search-dropdown" >
                         <i id="search-icon" className="fa fa-search" aria-hidden="true" ></i>
@@ -60,7 +85,8 @@ class Navbar extends React.Component {
 
 const mapStateToProps = state => ({
     navbar: Boolean(state.session.currentUser),
-    currentUser: state.session.currentUser
+    currentUser: state.session.currentUser,
+    storyTitlesArray: selectStoriesTitles(state.entities.stories)
 });
 
 const mapDispatchToProps = dispatch => ({
