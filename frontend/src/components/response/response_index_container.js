@@ -10,8 +10,6 @@ const mapStateToProps = state => {
     return {
         responses
     };
-    // debugger;
-    // return null;
 }
 const mapDispatchToProps = (dispatch) => ({
     action: (storyId, response) => dispatch(createResponse(storyId, response)),

@@ -35,10 +35,9 @@ class StoryShow extends React.Component {
 
     render(){
         let { story, author } = this.props;
-        // let responses = this.state.responses;
         if (!story || !author){
             return (
-               <LoadingIcon/>
+               <p>Loading</p>
             )
         }
         const authorStoriesLi = author.stories.map(story => {

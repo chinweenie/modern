@@ -4,6 +4,8 @@ const Story = require("../../models/Story");
 const validateStoryInput = require('../../validation/story');
 const validateResponseInput = require('../../validation/response');
 const passport = require("passport");
+const serializeStories = require('../serialize_stories');
+const serializeStory = require('../serialize_story');
 
 // @route   GET api/stories (index) 
 // @desc    Get stories index
@@ -11,8 +13,9 @@ const passport = require("passport");
 router.get('/', (req, res) => {
     Story
         .find()
+        .populate('author')
         .sort({ date: -1 })
-        .then(stories => res.json(stories))
+        .then(stories => res.json(serializeStories(stories)))
         .catch(error => res.status(404).json({ noStoriesFound: 'No stories found' }));
 });
 
@@ -22,7 +25,8 @@ router.get('/', (req, res) => {
 router.get('/:story_id', (req, res) => {
     Story
         .findById(req.params.story_id)
-        .then(story => res.json(story))
+        .populate('author')
+        .then(story => res.json(serializeStory(story)))
         .catch(error => res.status(404).json({ noStoryFound: 'No story found with that ID' }));
 });
 
@@ -40,9 +44,14 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     const body = req.body.body;
 
     const newStory = new Story({ title: title, author: author, body: body, claps: { } });
-    newStory.save().then(story => {
-        res.json(story);
-    });
+    newStory.save((err, story) => {
+        if (err) console.log(err);
+        story.populate('author', (err, storyObj)=> {
+            if (err) console.log(err);
+            res.json(serializeStory(storyObj))
+        })   
+    })
+    
 });
 
 // @route   PATCH api/stories/:story_id (update) 
@@ -57,7 +66,8 @@ router.patch('/:story_id', passport.authenticate('jwt', { session: false }), (re
     };
     // const story = Story.findById(req.params.story_id);
     Story.update({ _id: req.params.story_id }, { $set: { title: req.body.title, body: req.body.body } }, { multi: true, new: true })
-        .then(story => res.json(story))
+        .populate('author')
+        .then(story => res.json(serializeStory(story)))
         .catch(error => res.status(422).json({ cannotUpdateStory: "Cannot update the story" }))
 })
 
@@ -69,7 +79,8 @@ router.delete('/:story_id', passport.authenticate('jwt', { session: false }), (r
 
     const story = Story.findById(req.params.story_id);
     story.remove()
-        .then(story => res.json(story))
+        .populate('author')
+        .then(story => res.json(serializeStory(story)))
         .catch(error => res.status(404).json({ cannotFindStory: 'Cannot find story with that ID' }))
 });
 

@@ -11,6 +11,7 @@ import Profile from './profile/profile_container';
 import CreateStoryContainer from './stories/create_story_container';
 import EditStoryContainer from './stories/edit_story_container';
 import StoryShowContainer from './stories/story_show_container';
+import HomePageContainer from './homepage/homepage_container';
 
 const App = () => (
     
@@ -24,9 +25,10 @@ const App = () => (
             <ProtectedRoute path="/@:username" component={Profile} />
             <AuthRoute exact path="/register" component={SignUpFormContainer}/>
             <AuthRoute exact path="/login" component={LoginFormContainer}/>
-            <Route exact path="/stories/new" component={CreateStoryContainer}/>
-            <Route exact path="/stories/:storyId/edit" component={EditStoryContainer}/>
-            <Route exact path="/stories/:storyId" component={StoryShowContainer}/>
+            <ProtectedRoute exact path="/stories/new" component={CreateStoryContainer}/>
+            <ProtectedRoute exact path="/stories/:storyId/edit" component={EditStoryContainer}/>
+            <ProtectedRoute exact path="/stories/:storyId" component={StoryShowContainer}/>
+            <Route exact path="/" component={HomePageContainer}/>
         </Switch>
     </div>
 )
