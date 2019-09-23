@@ -1,5 +1,7 @@
-import { RECEIVE_STORIES_ERRORS, RECEIVE_STORY, RECEIVE_ALL_STORIES } from "../actions/stories_actions";
-RECEIVE_ALL_STORIES
+import { RECEIVE_STORIES_ERRORS, 
+    RECEIVE_STORY, 
+    RECEIVE_ALL_STORIES,  } from "../actions/stories_actions";
+
 
 const storyErrorsReducer = (state = [], action) => {
     switch (action.type) {

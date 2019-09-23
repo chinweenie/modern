@@ -31,7 +31,7 @@ cloudinary.config({
     cloud_name: 'yuichiu416',
     api_key: '636885234849389',
     api_secret: 'uvYf_ru2LHsH5iXmiJ9_1BXNHBQ',
-})
+});
 
 const storage = multer.memoryStorage()
 const upload = multer({ storage })

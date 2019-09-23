@@ -1,15 +1,24 @@
 import React from 'react'
 import LoadingIcon from '../loading_icon';
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
-
+import ReactHtmlParser from 'react-html-parser';
+import './story_show.css';
+import ResponseIndex from '../response/response_index_container';
 
 class StoryShow extends React.Component {
     constructor(props){
         super(props);
+        this.state = {
+            responses: this.props.responses,
+            claps: [],
+            showingResponses: false,
+        };
+        this.handleClap = this.handleClap.bind(this);
+        this.toggleResponses = this.toggleResponses.bind(this);
     }
-
+    
     componentDidMount() {
         this.props.fetchStory(this.props.match.params.storyId);
+        this.props.getTotalClaps(this.props.story._id).then(() => this.setState({claps: this.props.claps}));
     }
 
     componentDidUpdate(prevProps) {
@@ -18,23 +27,32 @@ class StoryShow extends React.Component {
         }
     }
 
+    handleClap(e){
+        e.preventDefault();
+        this.props.patchAClap(this.props.story._id).then(() => this.setState({claps: this.props.claps}));
+    }
+
+    toggleResponses(){
+        const responsesList = document.getElementById("responses");        
+        responsesList.classList.toggle("hidden");
+        this.setState({ showingResponses: !this.state.showingResponses })
+    }
     render(){
         let { story, author } = this.props;
+        
         if (!story || !author){
             return (
-               <LoadingIcon/>
+               <p>Loading</p>
             )
         }
-
         const authorStoriesLi = author.stories.map(story => {
             return (
                 <li key={story._id}>
-
                 </li>
             )
-        })
-
-        debugger
+        });
+        const clapText = this.state.claps.includes(this.props.currentUser.id) ? "Unclap!" : "Clap!";
+        const toggleResponsesBtnPrevix = this.state.showingResponses ? "Hide" : "See"
         return (
             <div className="story-show">
                 <div className="title">
@@ -56,9 +74,14 @@ class StoryShow extends React.Component {
                     </div>
                 </div>
                 <div className="follow-btn"></div>
+                <div>claps ({this.state.claps.length})</div>
+                <button onClick={this.handleClap}>{clapText}</button>
 
                 <div className="responses-dropdown">
-                    <button>See responses (15)</button>
+                    <button id="toggle-responses" onClick={this.toggleResponses}>{toggleResponsesBtnPrevix} responses ({this.props.responses.length})</button>
+                    <div id="responses" className="hidden">
+                        <ResponseIndex storyId={this.props.match.params.storyId}/>
+                    </div>
                 </div>
 
                 <div className="suggested-stories">

@@ -1,13 +1,21 @@
 export const selectStoryAuthor = (allUsers, story) => {
+    const authorId = story.authorId;
     debugger
-    const authorId = story.author;
     let author;
     const usersArray = Object.keys(allUsers).map(id => allUsers[id]);
     usersArray.forEach(user => {
-        if (user._id == authorId){
+        if (user._id === authorId){
             author = user;
         }
     });
     return author;
-}
+};
 
+export const selectResponsesArray = (allResponses) => (
+    (Object.keys(allResponses).length === 0 && allResponses.constructor === Object) ? [] : allResponses
+);
+
+export const selectStoriesArray = (allStories) => {
+    debugger
+    return Object.keys(allStories).map(id => allStories[id]);
+}

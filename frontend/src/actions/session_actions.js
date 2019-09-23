@@ -49,4 +49,5 @@ export const logout = () => dispatch => {
   SessionApiUtil.setAuthToken(false);
   // Dispatch a logout action
   dispatch(logoutUser());
+  window.location.href = '/';
 };

@@ -7,7 +7,8 @@ import LoggedOutNavbar from './logged_out_navbar';
 import LoggedInNavbar from './logged_in_navbar';
 import { logout } from '../../actions/session_actions';
 import {openModal} from '../../actions/modal_actions';
-
+import { fetchStories } from '../../actions/stories_actions';
+import { fetchAllUsers } from '../../actions/users_actions';
 
 class Navbar extends React.Component {
     constructor(props){
@@ -15,19 +16,15 @@ class Navbar extends React.Component {
         this.handleSearchIconClick = this.handleSearchIconClick.bind(this);
     }
     componentDidMount(){
-        this.handleSearchIconClick();
+        this.props.fetchStories();
+        this.props.fetchAllUsers();
     }
    
     handleSearchIconClick(){
-        const icon = document.getElementById("search-icon");
         const dropdown = document.getElementById("search-dropdown");
         const searchBar = document.getElementById("searchBar");
-        
-        icon.addEventListener("click", function (event) {
-            event.preventDefault();
-            dropdown.classList.toggle("active");
-            searchBar.classList.toggle("active");
-        });
+        dropdown.classList.toggle("active");
+        searchBar.classList.toggle("active");
     }
     
     render(){
@@ -40,7 +37,7 @@ class Navbar extends React.Component {
                 <ul className="navbar-left">
                     <li className="logo"><a href="/">Modern</a></li>
                     <li className="search" id="search-dropdown" >
-                        <i id="search-icon" className="fa fa-search" aria-hidden="true" ></i>
+                        <i id="search-icon" className="fa fa-search" aria-hidden="true" onClick={this.handleSearchIconClick}></i>
                         <span className="search-dropdown" id="searchBar">
                         </span>
                     </li>
@@ -69,9 +66,10 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     logout: () => dispatch(logout()),
     openModal: (modal) => dispatch(openModal(modal)),
+    fetchStories: () => dispatch(fetchStories()),
+    fetchAllUsers: () => dispatch(fetchAllUsers())
 })
 
 
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));
-
