@@ -1,5 +1,6 @@
 import React from 'react'
-import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
 import './search.css';
 
@@ -17,8 +18,11 @@ class SearchForm extends React.Component {
     componentDidMount(){
         document.addEventListener("keydown", (e) => {
             let lastIdx = this.matches().length - 1;
+            let searchInput = document.getElementById("search-input");
+            let focused = document.activeElement === searchInput;
             let index = this.state.index;
-            if (e.key === "Enter") {
+
+            if (focused && e.key === "Enter" ) {
                 document.getElementById(`match-${index}`).click();
             }
             if (e.key === "ArrowUp") {
@@ -41,14 +45,15 @@ class SearchForm extends React.Component {
                 this.setState({ index: parseInt(target.replace("match-", "")) });
             }
         });
+        
     }
+
     update(event){
         event.preventDefault();
         this.setState({
             inputVal: event.currentTarget.value,
-        })
-        const input = event.currentTarget.value.toLowerCase().split("");
-       
+        });
+        this.findStoryIdByTitle("Artitle 1");
     }
 
     matches() {
@@ -73,6 +78,11 @@ class SearchForm extends React.Component {
         }
         return matches;
     }
+    findStoryIdByTitle(title){
+        const find = this.props.stories.find(story => (story.title === title));
+        if(find)
+            return find._id;
+    }
     
     handleBoldText(str){
         const handled = [];
@@ -88,11 +98,10 @@ class SearchForm extends React.Component {
     render(){
         let searchResults = this.matches().map((result, i) => {
             const handledResult = this.handleBoldText(result);
-            return <li key={i} onClick={this.selectName} className={i == this.state.index ? "search-selected" : ""}><Link to={`/`} id={`match-${i}`}>{handledResult}</Link></li>
+            const id = this.findStoryIdByTitle(result);
+            return <li key={i} onClick={this.selectName} className={i == this.state.index ? "search-selected" : ""}><Link to={`/stories/${id}`} id={`match-${i}`}>{handledResult}</Link></li>
         });
         searchResults = <ul className="search-ul">{searchResults}</ul>
-
-
 
         return (
             <form className="search-form" id="search-form">
@@ -104,4 +113,14 @@ class SearchForm extends React.Component {
     }
 }
 
-export default SearchForm;
+
+const mapStateToProps = state => {
+    return {
+        stories: Object.values(state.entities.stories)
+    }
+}
+
+const mapDispatchToProps = dispatch => ({
+})
+
+export default connect(mapStateToProps, null)(SearchForm);

@@ -17,7 +17,6 @@ class Navbar extends React.Component {
         super(props)
         this.state =  {
             hashesToCompare: {
-                
             }
         };
         this.handleSearchIconClick = this.handleSearchIconClick.bind(this);
