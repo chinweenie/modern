@@ -1,6 +1,6 @@
 import React from 'react'
 import LoadingIcon from '../loading_icon';
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ReactHtmlParser from 'react-html-parser';
 import './story_show.css';
 import ResponseIndex from '../response/response_index_container';
 

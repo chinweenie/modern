@@ -142,7 +142,7 @@ class StoryForm extends React.Component {
                     <div id="embed">
                         <p>title:{this.state.embed.title}</p>
                         <p>description{this.state.embed.description}</p>
-                        <img src={this.state.embed.image} />
+                        <img src={this.state.embed.image} alt="embed"/>
                         <p>url: {this.state.embed.url}</p>
                     </div>
 
