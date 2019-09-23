@@ -18,19 +18,13 @@ class Navbar extends React.Component {
     componentDidMount(){
         this.props.fetchStories();
         this.props.fetchAllUsers();
-        this.handleSearchIconClick();
     }
    
     handleSearchIconClick(){
-        const icon = document.getElementById("search-icon");
         const dropdown = document.getElementById("search-dropdown");
         const searchBar = document.getElementById("searchBar");
-        
-        icon.addEventListener("click", function (event) {
-            event.preventDefault();
-            dropdown.classList.toggle("active");
-            searchBar.classList.toggle("active");
-        });
+        dropdown.classList.toggle("active");
+        searchBar.classList.toggle("active");
     }
     
     render(){
@@ -43,7 +37,7 @@ class Navbar extends React.Component {
                 <ul className="navbar-left">
                     <li className="logo"><a href="/">Modern</a></li>
                     <li className="search" id="search-dropdown" >
-                        <i id="search-icon" className="fa fa-search" aria-hidden="true" ></i>
+                        <i id="search-icon" className="fa fa-search" aria-hidden="true" onClick={this.handleSearchIconClick}></i>
                         <span className="search-dropdown" id="searchBar">
                         </span>
                     </li>

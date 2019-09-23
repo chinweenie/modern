@@ -32,3 +32,11 @@ export const createResponse = (storyId, response) => {
 export const fetchResponses = storyId => {
     return axios.get(`api/stories/responses/${storyId}`);
 };
+
+export const getClaps = storyId => {
+    return axios.get(`api/stories/claps/${storyId}`);
+};
+
+export const patchClap = storyId => {
+    return axios.patch(`api/stories/claps/${storyId}`);
+};

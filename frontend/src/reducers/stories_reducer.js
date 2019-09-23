@@ -2,7 +2,6 @@ import { RECEIVE_ALL_STORIES,
     RECEIVE_STORY, 
     REMOVE_STORY, 
     RECEIVE_STORIES,
-    RECEIVE_RESPONSES,
  } from "../actions/stories_actions";
 
 const storiesReducer = (state = {}, action) => {
@@ -10,12 +9,9 @@ const storiesReducer = (state = {}, action) => {
     let newObject;
     switch (action.type) {
         case RECEIVE_ALL_STORIES:
-            const storiesArray = action.stories;
-            newObject = {};
-            storiesArray.forEach(story => {
-                newObject[story._id] = story
-            });
-            return newObject;
+            const newArr = [];
+            action.stories.forEach(story => newArr.push({ [story._id]: story}));
+            return newArr;
         case RECEIVE_STORY:
             return Object.assign({}, state, {
                 [action.story._id]: action.story

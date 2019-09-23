@@ -1,9 +1,9 @@
 import React from 'react'
-import './quill.snow.css';
-import './quill.bubble.css';
+import '../stories/quill.snow.css';
+import '../stories/quill.bubble.css';
 import ReactQuill from 'react-quill';
 import LoadingIcon from '../loading_icon';
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ReactHtmlParser from 'react-html-parser';
 
 
 class ResponseIndex extends React.Component {

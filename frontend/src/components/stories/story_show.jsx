@@ -1,6 +1,6 @@
 import React from 'react'
 import LoadingIcon from '../loading_icon';
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ReactHtmlParser from 'react-html-parser';
 import './story_show.css';
 import ResponseIndex from '../response/response_index_container';
 
@@ -8,13 +8,17 @@ class StoryShow extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            responses: this.props.responses
+            responses: this.props.responses,
+            claps: [],
+            showingResponses: false,
         };
+        this.handleClap = this.handleClap.bind(this);
+        this.toggleResponses = this.toggleResponses.bind(this);
     }
     
     componentDidMount() {
         this.props.fetchStory(this.props.match.params.storyId);
-        // this.handleDisplayResponse();
+        this.props.getTotalClaps(this.props.story._id).then(() => this.setState({claps: this.props.claps}));
     }
 
     componentDidUpdate(prevProps) {
@@ -23,19 +27,19 @@ class StoryShow extends React.Component {
         }
     }
 
-    // handleDisplayResponse(){
-    //     const responseForm = document.getElementById("response-form");
-    //     const responseBtn = document.getElementById("response-btn");
+    handleClap(e){
+        e.preventDefault();
+        this.props.patchAClap(this.props.story._id).then(() => this.setState({claps: this.props.claps}));
+    }
 
-    //     responseBtn.addEventListener("click", function (event) {
-    //         event.preventDefault();
-    //         responseForm.classList.toggle("hidden");
-    //     });
-    // }
-
+    toggleResponses(){
+        const responsesList = document.getElementById("responses");        
+        responsesList.classList.toggle("hidden");
+        this.setState({ showingResponses: !this.state.showingResponses })
+    }
     render(){
         let { story, author } = this.props;
-        // let responses = this.state.responses;
+        
         if (!story || !author){
             return (
                <LoadingIcon/>
@@ -44,11 +48,11 @@ class StoryShow extends React.Component {
         const authorStoriesLi = author.stories.map(story => {
             return (
                 <li key={story._id}>
-
                 </li>
             )
         });
-
+        const clapText = this.state.claps.includes(this.props.currentUser.id) ? "Unclap!" : "Clap!";
+        const toggleResponsesBtnPrevix = this.state.showingResponses ? "Hide" : "See"
         return (
             <div className="story-show">
                 <div className="title">
@@ -70,16 +74,14 @@ class StoryShow extends React.Component {
                     </div>
                 </div>
                 <div className="follow-btn"></div>
-
+                <div>claps ({this.state.claps.length})</div>
+                <button onClick={this.handleClap}>{clapText}</button>
 
                 <div className="responses-dropdown">
-                    <button>See responses ({this.props.responses.length})</button>
-                    <ResponseIndex storyId={this.props.match.params.storyId}/>
-
-                {/* <div className="create-response">
-                    <button id="response-btn" >Create new response</button>
-                    <ResponseForm storyId={this.props.match.params.storyId} state={this.state}/>
-                </div> */}
+                    <button id="toggle-responses" onClick={this.toggleResponses}>{toggleResponsesBtnPrevix} responses ({this.props.responses.length})</button>
+                    <div id="responses" className="hidden">
+                        <ResponseIndex storyId={this.props.match.params.storyId}/>
+                    </div>
                 </div>
 
                 <div className="suggested-stories">
