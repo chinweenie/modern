@@ -15,10 +15,10 @@ class SearchForm extends React.Component {
     }
 
     componentDidMount(){
+        let searchInput = document.getElementById("search-input");
+        let focused = document.activeElement === searchInput;
         document.addEventListener("keydown", (e) => {
             let lastIdx = this.matches().length - 1;
-            let searchInput = document.getElementById("search-input");
-            let focused = document.activeElement === searchInput;
             let index = this.state.index;
 
             if (focused && e.key === "Enter" ) {
@@ -44,7 +44,16 @@ class SearchForm extends React.Component {
                 this.setState({ index: parseInt(target.replace("match-", "")) });
             }
         });
-        
+        document.getElementById("search-icon").addEventListener("click", (e) => {
+            const dropdown = document.getElementById("search-dropdown");
+            const searchBar = document.getElementById("searchBar");
+            if (dropdown.classList.contains("active")){
+                this.setState({
+                    inputVal: "",
+                    index: 0,
+                })
+            }
+        });
     }
 
     update(event){
@@ -52,7 +61,6 @@ class SearchForm extends React.Component {
         this.setState({
             inputVal: event.currentTarget.value.toLowerCase(),
         });
-        this.findStoryIdByTitle("Artitle 1");
     }
 
     matches() {
@@ -102,7 +110,7 @@ class SearchForm extends React.Component {
 
         return (
             <form className="search-form" id="search-form">
-                <input className="search-input search-dropdown" id="searchBar" type="text" onChange={this.update} placeholder="Search for stories..."/>
+                <input className="search-input search-dropdown" id="searchBar" type="text" onChange={this.update} placeholder="Search for stories..." value={this.state.inputVal}/>
                 {searchResults}
 
             </form>
