@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactHtmlParser from 'react-html-parser';
-import './story_show.css';
 import ResponseIndex from '../response/response_index_container';
 
 class StoryShow extends React.Component {

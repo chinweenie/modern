@@ -22,10 +22,14 @@
 .home-story-title {
   grid-column: 2 / -2;
   font-size: 25px;
+  font-weight: bold;
   font-family: 'DM Serif Display', serif;
   color: rgb(43, 42, 42);
   /* font-family: 'Rozha One', serif; */
   /* font-weight: 200; */
+}
+.home-story-title:hover {
+  cursor: pointer;
 }
 .home-story-author {
   grid-column: 2 / -2;
