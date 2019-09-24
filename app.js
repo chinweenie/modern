@@ -11,6 +11,7 @@ const passport = require('passport');
 const cloudinary = require('cloudinary');
 const fileUploadMiddleware = require('./file-upload-middleware');
 const multer = require('multer');
+const path = require('path');
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static('frontend/build'));
