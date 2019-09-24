@@ -25,7 +25,7 @@ class LoggedInNavbar extends React.Component {
                             <li>Bookmarks</li>
                             <li>Publications</li>
                             <li><Link to={`/@${username}`} >Profile</Link></li>
-                            <li onClick={logout}>Sign out</li>
+                            <li onClick={logout}><Link to="/" >Sign out</Link></li>
                         </ul>
                     </ul>
                 </li>

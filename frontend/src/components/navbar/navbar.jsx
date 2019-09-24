@@ -60,11 +60,10 @@ class Navbar extends React.Component {
             <div className="navbar">
                 <ul className="navbar-left">
                     <li className="logo"><a href="/">Modern</a></li>
-                    <SearchForm hashesToCompare={this.state.hashesToCompare} />
+                    
                     <li className="search" id="search-dropdown" >
                         <i id="search-icon" className="fa fa-search" aria-hidden="true" onClick={this.handleSearchIconClick}></i>
-                        <span className="search-dropdown" id="searchBar">
-                        </span>
+                            <SearchForm hashesToCompare={this.state.hashesToCompare} />
                     </li>
                 </ul>
                 <ul className="navbar-right">
