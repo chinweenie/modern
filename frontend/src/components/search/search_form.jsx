@@ -86,6 +86,9 @@ class SearchForm extends React.Component {
     
     handleBoldText(str){
         const handled = [];
+        const input = this.state.inputVal;
+        if(input === "*all*")
+            return str;
         for (let i = 0; i < str.length; i++) {
             if (this.state.inputVal.toLowerCase().includes(str[i].toLowerCase()))
                 handled.push(`<strong>${str[i]}</strong>`);
