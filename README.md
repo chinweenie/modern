@@ -4,6 +4,7 @@ collection of amateur and professional publications.
 You can view the original website here:
 [Medium](https://medium.com)
 
+[Live Demo](https://modern-5566.herokuapp.com/#/)
 
 ## Background and Overview
 Modern taps into the brains of the world's most insightful writers, thinkers
@@ -20,20 +21,20 @@ We will need to:
 
 
 ## Functionality and MVP
-<img src="images/index.png" width = 200px />
+<img src="images/index.png" max-width=600px />
 
 * Individual users can create accounts to sign with an email address. The Demo modern button allows users to sign in without an account.
-<img src="images/create_account.png" width = 200px/>
+<img src="images/create_account.png" max-width=600px/>
 
-<img src="images/login.png" width = 200px/>
+<img src="images/login.png" max-width=600px/>
 * User authorization functionality allows the site to seemlessly restrict content based on login status.
 * Stories can be created, read, updated, and deleted.
 * Profiles can also be created, read, updated, and deleted.
-<img src="images/profile.png" width = 200px />
+<img src="images/profile.png" max-width=600px />
 
 * Users can "clap" stories (similar to likes or upvotes)
 
-<img src="images/clap.png" alt='claps when css is done' width=200px/>
+<img src="images/clap.png" alt='claps when css is done' max-width=600px/>
 
 * Users can leave comments on stories
 
@@ -41,7 +42,7 @@ We will need to:
 * Interactive and responsive UI such as modal session form
 * Search functionality for articles, authors
 
-<img src="images/search.png"  width= 200px/>
+<img src="images/search.png"  max-width=600px/>
 
 * Production README
 
