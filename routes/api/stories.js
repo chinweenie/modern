@@ -51,37 +51,64 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
             res.json(serializeStory(storyObj))
         })   
     })
-    
 });
 
 // @route   PATCH api/stories/:story_id (update) 
 // @desc    Update a story 
 // @access  Private
-router.patch('/:story_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.patch('/:story_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
     const { errors, isValid } = validateStoryInput(req.body);
     if (!isValid) {
         return res
             .status(400)
             .json(errors);
     };
-    // const story = Story.findById(req.params.story_id);
-    Story.update({ _id: req.params.story_id }, { $set: { title: req.body.title, body: req.body.body } }, { multi: true, new: true })
-        .populate('author')
-        .then(story => res.json(serializeStory(story)))
-        .catch(error => res.status(422).json({ cannotUpdateStory: "Cannot update the story" }))
+
+    try {
+        const story = await Story.findById(req.params.story_id);
+
+        story.title = req.body.title;
+        story.body = req.body.body;
+
+        const updatedStory = await story.save();
+        res.json(serializeStory(updatedStory))
+
+        
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({'msg': err.message})
+    }
 })
 
 
 // @route   DELETE api/stories/:story_id (delete)
 // @desc    Remove a story
 // @access  Private
-router.delete('/:story_id', passport.authenticate('jwt', { session: false }), (req, res) => {
+router.delete('/:story_id', passport.authenticate('jwt', { session: false }), async (req, res) => {
+    try {   
+        const story = await Story.findById(req.params.story_id);
+        if (!story) return res.status(404).json({'msg': 'Story not found'});
 
-    const story = Story.findById(req.params.story_id);
-    story.remove()
-        .populate('author')
-        .then(story => res.json(serializeStory(story)))
-        .catch(error => res.status(404).json({ cannotFindStory: 'Cannot find story with that ID' }))
+        const deletedStory = await story.remove();
+        res.json(serializeStory(deletedStory));
+        
+    } catch (err) {
+        console.log(err.message);
+        res.status(500).json({ 'msg': err.message });
+    }
+
+
+    // Story.findById(req.params.story_id).exec((err, story) => {
+    //     story.remove((err, story) => {
+    //             story.populate('author', (err, story) => {
+    //                 if (err) console.log(err);
+    //                 res.json(serializeStory(story))
+    //             })
+                    
+    //             }
+    //     )     
+    // })
+    // .catch(error => res.status(422).json({ cannotDeleteStory: "Cannot delete the story" }));
 });
 
 

@@ -21,9 +21,8 @@ class LoggedInNavbar extends React.Component {
                                 <span>{`@${username}`}</span>
                             </li>
                             <li><Link to="/stories/new">New Story</Link></li>
-                            <li>Stories</li>
+                            <li><Link to="/author_stories_index">Stories</Link></li>
                             <li>Bookmarks</li>
-                            <li>Publications</li>
                             <li><Link to={`/@${username}`} >Profile</Link></li>
                             <li onClick={logout}><Link to="/" >Sign out</Link></li>
                         </ul>

@@ -15,10 +15,10 @@ class SearchForm extends React.Component {
     }
 
     componentDidMount(){
+        let searchInput = document.getElementById("search-input");
+        let focused = document.activeElement === searchInput;
         document.addEventListener("keydown", (e) => {
             let lastIdx = this.matches().length - 1;
-            let searchInput = document.getElementById("search-input");
-            let focused = document.activeElement === searchInput;
             let index = this.state.index;
 
             if (focused && e.key === "Enter" ) {
@@ -44,7 +44,16 @@ class SearchForm extends React.Component {
                 this.setState({ index: parseInt(target.replace("match-", "")) });
             }
         });
-        
+        document.getElementById("search-icon").addEventListener("click", (e) => {
+            const dropdown = document.getElementById("search-dropdown");
+            const searchBar = document.getElementById("searchBar");
+            if (dropdown.classList.contains("active")){
+                this.setState({
+                    inputVal: "",
+                    index: 0,
+                })
+            }
+        });
     }
 
     update(event){
@@ -52,30 +61,23 @@ class SearchForm extends React.Component {
         this.setState({
             inputVal: event.currentTarget.value.toLowerCase(),
         });
-        this.findStoryIdByTitle("Artitle 1");
     }
 
     matches() {
         const matches = [];
-        if (this.state.inputVal.length === 0) {
+        if (this.state.inputVal.length === 0)
             return [];
-        }
         const input = this.state.inputVal;
         if(input === "*all*"){
             return Object.keys(this.props.hashesToCompare);
         }
-
         Object.keys(this.props.hashesToCompare).forEach(title => {
             for (let i = 0; i < input.length; i++) {
-                if (!this.props.hashesToCompare[title][input[i]]) {
+                if (!this.props.hashesToCompare[title][input[i]])
                     return [];
-                }
             }
             matches.push(title);
         });
-        if (matches.length === 0) {
-            return [];
-        }
         return matches;
     }
     findStoryIdByTitle(title){
@@ -86,6 +88,9 @@ class SearchForm extends React.Component {
     
     handleBoldText(str){
         const handled = [];
+        const input = this.state.inputVal;
+        if(input === "*all*")
+            return str;
         for (let i = 0; i < str.length; i++) {
             if (this.state.inputVal.toLowerCase().includes(str[i].toLowerCase()))
                 handled.push(`<strong>${str[i]}</strong>`);
@@ -105,7 +110,7 @@ class SearchForm extends React.Component {
 
         return (
             <form className="search-form" id="search-form">
-                <input className="search-input search-dropdown" id="searchBar" type="text" onChange={this.update} placeholder="Search for stories..."/>
+                <input className="search-input search-dropdown" id="searchBar" type="text" onChange={this.update} placeholder="Search for stories..." value={this.state.inputVal}/>
                 {searchResults}
 
             </form>
