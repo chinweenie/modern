@@ -20,12 +20,29 @@ We will need to:
 
 
 ## Functionality and MVP
+<img src="images/index.png" width = 200px />
 
-* Users can sign up as company or individual
-* User authorization such as sign in and out
+* Individual users can create accounts to sign with an email address. The Demo modern button allows users to sign in without an account.
+<img src="images/create_account.png" width = 200px/>
+
+<img src="images/login.png" width = 200px/>
+* User authorization functionality allows the site to seemlessly restrict content based on login status.
+* Stories can be created, read, updated, and deleted.
+* Profiles can also be created, read, updated, and deleted.
+<img src="images/profile.png" width = 200px />
+
+* Users can "clap" stories (similar to likes or upvotes)
+
+<img src="images/clap.png" alt='claps when css is done' width=200px/>
+
+* Users can leave comments on stories
+
 * Actions such as creating publications and updating publications for logged in users only
 * Interactive and responsive UI such as modal session form
-* Search functionality for articles, authors and companies
+* Search functionality for articles, authors
+
+<img src="images/search.png"  width= 200px/>
+
 * Production README
 
 
