@@ -74,7 +74,7 @@ class SearchForm extends React.Component {
             matches.push(title);
         });
         if (matches.length === 0) {
-            matches.push('No matches');
+            return [];
         }
         return matches;
     }

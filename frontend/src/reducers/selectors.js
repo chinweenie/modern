@@ -25,6 +25,7 @@ export const selectStoriesTitles = allStories => {
         titles.push(story.title);
     })
     return titles;
+};
 export const selectUsersArray = allUsers => {
     return Object.keys(allUsers).map(id => allUsers[id]);
-}
+};
