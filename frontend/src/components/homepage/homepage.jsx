@@ -26,7 +26,7 @@ class HomePage extends React.Component {
 
         if (!stories){
             return (
-                <LoadingIcon/>
+                <LoadingIcon />
             )
         }
 
