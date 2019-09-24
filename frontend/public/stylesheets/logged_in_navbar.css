@@ -27,15 +27,16 @@ ul.logged-in-navbar {
     border: 1px solid lightgray;
     padding-left: 20px;
     padding-right: 20px;
-    left: -91px;
+    left: -70px;
     width: 190px;
-    top: 30px;
+    top: 25px;
     background-color: white;
+    z-index: 6;
 }
 
 li.profile-dropdown-main:hover .profile-dropdown-menu {
     display: block;
-    z-index: 2;
+    z-index: 5;
 }
 
 .profile-dropdown-menu > li {
@@ -49,6 +50,7 @@ li.profile-dropdown-main:hover .profile-dropdown-menu {
     background: white;
     border: none;
     font-size: 15px;
+    
 }
 
 .profile-dropdown-header {
@@ -63,13 +65,19 @@ li.profile-dropdown-main:hover .profile-dropdown-menu {
   border-radius: 50%;
   border: 1px solid #82d88c;
   margin-top: -2px;
+  /* z-index: 5; */
 }
+
+
 .logged-in-navbar {
     color: rgb(51, 51, 51);
     /* margin-top: 2%; */
     position: absolute; 
     /* width: 20px; */
     /* height: 20px; */
+}
+.logged-in-navbar:hover {
+    color: black;
 }
 .nav-right-div {
     position: relative;
