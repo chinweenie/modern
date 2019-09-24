@@ -10,13 +10,13 @@ import { fetchStories } from '../../actions/stories_actions';
 import { fetchAllUsers } from '../../actions/users_actions';
 import { selectStoriesTitles } from '../../reducers/selectors';
 import SearchForm from '../search/search_form';
+import { fetchAll } from '../../actions/file_actions';
 
 class Navbar extends React.Component {
     constructor(props){
         super(props)
         this.state =  {
-            hashesToCompare: {
-            }
+            hashesToCompare: {}
         };
         this.handleSearchIconClick = this.handleSearchIconClick.bind(this);
     }
@@ -32,6 +32,16 @@ class Navbar extends React.Component {
             });
         });
         this.props.fetchAllUsers();
+        if(!this.props.currentUser)
+            return;
+        this.props.fetchAll(this.props.currentUser.id)
+            .then(response => {
+                response.files = response.files || [];
+                response.files.forEach(obj => {
+                    if (obj.filename === "profile")
+                        this.setState({ profileURL: obj.URL });
+                });
+            });
     }
    
     handleSearchIconClick(){
@@ -51,8 +61,8 @@ class Navbar extends React.Component {
     }
     
     render(){
-        let { navbar, openModal, logout, currentUser } = this.props;
-        const component = !navbar ? <LoggedOutNavbar openModal={openModal}/> : <LoggedInNavbar currentUser={currentUser} logout={logout}/>
+        let { navbar, openModal, logout, currentUser, profileURL } = this.props;
+        const component = !navbar ? <LoggedOutNavbar openModal={openModal} /> : <LoggedInNavbar currentUser={currentUser} logout={logout} profileURL={this.state.profileURL}/>
                 
         return (
             
@@ -66,33 +76,30 @@ class Navbar extends React.Component {
                     </li>
                 </ul>
                 <ul className="navbar-right">
-                    {/* <li className="search" id="search-dropdown" >
-                        <i id="search-icon" className="fa fa-search" aria-hidden="true" ></i>
-                        <span className="search-dropdown" id="searchBar">
-                        </span>
-                    </li> */}
-                    <li>
                         {component}
-                    </li>
                 </ul>
             </div>
         )
     }
 }
 
-const mapStateToProps = state => ({
-    navbar: Boolean(state.session.currentUser),
-    currentUser: state.session.currentUser,
-    storyTitlesArray: selectStoriesTitles(state.entities.stories)
-});
+const mapStateToProps = state => {
+    const currentUser = state.session.currentUser;
+    let profileURL = currentUser && state.UI.files[currentUser.id] ? state.UI.files[currentUser.id] : "/favicon.ico"
+    return {
+        navbar: Boolean(currentUser),
+        currentUser: currentUser,
+        storyTitlesArray: selectStoriesTitles(state.entities.stories),
+        profileURL: profileURL
+    };
+};
 
 const mapDispatchToProps = dispatch => ({
     logout: () => dispatch(logout()),
     openModal: (modal) => dispatch(openModal(modal)),
     fetchStories: () => dispatch(fetchStories()),
-    fetchAllUsers: () => dispatch(fetchAllUsers())
-})
-
-
+    fetchAllUsers: () => dispatch(fetchAllUsers()),
+    fetchAll: user_id => dispatch(fetchAll(user_id))
+});
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));

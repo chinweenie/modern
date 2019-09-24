@@ -8,15 +8,16 @@ class LoggedInNavbar extends React.Component {
         let {logout, currentUser} = this.props;
         const username = currentUser.email.split("@")[0];
         return (
+            <div className="nav-right-div">
             <ul className="logged-in-navbar">
                 <li><i className="fa fa-bell" aria-hidden="true"></i></li>
                 
                 <li className="profile-dropdown-main">
                     <ul>
-                        <li><i className="fa fa-user-circle-o" aria-hidden="true"></i></li>
+                        <li><img src={this.props.profileURL} className="nav-profile-picture" alt="" /></li>
                         <ul className="profile-dropdown-menu">
                             <li className="profile-dropdown-header">
-                                <i className="fa fa-user-circle" aria-hidden="true"></i>
+                                <img src={this.props.profileURL} className="profile-picture" alt="" />
                                 <span>{`@${username}`}</span>
                             </li>
                             <li><Link to="/stories/new">New Story</Link></li>
@@ -28,6 +29,7 @@ class LoggedInNavbar extends React.Component {
                     </ul>
                 </li>
             </ul>
+            </div>
         )
         
     }

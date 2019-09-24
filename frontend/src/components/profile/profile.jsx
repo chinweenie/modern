@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
+import LoadingIcon from '../loading_icon';
 
 export default class profile extends Component {
     constructor(props){
@@ -36,6 +37,7 @@ export default class profile extends Component {
     }
     getProfileUser(){
         const users = this.props.users;
+        
         const demoUser = { id: "5d82c28d92828f66bd554727", username: "demouser" };
         if (Object.keys(users).length === 0 && users.constructor === Object )
             return demoUser;//return the demo profile if it's empty
@@ -48,9 +50,7 @@ export default class profile extends Component {
         let { currentUser, followings, stories } = this.props;
         if (!currentUser){
             return (
-                <div>
-                    Loading...
-                </div>
+                <div> ...Loading </div>
             )
         }
         if(stories){
@@ -59,16 +59,16 @@ export default class profile extends Component {
                 {stories.map((story, idx) => {
                     return  <tbody key={story.title + idx}>
                                 <tr>
-                                <th>Title</th>
+                                {/* <th>Title</th> */}
                                 </tr>
                                 <tr>
                                     <td>{story.title}</td>
                                 </tr>
                                 <tr>
-                                    <th>Body</th>
+                                    {/* <th>Body</th> */}
                                 </tr>
                                 <tr>
-                                    <td>{ReactHtmlParser(story.body)}</td>
+                                    {/* <td>{ReactHtmlParser(story.body)}</td> */}
                                 </tr>
                             </tbody>
                 })}
