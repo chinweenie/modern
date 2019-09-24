@@ -10,10 +10,6 @@ class HomePage extends React.Component {
         this.handleStoryClick = this.handleStoryClick.bind(this);
     }
 
-    // componentDidMount(){
-    //     this.props.fetchStories();
-    // }
-
     handleStoryClick(storyId){
         return (event) => {
             this.props.history.push(`/stories/${storyId}`);
@@ -45,6 +41,7 @@ class HomePage extends React.Component {
             
             <div className="homepage-stories-ul">
                 <ul>
+                    <LoadingIcon />
                     {storiesLi}
                 </ul>
             </div>

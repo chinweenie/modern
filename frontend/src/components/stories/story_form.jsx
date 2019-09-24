@@ -15,6 +15,7 @@ class StoryForm extends React.Component {
                 url: "",
                 image: ""
         }});
+        this.handleQuillChange = this.handleQuillChange.bind(this);
 
         this.modules = {
             toolbar: [
@@ -80,7 +81,8 @@ class StoryForm extends React.Component {
     }
 
     handleQuillChange(value) {
-        this.setState({body: value})
+        this.setState({body: value});
+        console.log(this.state.body);
     }
 
     handleSubmit(event) {
