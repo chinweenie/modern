@@ -25,7 +25,7 @@ class HomePage extends React.Component {
             }
             filtered.push(p);
         }
-        return <ul>{filtered.map((el, idx) => (<li key={idx}>{el}</li>))}</ul>
+        return <p className="home-story-paragraph">{filtered.map((el, idx) => (<li key={idx}>{el}</li>))}</p>
     }
     render(){
         let {stories} = this.props;
