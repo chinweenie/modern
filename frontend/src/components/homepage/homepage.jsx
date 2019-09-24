@@ -41,7 +41,8 @@ class HomePage extends React.Component {
             
             <div className="homepage-stories-ul">
                 <ul>
-                    <LoadingIcon />
+                    
+                    {/* <LoadingIcon /> */}
                     {storiesLi}
                 </ul>
             </div>
