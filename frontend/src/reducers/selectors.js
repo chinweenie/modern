@@ -18,6 +18,11 @@ export const selectStoriesArray = (allStories) => {
     return Object.keys(allStories).map(id => allStories[id]);
 }
 
-export const selectUsersArray = allUsers => {
-    return Object.keys(allUsers).map(id => allUsers[id]);
+export const selectStoriesTitles = allStories => {
+    const storiesArray = Object.keys(allStories).map(id => allStories[id]);
+    const titles = [];
+    storiesArray.forEach(story => {
+        titles.push(story.title);
+    })
+    return titles;
 }
