@@ -62,7 +62,7 @@ class Navbar extends React.Component {
     
     render(){
         let { navbar, openModal, logout, currentUser, profileURL } = this.props;
-        const component = !navbar ? <LoggedOutNavbar openModal={openModal} /> : <LoggedInNavbar currentUser={currentUser} logout={logout} profileURL={profileURL}/>
+        const component = !navbar ? <LoggedOutNavbar openModal={openModal} /> : <LoggedInNavbar currentUser={currentUser} logout={logout} profileURL={this.state.profileURL}/>
                 
         return (
             

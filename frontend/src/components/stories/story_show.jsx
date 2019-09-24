@@ -10,17 +10,22 @@ class StoryShow extends React.Component {
             responses: this.props.responses,
             claps: [],
             showingResponses: false,
-        };
+        }
         this.props.stories || (this.props.fetchStories() && this.props.fetchAllUsers());
         this.handleClap = this.handleClap.bind(this);
         this.toggleResponses = this.toggleResponses.bind(this);
     }
     
     componentDidMount() {
-        if(!this.props.stories)
-            return;
-        this.props.fetchStory(this.props.match.params.storyId);
-        this.props.getTotalClaps(this.props.story._id).then(() => this.setState({claps: this.props.claps}));
+        const that = this;
+        this.props.fetchStory(that.props.match.params.storyId).then(() => that.props.getTotalClaps(that.props.story._id).then(() => that.setState({ claps: that.props.claps} )))
+        .then(() => that.props.fetchAll(that.props.author._id).then(response => {
+            response.files = response.files || [];
+            response.files.forEach(obj => {
+                if (obj.filename === "profile")
+                    this.setState({ profileURL: obj.URL });
+            });
+        }));
     }
 
     componentDidUpdate(prevProps) {
@@ -45,53 +50,46 @@ class StoryShow extends React.Component {
         if (!story || !author)
             return <LoadingIcon />
         
-        const authorStoriesLi = author.stories.map(story => {
-            return (
-                <li key={story._id}>
-                </li>
-            )
-        });
+        const authorStoriesLi = author.stories.map(story => (<li key={story._id}></li>));
+
         const clapText = this.state.claps.includes(this.props.currentUser.id) ? "Unclap!" : "Clap!";
         const toggleResponsesBtnPrevix = this.state.showingResponses ? "Hide" : "See"
         return (
             <div className="story-show">
-                <div className="title">
+                <div className="story-title">
                     <h1>{story.title}</h1>
+                </div>
+                <div className="author-section">
+                    <img src={this.state.profileURL} className="author-profile-picture" alt="profile" />
+                    <span>{author.name}</span>
                 </div>
 
                 <div className="story-body">
                     {ReactHtmlParser(story.body)}
                 </div>
 
-                <div className="claps-section">
-                    
-                </div>
-                <div className="author-section">
-                    <div className="author-profile-pic"></div>
-                    <div className="author-bio">
-                        <h2>{author.name}</h2>
-                        <p>description comes here</p>
-                    </div>
-                </div>
                 <div className="follow-btn"></div>
-                <div>claps ({this.state.claps.length})</div>
-                <button onClick={this.handleClap}>{clapText}</button>
+                
+                <div className="clap-div" onClick={this.handleClap}>
+                    <img src="/claps.png" alt="claps" />
+                    <span>{clapText}</span>
+                    <br/>
+                    <span>claps ({this.state.claps.length})</span>
+                </div>
 
                 <div className="responses-dropdown">
-                    <button id="toggle-responses" onClick={this.toggleResponses}>{toggleResponsesBtnPrevix} responses ({this.props.responses.length})</button>
-                    <div id="responses" className="hidden">
-                        <ResponseIndex storyId={this.props.match.params.storyId}/>
-                    </div>
+                    <button onClick={this.toggleResponses}>{toggleResponsesBtnPrevix} responses ({this.props.responses.length})</button>
+                </div>
+                <div id="responses" className="hidden">
+                    <ResponseIndex storyId={this.props.match.params.storyId}/>
                 </div>
 
                 <div className="suggested-stories">
                     <h3>More From Modern</h3>
                     <ul className="suggested-stories-ul">
-                        {authorStoriesLi }
+                        {authorStoriesLi}
                     </ul>
                 </div>
-
-                
             </div>
         )
     }
