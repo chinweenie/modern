@@ -20,16 +20,16 @@ class HomePage extends React.Component {
 
         let {stories} = this.props;
 
-        if (!stories){
+        if (stories.length === 0){
             return (
                 <LoadingIcon />
             )
         }
-
+        // debugger
         const storiesLi = stories.map(story => {
             const htmlObject = document.createElement('div');
             htmlObject.innerHTML = story.body;
-            const imgTag = htmlObject.getElementsByTagName('img').length === 0 ? <img className="home-figure" src={defaultimg} alt={"no-image"} /> : <img className="home-figure" src={htmlObject.getElementsByTagName('img')[0].src} alt="image"/>
+            const imgTag = htmlObject.getElementsByTagName('img').length === 0 ? <img className="home-figure" src={defaultimg} alt={"404"} /> : <img className="home-figure" src={htmlObject.getElementsByTagName('img')[0].src} alt="404"/>
             
             return <li className="home-li" key={story._id} onClick={this.handleStoryClick(story._id)}>
                 <p className="home-story-title">{story.title}</p>
@@ -37,11 +37,11 @@ class HomePage extends React.Component {
                 <figure className="home-figure"> {imgTag} </figure> 
             </li>
         })
+        
         return (
             
             <div className="homepage-stories-ul">
                 <ul>
-                    <LoadingIcon />
                     {storiesLi}
                 </ul>
             </div>
