@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const db = process.env.mongoURI || require('./config/keys').mongoURI;
+const db = require('./config/keys').mongoURI;
 const mongoose = require('mongoose');
 const users = require("./routes/api/users");
 const files = require("./routes/files");
@@ -11,6 +11,14 @@ const passport = require('passport');
 const cloudinary = require('cloudinary');
 const fileUploadMiddleware = require('./file-upload-middleware');
 const multer = require('multer');
+const path = require('path');
+
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('frontend/build'));
+    app.get('/', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+    })
+}
 
 app.use(passport.initialize());
 //We also need to setup a configuration file for Passport (add this after the previous line):

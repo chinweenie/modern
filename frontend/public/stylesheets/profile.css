@@ -46,8 +46,8 @@
   fill: rgba(0, 0, 0, 0.84);
 }
 .profile-picture{
-  width: 128px;
-  height: 128px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   border: 2px solid #82d88c;
 }

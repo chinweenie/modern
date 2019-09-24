@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ReactHtmlParser from 'react-html-parser';
-import './search.css';
 
 class SearchForm extends React.Component {
     constructor(props){
@@ -62,10 +61,11 @@ class SearchForm extends React.Component {
             return [];
         }
         const input = this.state.inputVal;
-        if(input === "*ALL*")
+        if(input === "*all*"){
             return Object.keys(this.props.hashesToCompare);
+        }
 
-        Object.keys(this.props.hashesToCompare).map(title => {
+        Object.keys(this.props.hashesToCompare).forEach(title => {
             for (let i = 0; i < input.length; i++) {
                 if (!this.props.hashesToCompare[title][input[i]]) {
                     return [];
@@ -99,7 +99,7 @@ class SearchForm extends React.Component {
         let searchResults = this.matches().map((result, i) => {
             const handledResult = this.handleBoldText(result);
             const id = this.findStoryIdByTitle(result);
-            return <li key={i} onClick={this.selectName} className={i == this.state.index ? "search-selected" : ""}><Link to={`/stories/${id}`} id={`match-${i}`}>{handledResult}</Link></li>
+            return <li key={i} onClick={this.selectName} className={i === this.state.index ? "search-selected" : ""}><Link to={`/stories/${id}`} id={`match-${i}`}>{handledResult}</Link></li>
         });
         searchResults = <ul className="search-ul">{searchResults}</ul>
 
@@ -119,8 +119,5 @@ const mapStateToProps = state => {
         stories: Object.values(state.entities.stories)
     }
 }
-
-const mapDispatchToProps = dispatch => ({
-})
 
 export default connect(mapStateToProps, null)(SearchForm);

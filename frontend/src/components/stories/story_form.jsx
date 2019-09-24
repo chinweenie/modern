@@ -1,7 +1,4 @@
-import React from 'react'
-import './editor.css';
-import './quill.snow.css';
-import './quill.bubble.css';
+import React from 'react';
 import ReactQuill from 'react-quill';
 import {withRouter} from 'react-router-dom';
 
@@ -142,14 +139,16 @@ class StoryForm extends React.Component {
                     {/* place holder, when there's an embed item, replace it with the div */}
                 </ReactQuill>
                     <div id="embed">
-                        <p>title:{this.state.embed.title}</p>
-                        <p>description{this.state.embed.description}</p>
-                        <img src={this.state.embed.image} alt="embed"/>
-                        <p>url: {this.state.embed.url}</p>
+                    <div className="embed-left">
+                        <p className="embed-title">{this.state.embed.title}</p>
+                        <p className="embed-description">{this.state.embed.description}</p>
+                        <p className="embed-url">{this.state.embed.url}</p>
+                    </div>
+                    <div className="embed-right">
+                        <img className="embed-image" src={this.state.embed.image} alt=""/>
+                    </div>
                     </div>
 
-
-               
                 <button className="publish-button">Publish</button>
             </form>
         )
