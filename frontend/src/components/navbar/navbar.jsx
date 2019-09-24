@@ -32,6 +32,8 @@ class Navbar extends React.Component {
             });
         });
         this.props.fetchAllUsers();
+        if(!this.props.currentUser)
+            return;
         this.props.fetchAll(this.props.currentUser.id)
             .then(response => {
                 response.files = response.files || [];
