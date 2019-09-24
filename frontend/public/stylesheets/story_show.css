@@ -1,3 +1,39 @@
 .hidden{
     display: none;
 }
+
+#embed{
+    text-align: left;
+    margin-top: 20px;
+    width: 60%;
+    display:flex;
+    flex-direction: row;
+    border: 
+}
+.embed-left{
+    width:50%;
+    display:flex;
+    flex-direction: column;
+}
+.embed-right{
+    width:50%;
+}
+#embed .embed-title{
+    font-size: 24px;
+    padding-bottom: 20px;
+    color: gray;
+}
+#embed .embed-description{
+    font-size: 16px;
+    padding-bottom: 20px;
+    color: black;
+}
+#embed .embed-image{
+    font-size: 24px;
+    color: gray;
+    max-width: 250px;
+}
+#embed .embed-url{
+    font-size: 16px;
+    color: gray;
+}

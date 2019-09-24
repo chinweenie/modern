@@ -8,7 +8,6 @@ const LoadingIcon = props => (
         <polyline className="line-cornered stroke-animation" points="0,0 100,0 100,100" strokeWidth="10" fill="none"></polyline>
         <polyline className="line-cornered stroke-animation" points="0,0 0,100 100,100" strokeWidth="10" fill="none"></polyline>
     </svg>
-    
-)
+);
 
 export default LoadingIcon;
