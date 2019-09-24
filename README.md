@@ -58,6 +58,3 @@ For debugging with VS Code, `npm run frontend` to run on port 3000 and leave por
 For debugging with Chrome, `npm run dev:debug` to run both server but enables chrome debugging tool for backend.
 
 For regular development purpose, `npm run dev` will run two ports at the same time
-
-
-Current available page: http://localhost:3000/#/register only.
