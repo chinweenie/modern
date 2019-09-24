@@ -13,10 +13,10 @@ class LoggedInNavbar extends React.Component {
                 
                 <li className="profile-dropdown-main">
                     <ul>
-                        <li><i className="fa fa-user-circle-o" aria-hidden="true"></i></li>
+                        <li><img src={this.props.profileURL} className="profile-picture" alt="" /></li>
                         <ul className="profile-dropdown-menu">
                             <li className="profile-dropdown-header">
-                                <i className="fa fa-user-circle" aria-hidden="true"></i>
+                                <img src={this.props.profileURL} className="profile-picture" alt="" />
                                 <span>{`@${username}`}</span>
                             </li>
                             <li><Link to="/stories/new">New Story</Link></li>

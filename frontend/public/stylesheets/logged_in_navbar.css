@@ -15,7 +15,6 @@
     width: 190px;
     top: 30px;
     background-color: white;
-    
 }
 
 li.profile-dropdown-main:hover .profile-dropdown-menu {
@@ -41,10 +40,4 @@ li.profile-dropdown-main:hover .profile-dropdown-menu {
     padding-bottom: 15px;
     padding-top: 10px;
     text-align: center;
-}
-
-.fa-user-circle {
-    font-size: 53px;
-    margin-right: 20px;
-    color: lightgrey;
 }
