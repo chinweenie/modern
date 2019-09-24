@@ -8,6 +8,7 @@ class LoggedInNavbar extends React.Component {
         let {logout, currentUser} = this.props;
         const username = currentUser.email.split("@")[0];
         return (
+            <div className="nav-right-div">
             <ul className="logged-in-navbar">
                 <li><i className="fa fa-bell" aria-hidden="true"></i></li>
                 
@@ -29,6 +30,7 @@ class LoggedInNavbar extends React.Component {
                     </ul>
                 </li>
             </ul>
+            </div>
         )
         
     }
