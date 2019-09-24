@@ -6,7 +6,7 @@ export default class profile extends Component {
     constructor(props){
         super(props);
         this.state = {
-            profileURL: this.props.fileURL || "/favicon.JPG"
+            profileURL: this.props.fileURL || "/favicon.ico"
         };
         this.props.fetchAll(this.props.currentUser.id)
         .then( response => {
@@ -24,7 +24,7 @@ export default class profile extends Component {
     }
     handleDeleteFile(e){
         this.props.deleteFile(this.props.currentUser.id, "profile")
-            .then(this.setState({ profileURL: "/favicon.JPG" }));
+            .then(this.setState({ profileURL: "/favicon.ico" }));
     }
     handleUploadFile(event){
         const data = new FormData();
