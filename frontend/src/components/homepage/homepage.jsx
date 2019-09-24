@@ -20,12 +20,12 @@ class HomePage extends React.Component {
 
         let {stories} = this.props;
 
-        if (!stories){
+        if (stories.length === 0){
             return (
                 <LoadingIcon />
             )
         }
-
+        // debugger
         const storiesLi = stories.map(story => {
             const htmlObject = document.createElement('div');
             htmlObject.innerHTML = story.body;
@@ -37,11 +37,13 @@ class HomePage extends React.Component {
                 <figure className="home-figure"> {imgTag} </figure> 
             </li>
         })
+        
         return (
             
             <div className="homepage-stories-ul">
                 <ul>
-                    <LoadingIcon />
+                    
+                    {/* <LoadingIcon /> */}
                     {storiesLi}
                 </ul>
             </div>
