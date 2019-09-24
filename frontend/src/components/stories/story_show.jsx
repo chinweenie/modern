@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactHtmlParser from 'react-html-parser';
 import ResponseIndex from '../response/response_index_container';
+import LoadingIcon from '../loading_icon';
 
 class StoryShow extends React.Component {
     constructor(props){
@@ -10,11 +11,14 @@ class StoryShow extends React.Component {
             claps: [],
             showingResponses: false,
         };
+        this.props.stories || (this.props.fetchStories() && this.props.fetchAllUsers());
         this.handleClap = this.handleClap.bind(this);
         this.toggleResponses = this.toggleResponses.bind(this);
     }
     
     componentDidMount() {
+        if(!this.props.stories)
+            return;
         this.props.fetchStory(this.props.match.params.storyId);
         this.props.getTotalClaps(this.props.story._id).then(() => this.setState({claps: this.props.claps}));
     }
@@ -38,11 +42,9 @@ class StoryShow extends React.Component {
     render(){
         let { story, author } = this.props;
         
-        if (!story || !author){
-            return (
-               <p>Loading</p>
-            )
-        }
+        if (!story || !author)
+            return <LoadingIcon />
+        
         const authorStoriesLi = author.stories.map(story => {
             return (
                 <li key={story._id}>
