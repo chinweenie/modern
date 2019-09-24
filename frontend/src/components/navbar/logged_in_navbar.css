@@ -1,6 +1,7 @@
 .profile-dropdown-main {
     position: relative;
     height: 30px;
+    z-index: 10;
     /* margin-top: 5%; */
 }
 
@@ -14,6 +15,7 @@
     width: 190px;
     top: 30px;
     background-color: white;
+    
 }
 
 li.profile-dropdown-main:hover .profile-dropdown-menu {
