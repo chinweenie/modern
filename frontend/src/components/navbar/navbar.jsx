@@ -76,14 +76,7 @@ class Navbar extends React.Component {
                     </li>
                 </ul>
                 <ul className="navbar-right">
-                    {/* <li className="search" id="search-dropdown" >
-                        <i id="search-icon" className="fa fa-search" aria-hidden="true" ></i>
-                        <span className="search-dropdown" id="searchBar">
-                        </span>
-                    </li> */}
-                    <li>
                         {component}
-                    </li>
                 </ul>
             </div>
         )

@@ -25,7 +25,7 @@ class HomePage extends React.Component {
             }
             filtered.push(p);
         }
-        return <ul>{filtered.map((el, idx) => (<li key={idx}>{el}</li>))}</ul>
+        return <p className="home-story-paragraph">{filtered.map((el, idx) => (<li key={idx}>{el}</li>))}</p>
     }
     render(){
         let {stories} = this.props;
@@ -39,8 +39,8 @@ class HomePage extends React.Component {
             const imgElements = htmlObject.getElementsByTagName('img');
             const imgTag = imgElements.length === 0 ? <img className="home-figure" src={defaultimg} alt="404" /> : <img className="home-figure" src={imgElements[0].src} alt="404"/>
             const firstTwoParagraphs = this.tagSelector(htmlObject);
-            return (<li className="home-li" key={story._id}>
-                        <p className="home-story-title" onClick={this.handleStoryClick(story._id)}>{story.title}</p>
+            return (<li className="home-li" key={story._id} onClick={this.handleStoryClick(story._id)}>
+                        <p className="home-story-title" >{story.title}</p>
                         <p className="home-story-author"> -{story.authorName}</p>
                         <figure className="home-figure">{imgTag}</figure>
                         {firstTwoParagraphs}
