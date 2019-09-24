@@ -24,7 +24,7 @@ class Navbar extends React.Component {
     
     componentDidMount(){
         this.props.fetchStories().then((response) => {
-            this.props.storyTitlesArray.map(title => {
+            this.props.storyTitlesArray.forEach(title => {
                 this.setState({ hashesToCompare: 
                     Object.assign(this.state.hashesToCompare, {
                         [title]: this.makeTitlesHash(title)
