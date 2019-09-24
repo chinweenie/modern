@@ -57,25 +57,19 @@ class SearchForm extends React.Component {
 
     matches() {
         const matches = [];
-        if (this.state.inputVal.length === 0) {
+        if (this.state.inputVal.length === 0)
             return [];
-        }
         const input = this.state.inputVal;
         if(input === "*all*"){
             return Object.keys(this.props.hashesToCompare);
         }
-
         Object.keys(this.props.hashesToCompare).forEach(title => {
             for (let i = 0; i < input.length; i++) {
-                if (!this.props.hashesToCompare[title][input[i]]) {
+                if (!this.props.hashesToCompare[title][input[i]])
                     return [];
-                }
             }
             matches.push(title);
         });
-        if (matches.length === 0) {
-            return [];
-        }
         return matches;
     }
     findStoryIdByTitle(title){
