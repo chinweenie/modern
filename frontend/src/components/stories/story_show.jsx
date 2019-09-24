@@ -61,7 +61,7 @@ class StoryShow extends React.Component {
                 </div>
                 <div className="author-section">
                     <img src={this.state.profileURL} className="author-profile-picture" alt="profile" />
-                    <h2>{author.name}</h2>
+                    <span>{author.name}</span>
                 </div>
 
                 <div className="story-body">
