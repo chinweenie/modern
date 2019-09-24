@@ -1,7 +1,4 @@
-import React from 'react'
-import './editor.css';
-import './quill.snow.css';
-import './quill.bubble.css';
+import React from 'react';
 import ReactQuill from 'react-quill';
 import {withRouter} from 'react-router-dom';
 

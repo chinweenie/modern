@@ -1,6 +1,4 @@
-import React from 'react'
-import '../stories/quill.snow.css';
-import '../stories/quill.bubble.css';
+import React from 'react';
 import ReactQuill from 'react-quill';
 import LoadingIcon from '../loading_icon';
 import ReactHtmlParser from 'react-html-parser';

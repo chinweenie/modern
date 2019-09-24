@@ -1,6 +1,5 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
-import './logged_in_navbar.css'
 import { Link } from 'react-router-dom';
 
 

@@ -1,8 +1,7 @@
 import React from 'react'
 import LoadingIcon from '../loading_icon';
 import { withRouter } from 'react-router-dom';
-import './homepage.css'
-import defaultimg from './articledefault.jpg'
+import defaultimg from './articledefault.jpg';
 
 class HomePage extends React.Component {
     constructor(){

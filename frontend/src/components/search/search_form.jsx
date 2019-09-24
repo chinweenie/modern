@@ -61,8 +61,9 @@ class SearchForm extends React.Component {
             return [];
         }
         const input = this.state.inputVal;
-        if(input === "*ALL*")
+        if(input === "*all*"){
             return Object.keys(this.props.hashesToCompare);
+        }
 
         Object.keys(this.props.hashesToCompare).forEach(title => {
             for (let i = 0; i < input.length; i++) {
