@@ -90,11 +90,12 @@ class Navbar extends React.Component {
 
 const mapStateToProps = state => {
     const currentUser = state.session.currentUser;
+    let profileURL = currentUser && state.UI.files[currentUser.id] ? state.UI.files[currentUser.id] : "/favicon.ico"
     return {
         navbar: Boolean(currentUser),
         currentUser: currentUser,
         storyTitlesArray: selectStoriesTitles(state.entities.stories),
-        profileURL: state.UI.files[currentUser.id] || "/favicon.ico"
+        profileURL: profileURL
     };
 };
 
