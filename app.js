@@ -12,6 +12,13 @@ const cloudinary = require('cloudinary');
 const fileUploadMiddleware = require('./file-upload-middleware');
 const multer = require('multer');
 
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static('frontend/build'));
+    app.get('/', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+    })
+}
+
 app.use(passport.initialize());
 //We also need to setup a configuration file for Passport (add this after the previous line):
 require('./config/passport')(passport);
