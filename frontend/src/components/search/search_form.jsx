@@ -105,7 +105,7 @@ class SearchForm extends React.Component {
 
         return (
             <form className="search-form" id="search-form">
-                <input className="search-input" type="text" onChange={this.update} placeholder="Search for stories..."/>
+                <input className="search-input search-dropdown" id="searchBar" type="text" onChange={this.update} placeholder="Search for stories..."/>
                 {searchResults}
 
             </form>
