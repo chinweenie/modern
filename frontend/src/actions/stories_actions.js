@@ -22,7 +22,7 @@ export const receiveStory = story => ({
 
 export const removeStory = story => ({
     type: REMOVE_STORY,
-    storyId: story.id
+    storyId: story._id
 });
 
 export const receiveStoriesErrors = errors => ({
@@ -91,18 +91,18 @@ export const createStory = storyData => dispatch => {
 
 export const updateStory = storyData => dispatch => {
     return StoriesApiUtil.updateStory(storyData)
-        .then(response => (
-            dispatch(receiveStory(response.data))
-        ), error => (
+        .then(response => {
+            return dispatch(receiveStory(response.data))
+        }, error => (
             dispatch(receiveStoriesErrors(error.response.data))
         ))
 };
 
 export const deleteStory = storyId => dispatch => {
     return StoriesApiUtil.deleteStory(storyId)
-        .then(response => (
-            dispatch(removeStory(response.data))
-        ), error => (
+        .then(response => {
+            return dispatch(removeStory(response.data))
+        }, error => (
             dispatch(receiveStoriesErrors(error.response.data))
         ))
 };

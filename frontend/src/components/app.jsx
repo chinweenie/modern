@@ -12,6 +12,7 @@ import CreateStoryContainer from './stories/create_story_container';
 import EditStoryContainer from './stories/edit_story_container';
 import StoryShowContainer from './stories/story_show_container';
 import HomePageContainer from './homepage/homepage_container';
+import AuthorStoriesIndexContainer from './author_stories/author_stories_index_container';
 
 const App = () => (
     
@@ -29,6 +30,7 @@ const App = () => (
             <ProtectedRoute exact path="/stories/:storyId/edit" component={EditStoryContainer}/>
             <ProtectedRoute exact path="/stories/:storyId" component={StoryShowContainer}/>
             <Route exact path="/" component={HomePageContainer}/>
+            <ProtectedRoute exact path="/author_stories_index" component={AuthorStoriesIndexContainer}/>
         </Switch>
     </div>
 )

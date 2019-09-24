@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface|DM+Serif+Display|Rufina|Vidaloka&display=swap');
+.author-stories-index{
+    font-family: 'DM Serif Display', serif;
+    display: flex;
+    flex-direction: column;
+    margin: 50px 200px 50px 200px;
+    font-weight: normal;
+}
+
+.author-stories-index a {
+    text-decoration: none;
+    color: black;
+}
+
+.author-stories-index span > a {
+    border: 1px solid #03a87c;
+    color: #03a87c;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.author-stories-index h1 {
+    font-size: 40px;
+}
+
+.author-stories-index h3 {
+    font-size: 25px;
+}
+
+.author-stories-index > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+ul.story-edit-options {
+    width: 150px;
+    padding-top: 20px;
+    text-align: center;
+    border: 1px solid lightgray;
+    position: absolute;
+    top: 25px;
+    left: 100px;
+    background: white;
+    color: gray;
+    font-family: sans-serif;
+}
+
+ul.story-edit-options .hidden {
+    display: none;
+}
+
+.author-stories-index > ul > li {
+    border-top: 1px solid lightgray;
+    border-bottom: 1px solid lightgray;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 40px;
+}
+
+.author-stories-index > ul > li > div {
+    color: gray;
+    font-family: sans-serif;
+    margin-top: 10px;
+    width: 190px;
+    position: relative;
+}
+.fa-caret-down {
+    margin-left: 5px;
+    cursor: pointer;
+}
+
+
+
+ul.story-edit-options > li {
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+ul.story-edit-options > li:hover {
+    color: black;
+}

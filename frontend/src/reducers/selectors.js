@@ -32,7 +32,7 @@ export const selectUsersArray = allUsers => {
 
 export const selectAuthorStories = (authorId, allStories) => {
     const storiesArray = Object.keys(allStories).map(id => allStories[id]);
-    return storiesArray.filter(story => {
+    return storiesArray.filter(story => 
         story.authorId === authorId
-    });
+    );
 }
