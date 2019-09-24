@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const db = require('./config/keys').mongoURI;
+const db = process.env.mongoURI || require('./config/keys').mongoURI;
 const mongoose = require('mongoose');
 const users = require("./routes/api/users");
 const files = require("./routes/files");
