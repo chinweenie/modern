@@ -97,7 +97,7 @@ li.search {
     padding-left: 15%;
   }
 
-ul.logged-out-navbar > li, ul.logged-in-navbar > li {
+ul.logged-out-navbar > li {
     margin-right: 30px;
     padding-left: 15%;
     width: 20%;
@@ -125,8 +125,8 @@ ul.logged-out-navbar > li > button {
     /* padding: 10px 10px 10px 10px; */
 }
  .navbar-right {
-     height: 40px;
-     display: flex;
+     /* height: 40px; */
+     /* display: flex; */
      /* margin-right: 20%; */
      /* margin-top: 0%; */
  }

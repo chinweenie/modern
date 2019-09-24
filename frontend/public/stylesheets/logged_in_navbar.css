@@ -41,3 +41,17 @@ li.profile-dropdown-main:hover .profile-dropdown-menu {
     padding-top: 10px;
     text-align: center;
 }
+.nav-profile-picture{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #82d88c;
+  margin-top: -2%;
+}
+.logged-in-navbar {
+    color: rgb(51, 51, 51);
+    margin-top: 2%;
+    position: relative;
+    /* width: 20px; */
+    /* height: 20px; */
+}

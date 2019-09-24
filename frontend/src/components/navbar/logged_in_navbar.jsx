@@ -13,7 +13,7 @@ class LoggedInNavbar extends React.Component {
                 
                 <li className="profile-dropdown-main">
                     <ul>
-                        <li><img src={this.props.profileURL} className="profile-picture" alt="" /></li>
+                        <li><img src={this.props.profileURL} className="nav-profile-picture" alt="" /></li>
                         <ul className="profile-dropdown-menu">
                             <li className="profile-dropdown-header">
                                 <img src={this.props.profileURL} className="profile-picture" alt="" />
