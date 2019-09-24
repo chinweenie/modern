@@ -1,6 +1,4 @@
-import React from 'react'
-import '../stories/quill.snow.css';
-import '../stories/quill.bubble.css';
+import React from 'react';
 import ReactQuill from 'react-quill';
 import LoadingIcon from '../loading_icon';
 import ReactHtmlParser from 'react-html-parser';
@@ -160,17 +158,7 @@ class ResponseIndex extends React.Component {
                             onChange={this.handleQuillChange}
                             modules={this.modules}
                             formats={this.formats} >
-                            {/* place holder, when there's an embed item, replace it with the div */}
                         </ReactQuill>
-
-                        {/* <div id="embed">
-                    <p>title:{this.state.embed.title}</p>
-                    <p>description{this.state.embed.description}</p>
-                    <img src={this.state.embed.image} />
-                    <p>url: {this.state.embed.url}</p>
-                </div> */}
-
-
                         <button className="publish-button">Publish</button>
                     </form>
                 </div>

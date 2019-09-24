@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactQuill, { Quill } from "react-quill";
 import PropTypes from 'prop-types';
-import './editor.css';
 
 class Editor extends React.Component {
     constructor(props){
