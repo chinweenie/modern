@@ -29,3 +29,10 @@ export const selectStoriesTitles = allStories => {
 export const selectUsersArray = allUsers => {
     return Object.keys(allUsers).map(id => allUsers[id]);
 };
+
+export const selectAuthorStories = (authorId, allStories) => {
+    const storiesArray = Object.keys(allStories).map(id => allStories[id]);
+    return storiesArray.filter(story => {
+        story.authorId === authorId
+    });
+}

@@ -36,7 +36,6 @@ export default class profile extends Component {
     }
     getProfileUser(){
         const users = this.props.users;
-        debugger
         const demoUser = { id: "5d82c28d92828f66bd554727", username: "demouser" };
         if (Object.keys(users).length === 0 && users.constructor === Object )
             return demoUser;//return the demo profile if it's empty

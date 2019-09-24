@@ -20,8 +20,11 @@ const storiesReducer = (state = {}, action) => {
                 [action.story._id]: action.story
             });
         case RECEIVE_STORIES:
-            return action.stories.map(o => { return { title: o.title, body: o.body }});
-            
+            newObject = {};
+            action.stories.forEach(story => {
+                newObject[story._id] = story
+            })
+            return newObject;            
         case REMOVE_STORY:
             newObject = Object.assign({}, state);
             delete newObject[action.storyId];
