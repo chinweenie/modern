@@ -1,4 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Abril+Fatface|DM+Serif+Display|Rufina|Vidaloka&display=swap');
+.profile-shadow {
+  position: relative;
+  height: 13px;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.05);
+  bottom: 10px
+}
+
 .hidden{
     display: none;
 }
@@ -11,14 +18,22 @@
     font-weight: 500;
     padding-bottom: 10px;
     font-family: 'DM Serif Display', serif;
+    margin-top: 3%;
+}
+.story-body {
+  margin-top: 3%;
+  color: rgb(39, 38, 38);
+  font-family: 'Rufina', serif;
+  letter-spacing: 0.1px;
 }
 .story-show *{
     padding: 5px 0;
 }
 .author-profile-picture{
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
+    margin-left: 1.5%;
 }
 .author-section{
     display: flex;

@@ -5,7 +5,7 @@
     grid-template-columns: 0.35fr 0.3fr 1fr 0.8fr ;
     grid-template-rows: 0.1fr 0.1fr 0.6fr;
     grid-column-gap: 1em;
-    grid-auto-rows: minmax(10px, 5px);
+    /* grid-auto-rows: minmax(10px, 5px); */
     /* grid-row-gap: 0 3em ; */
     /* grid-gap: 1em; */
 }
@@ -65,8 +65,9 @@
   letter-spacing: 0.1px;
   cursor: pointer;
   padding-top: 1.3em;
-  /* max-height: 99%; */
-  overflow: hidden;
+  max-height: 100%;
+  max-width: 100%;
+  /* overflow: hidden; */
 }
   /* grid-row: 1 /3; */
 
