@@ -25,10 +25,12 @@
   color: rgb(39, 38, 38);
   font-family: 'Rufina', serif;
   letter-spacing: 0.1px;
+  line-height: 25px;
 }
 .story-show *{
     padding: 5px 0;
 }
+
 .author-profile-picture{
     width: 30px;
     height: 30px;
@@ -111,3 +113,93 @@
     font-size: 16px;
     color: gray;
 }
+
+blockquote {
+    font-size: 30px;
+    font-weight: 400;
+    color: rgba(0, 0, 0, 0.54);
+    line-height: 44px;
+    padding-left: 30px !important;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Inconsolata&display=swap" rel="stylesheet');
+.ql-indent-1  {
+    padding-left: 20px !important;
+    background: rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    font-size: 12px !important;
+    font-family: 'Inconsolata', monospace !important;
+}
+
+.ql-indent-2  {
+    padding-left: 40px !important;
+    background: rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    font-size: 12px !important;
+    font-family: 'Inconsolata', monospace !important;
+}
+
+.ql-indent-3 {
+    padding-left: 60px !important;
+    background: rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    font-size: 12px !important;
+    font-family: 'Inconsolata', monospace !important;
+} 
+
+.ql-indent-4 {
+    padding-left: 80px !important;
+    background: rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    font-size: 12px !important;
+    font-family: 'Inconsolata', monospace !important;
+} 
+
+.ql-indent-5 {
+    padding-left: 100px !important;
+    background: rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    font-size: 12px !important;
+    font-family: 'Inconsolata', monospace !important;
+} 
+
+.ql-indent-6 {
+    padding-left: 120px !important;
+    background: rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    font-size: 12px !important;
+    font-family: 'Inconsolata', monospace !important;
+} 
+
+.ql-indent-7 {
+    padding-left: 140px !important;
+    background: rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    font-size: 12px !important;
+    font-family: 'Inconsolata', monospace !important;
+} 
+
+.ql-indent-8 {
+    padding-left: 160px !important;
+    background: rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    font-size: 12px !important;
+    font-family: 'Inconsolata', monospace !important;
+} 
+
+.ql-indent-9 {
+    padding-left: 180px !important;
+    background: rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    font-size: 12px !important;
+    font-family: 'Inconsolata', monospace !important;
+} 
+
+.ql-indent-10 {
+    padding-left: 200px !important;
+    background: rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+    font-size: 12px !important;
+    font-family: 'Inconsolata', monospace !important;
+} 
+
