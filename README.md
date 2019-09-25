@@ -32,6 +32,9 @@ We will need to:
 
 * Upload/delete profile picture
 <img src="images/updateProfilePicture.gif" max-width=600px/>
+
+* An intergrated editor that allows formatting/uploading pictures/embed url
+<img src="images/editor.gif" max-width=600px/>
   
 * Users can "clap" stories (similar to likes or upvotes)
 <img src="images/clap.gif" max-width=600px/>
