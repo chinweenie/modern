@@ -76,7 +76,7 @@ class StoryShow extends React.Component {
                     <img src="/claps.png" alt="claps" />
                     <span>{clapText}</span>
                     <br/>
-                    <span>claps ({this.state.claps.length})</span>
+                    <span>{this.state.claps.length} claps</span>
                 </div>
 
                 <div className="responses-dropdown">
