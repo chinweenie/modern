@@ -16,7 +16,8 @@ class Navbar extends React.Component {
     constructor(props){
         super(props)
         this.state =  {
-            hashesToCompare: {}
+            hashesToCompare: {},
+            profileURL: "/favicon.ico"
         };
         this.handleSearchIconClick = this.handleSearchIconClick.bind(this);
     }
@@ -61,7 +62,7 @@ class Navbar extends React.Component {
     }
     
     render(){
-        let { navbar, openModal, logout, currentUser, profileURL } = this.props;
+        let { navbar, openModal, logout, currentUser } = this.props;
         const component = !navbar ? <LoggedOutNavbar openModal={openModal} /> : <LoggedInNavbar currentUser={currentUser} logout={logout} profileURL={this.state.profileURL}/>
                 
         return (
