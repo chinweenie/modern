@@ -4,18 +4,22 @@ import { Link } from 'react-router-dom';
 
 
 class LoggedInNavbar extends React.Component {
+    clickProfileIcon(){
+        let dropdown = document.getElementById("profile-dropdown-main");
+        let menu = document.getElementById("profile-dropdown-menu");
+        dropdown.classList.toggle("profile-clicked");
+        menu.classList.toggle("profile-clicked");
+    }
     render(){
         let {logout, currentUser} = this.props;
         const username = currentUser.email.split("@")[0];
         return (
-            <div className="nav-right-div">
-            <ul className="logged-in-navbar">
-                <li><i className="fa fa-bell" aria-hidden="true"></i></li>
-                
-                <li className="profile-dropdown-main">
-                    <ul>
+            <div className="nav-right-div" onClick={this.clickProfileIcon}>
+                <ul className="logged-in-navbar">
+                    <li><i className="fa fa-bell" aria-hidden="true"></i></li>
+                    <ul className="profile-dropdown-main" id="profile-dropdown-main">
                         <li><img src={this.props.profileURL} className="nav-profile-picture" alt="" /></li>
-                        <ul className="profile-dropdown-menu">
+                        <ul className="profile-dropdown-menu" id="profile-dropdown-menu">
                             <li className="profile-dropdown-header">
                                 <img src={this.props.profileURL} className="profile-picture" alt="" />
                                 <span>{`@${username}`}</span>
@@ -27,11 +31,9 @@ class LoggedInNavbar extends React.Component {
                             <li onClick={logout}><Link to="/" >Sign out</Link></li>
                         </ul>
                     </ul>
-                </li>
-            </ul>
+                </ul>
             </div>
         )
-        
     }
 }
 
