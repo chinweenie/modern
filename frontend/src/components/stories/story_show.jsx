@@ -10,7 +10,8 @@ class StoryShow extends React.Component {
             responses: this.props.responses,
             claps: [],
             showingResponses: false,
-        }
+            profileURL: "/favicon.ico"
+        };
         this.props.stories || (this.props.fetchStories() && this.props.fetchAllUsers());
         this.handleClap = this.handleClap.bind(this);
         this.toggleResponses = this.toggleResponses.bind(this);
