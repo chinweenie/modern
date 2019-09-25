@@ -13,16 +13,39 @@ class SessionForm extends React.Component{
 
     handleDemo(e) {
         e.preventDefault();
-        this.props.closeModal();
-    
-        let user = {
-            name: 'Guest',
-            email: 'demouser@modern.com',
-            password: 'password'
+        this.state = {
+            username: "",
+            email: "",
+            password: ""
         };
-        this.props.login(user)
-        .then(() => this.props.fetchAllUsers())
-        .then(() => this.props.history.push('/'));
+        const email = 'demouser@modern.com'.split('');
+        this.handleDemoUsername(email);
+    }
+    handleDemoUsername(email) {
+        setTimeout(() => {
+            this.setState({ email: this.state.email + email.shift() }, () => {
+                if (email.length === 0) {
+                    const password = 'password'.split('');
+                    this.handleDemoPassword(password);
+                } else {
+                    this.handleDemoUsername(email);
+                }
+            });
+        }, 150);
+    }
+    handleDemoPassword(password) {
+        setTimeout(() => {
+            this.setState({ password: this.state.password + password.shift() }, () => {
+                if (password.length === 0) {
+                    this.props.login(this.state)
+                        .then(() => this.props.fetchAllUsers())
+                        .then(() => this.props.history.push('/'));
+                    this.props.closeModal();
+                } else {
+                    this.handleDemoPassword(password);
+                }
+            });
+        }, 150);
     }
 
     handleSubmit(event){
@@ -66,12 +89,10 @@ class SessionForm extends React.Component{
 
         if (formType === 'Login'){
             sessionFormHeader = (
-            //   <div className="login-form-container">
                 <header className="form-header">
                   <h1 className="form-heading">Welcome back.</h1>
                   <p className="form-bio">Sign in to get personalized story recommendations, follow authors and topics you love, and interact with stories.</p>
                 </header>
-            //   </div>
             );
 
             optionalInputField = '';
@@ -107,12 +128,6 @@ class SessionForm extends React.Component{
                         </button>
                     </div>
                 </div>
-                // <a className="btn-slice" href="#" onClick={this.handleDemo}>
-                //     <div className="top"><span>Demo Modern</span></div>
-                //     <div className="bottom"><span>Demo Modern</span></div>
-                // </a>
-                // <p onClick={this.handleDemo}
-                    // className='demo-link'>DEMO</p>
             );
 
 
@@ -122,15 +137,10 @@ class SessionForm extends React.Component{
                   <h1 className="form-heading">Join Modern.</h1>
                   <p className="form-bio">Create an account to receive great stories in your inbox, personalize your homepage, and follow authors and topics that you love.</p>
                 </heading>
-                // <header className="signup-form-header">
-                //   <h1 className="form-header">Join Medium.</h1>
-                //   <p className="form-description">Create an account to receive great stories in your inbox, personalize your homepage, and follow authors and topics that you love.</p>
-                // </header>
             );
 
             optionalInputField = (
                     <div className="login">
-                    {/* <label className="login-label" htmlFor="name">Name</label> */}
                     <input 
                         className="login-input" 
                         type="text" 
@@ -144,7 +154,6 @@ class SessionForm extends React.Component{
 
             password2Input = (
                 <div className="login">
-                    {/* <label className="login-label" htmlFor="password2">Confirm password</label> */}
                     <input 
                         className="login-input" 
                         type="password" 
@@ -161,8 +170,6 @@ class SessionForm extends React.Component{
                     <p className="footer-bio">Already have an account? </p>
                     <div> &nbsp; </div>
                     {this.props.otherForm}
-                    {/* <p className="disclaimer">To make Modern work, we log user data and share it with service providers. 
-                        Click “Sign up” above to accept Moderns’s Terms of Service & Privacy Policy.</p> */}
                 </footer>
             );
             buttonText = "Sign Up";
@@ -175,7 +182,6 @@ class SessionForm extends React.Component{
                 <div className="session-form-inputs">
                     {errorsLi}
                     <div className="login">
-                        {/* <label className="login-label" htmlFor="email">Email</label> */}
                         <input 
                             className="login-input" 
                             type="email" 
@@ -188,9 +194,7 @@ class SessionForm extends React.Component{
 
                     {optionalInputField}
 
-
                     <div className="login">
-                        {/* <label className="login-label" htmlFor="password">Password</label> */}
                         <input 
                             className="login-input" 
                             type="password" 
@@ -202,11 +206,7 @@ class SessionForm extends React.Component{
                     </div>
 
                     {password2Input}
-                    
-                    {/* <button className="session-submit" onClick={this.handleSubmit} >{buttonText}</button> */}
                     <button className="session-submit">{buttonText}</button>
-                    {/* <p onClick={this.handleDemo}
-                        className='demo-button'>DEMO</p> */}
                     
                 </div>
 
