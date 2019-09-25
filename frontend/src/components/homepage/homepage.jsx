@@ -50,7 +50,9 @@ class HomePage extends React.Component {
         return (
             <div className="homepage-stories-ul">
                 <ul>{storiesLi}</ul>
+                <div className="home-footer"></div>
             </div>
+            
         )
     }
 }
