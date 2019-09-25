@@ -80,14 +80,7 @@ class ResponseIndex extends React.Component {
 
     componentDidMount() {
         this.props.fetchResponses(this.props.storyId).then(() => this.setState({ responses: this.props.responses }));
-        // this.handleDisplayResponse();
     }
-
-    // componentDidUpdate(prevProps) {
-    //     if (prevProps.storyId !== this.props.storyId) {
-    //         this.props.fetchResponses(this.props.storyId);
-    //     }
-    // }
 
     handleQuillChange(value) {
         this.setState({ body: value })
@@ -164,14 +157,8 @@ class ResponseIndex extends React.Component {
                 </div>
                 
             </div>
-            
         )
     };
 }
 
-
 export default ResponseIndex;
-
-
-
-
