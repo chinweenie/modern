@@ -9,10 +9,13 @@ export default class AuthorStoriesIndex extends Component {
         this.displayOptions = this.displayOptions.bind(this)
     }
 
-    displayOptions(event){
-        event.preventDefault();
-        const optionsUl = document.getElementById('toggle-ul');
-        optionsUl.classList.toggle("hidden");
+    displayOptions(storyId){
+        return event => {
+            event.preventDefault();
+            const optionsUl = document.getElementById(`toggle-ul-${storyId}`);
+            optionsUl.classList.toggle("hidden");
+        }
+        
     }
 
     toEditStory(storyId){
@@ -54,8 +57,8 @@ export default class AuthorStoriesIndex extends Component {
                         <h3>{story.title}</h3>
                         <div>
                             Last edited 5 days ago
-                        <i className="fa fa-caret-down" aria-hidden="true" onClick={this.displayOptions}></i>
-                            <ul className="story-edit-options hidden" id="toggle-ul">
+                        <i className="fa fa-caret-down" aria-hidden="true" onClick={this.displayOptions(story._id)}></i>
+                            <ul className="story-edit-options hidden" id={`toggle-ul-${story._id}`}>
                                 <li onClick={this.toEditStory(story._id)}>Edit draft</li>
                                 <li onClick={this.todeleteStory(story._id)}>Delete draft</li>
                             </ul>
