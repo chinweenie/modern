@@ -105,7 +105,6 @@ class SessionForm extends React.Component{
                     <div> &nbsp; </div>
                     {this.props.otherForm}
                 </footer>
-                
             );
             buttonText = "Log In";
 

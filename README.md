@@ -23,28 +23,25 @@ We will need to:
 ## Functionality and MVP
 <img src="images/index.png" max-width=600px />
 
-* Individual users can create accounts to sign with an email address. The Demo modern button allows users to sign in without an account.
-<img src="images/create_account.png" max-width=600px/>
+* Individual users can create accounts to sign with an email address. The Demo Modern button allows users to sign in without an account.
+<img src="images/demo-login.gif" max-width=600px/>
 
-<img src="images/login.png" max-width=600px/>
 * User authorization functionality allows the site to seemlessly restrict content based on login status.
 * Stories can be created, read, updated, and deleted.
-* Profiles can also be created, read, updated, and deleted.
-<img src="images/profile.png" max-width=600px />
-
+* Profiles can also be created, read
+* Upload/delete profile picture
+<img src="images/updateProfilePicture.gif" max-width=600px/>
+  
 * Users can "clap" stories (similar to likes or upvotes)
+<img src="images/clap.gif" max-width=600px/>
 
-<img src="images/clap.png" alt='claps when css is done' max-width=600px/>
-
-* Users can leave comments on stories
+* Users can leave responses (comments) on stories
+<img src="images/response.gif" max-width=600px/>
 
 * Actions such as creating publications and updating publications for logged in users only
 * Interactive and responsive UI such as modal session form
-* Search functionality for articles, authors
-
-<img src="images/search.png"  max-width=600px/>
-
-* Production README
+* Search functionality for articles, authors, and a master command `all` to display all stories, with keyboard navigation
+<img src="images/search.gif" max-width=600px/>
 
 
 ## Technologies and Technical Challenges
@@ -71,8 +68,4 @@ Team members:
 ## Usage:
 `npm install` in the root directory **AND** in the frontend directory
 
-For debugging with VS Code, `npm run frontend` to run on port 3000 and leave port 5000 for the debugger.
-
-For debugging with Chrome, `npm run dev:debug` to run both server but enables chrome debugging tool for backend.
-
-For regular development purpose, `npm run dev` will run two ports at the same time
+Then, simplay run `npm run dev`

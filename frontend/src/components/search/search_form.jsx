@@ -17,6 +17,7 @@ class SearchForm extends React.Component {
     componentDidMount(){
         let searchInput = document.getElementById("search-input");
         let focused = document.activeElement === searchInput;
+        let searchIcon = document.getElementById("search-icon");
         document.addEventListener("keydown", (e) => {
             let lastIdx = this.matches().length - 1;
             let index = this.state.index;
@@ -44,16 +45,23 @@ class SearchForm extends React.Component {
                 this.setState({ index: parseInt(target.replace("match-", "")) });
             }
         });
-        document.getElementById("search-icon").addEventListener("click", (e) => {
+        searchIcon.addEventListener("click", (e) => {
             const dropdown = document.getElementById("search-dropdown");
-            const searchBar = document.getElementById("searchBar");
             if (dropdown.classList.contains("active")){
                 this.setState({
                     inputVal: "",
                     index: 0,
-                })
+                });
             }
         });
+        document.getElementById("search-form").addEventListener("click", (e) => {
+            const searchBar = document.getElementById("searchBar");
+            if(e.target != searchBar){
+                searchBar.value = "";
+                searchIcon.click();
+            }
+        });
+
     }
 
     update(event){
