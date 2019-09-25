@@ -11,7 +11,8 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 60%;
+    width: 80%;
+    padding-right: 20px;
     /* position: sticky; */
 }
 
@@ -25,9 +26,7 @@
     /* font-weight: bolder; */
     font-size: 30px;
     font-family: 'Playfair Display', serif;
-    
     /* margin-top: 5%; */
-
 }
 
 .navbar > ul.navbar-right {

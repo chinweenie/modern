@@ -62,7 +62,7 @@ export default class profile extends Component {
                                 {/* <th>Title</th> */}
                                 </tr>
                                 <tr>
-                                    <td>{story.title}</td>
+                                    <td className="profile-story-title">{story.title}</td>
                                 </tr>
                                 <tr>
                                     {/* <th>Body</th> */}
@@ -118,13 +118,10 @@ export default class profile extends Component {
                         </div>
                     </div>
                     <div className="profile-break"></div>
-                    <div className="stories">
+                    <p className="profile-published-header">Published Stories</p>
+                    <div className="profile-stories">
                            {stories}
-                        {/* <div className="box-2">
-                            <div onClick={this.handleDeleteFile} className="pro-btn btn-two">
-                                <span>Delete Profile Picture</span>
-                            </div>
-                        </div> */}
+                       
                     </div>
                   {/* <button onClick={this.handleDeleteFile}>Delete profile picture</button> */}
                 </div>

@@ -25,7 +25,9 @@ class HomePage extends React.Component {
             }
             filtered.push(p);
         }
-        return <p className="home-story-paragraph">{filtered.map((el, idx) => (<li key={idx}>{el}</li>))}</p>
+       
+
+        return <p className="home-story-paragraph">{filtered.join(" ").slice(0, 200)}</p>
     }
     render(){
         let {stories} = this.props;
