@@ -1,8 +1,7 @@
 # Modern
 Modern is a Medium clone, a publishing platform that contains a hybrid
 collection of amateur and professional publications.
-You can view the original website here:
-[Medium](https://medium.com)
+You can view the original website here: [Medium](https://medium.com)
 
 [Live Demo](https://modern-5566.herokuapp.com/#/)
 
@@ -21,7 +20,7 @@ We will need to:
 
 
 ## Functionality and MVP
-<img src="images/index.png" max-width=600px />
+<img src="images/index.jpg" max-width=600px />
 
 * Individual users can create accounts to sign with an email address. The Demo Modern button allows users to sign in without an account.
 <img src="images/demo-login.gif" max-width=600px/>
@@ -29,6 +28,9 @@ We will need to:
 * User authorization functionality allows the site to seemlessly restrict content based on login status.
 * Stories can be created, read, updated, and deleted.
 * Profiles can also be created, read
+* A feed that shows published stories
+<img src="images/feed.jpg" max-width=600px/>
+
 * Upload/delete profile picture
 <img src="images/updateProfilePicture.gif" max-width=600px/>
   
@@ -46,13 +48,13 @@ We will need to:
 
 ## Technologies and Technical Challenges
 
-* Backend: MongoDB
-* Frontend: React-redux, Node.js
+* Backend: MongoDB, Express, Node.js
+* Frontend: React
 
 Technical challenges:
 
 * Reading data from MongoDB and reorganize the data for frontend use
-* Building a modal for signin and signup
+* Building a search functionality
 * Implementing the logic for search functionality on users and publications
 * Implementing joined table such as claps 
 
@@ -68,4 +70,4 @@ Team members:
 ## Usage:
 `npm install` in the root directory **AND** in the frontend directory
 
-Then, simplay run `npm run dev`
+`npm run dev`
