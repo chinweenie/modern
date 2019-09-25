@@ -27,7 +27,7 @@ class HomePage extends React.Component {
         }
        
 
-        return <p className="home-story-paragraph">{filtered.join(" ").slice(0, 200)}</p>
+        return <p className="home-story-paragraph">{filtered.join(" ").slice(0, 300)}...</p>
     }
     render(){
         let {stories} = this.props;
@@ -52,7 +52,9 @@ class HomePage extends React.Component {
         return (
             <div className="homepage-stories-ul">
                 <ul>{storiesLi}</ul>
+                <div className="home-footer"></div>
             </div>
+            
         )
     }
 }

@@ -57,6 +57,7 @@ class StoryShow extends React.Component {
         const toggleResponsesBtnPrevix = this.state.showingResponses ? "Hide" : "See"
         return (
             <div className="story-show">
+                <div className="profile-shadow"></div>
                 <div className="story-title">
                     <h1>{story.title}</h1>
                 </div>
