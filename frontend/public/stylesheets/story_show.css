@@ -51,14 +51,24 @@
     display: flex;
     flex-direction: row;
     justify-items: center;
+    margin-right: 1%;
 }
 .clap-div img{
     width: 40px;
     border-radius: 50%;
-    padding-right: 15px
+    padding-right: 15px;
+    transition: filter 0.3s ease 0.3s;
 }
 .clap-div img:hover{
     cursor: pointer;
+    color: black;
+}
+.clap-div img:active {
+    /* width: 41px;
+    height: 41px; */
+    filter: drop-shadow(0 0 0 rgb(31, 245, 2));
+    transition: filter 0s;
+    color: greenyellow;
 }
 .clap-div span{
     align-self: center;
