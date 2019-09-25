@@ -20,7 +20,6 @@ We will need to:
 
 
 ## Functionality and MVP
-<img src="images/index.jpg" max-width=600px />
 
 * Individual users can create accounts to sign with an email address. The Demo Modern button allows users to sign in without an account.
 <img src="images/demo-login.gif" max-width=600px/>
