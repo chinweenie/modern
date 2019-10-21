@@ -26,7 +26,7 @@ require('./config/passport')(passport);
 
 
 mongoose
-    .connect(db, { useNewUrlParser: true })
+    .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log("Connected to MongoDB successfully"))
     .catch(err => console.log(err));
 
@@ -53,6 +53,7 @@ app.use('/api/stories', stories);
 
 app.all('*', (req, res) => {
     console.log("Unknown route, bad request");
+    console.log(req.body);
     return res.sendStatus(404);
 });
 app.listen(port, () => console.log(`Server is running on port ${port}`));

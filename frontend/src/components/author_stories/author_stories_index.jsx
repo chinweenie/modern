@@ -15,7 +15,6 @@ export default class AuthorStoriesIndex extends Component {
             const optionsUl = document.getElementById(`toggle-ul-${storyId}`);
             optionsUl.classList.toggle("hidden");
         }
-        
     }
 
     toEditStory(storyId){
