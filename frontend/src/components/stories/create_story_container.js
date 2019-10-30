@@ -5,7 +5,7 @@ import StoryForm from './story_form';
 
 const mapStateToProps = state => {
     const author = state.session.currentUser.id;
-    const story = {id: '', title: '', author: author, body: ''};
+    const story = {id: '', title: '', titleHash: {}, author: author, body: ''};
     return {
         story: story,
     };

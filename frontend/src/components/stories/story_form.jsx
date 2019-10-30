@@ -78,19 +78,23 @@ class StoryForm extends React.Component {
     }
 
     handleQuillChange(value) {
-        this.setState({body: value});
-        console.log(this.state.body);
+        this.setState({ body: value });
+    }
+    makeTitlesHash(str) {
+        const hash = {};
+        str.split("").forEach(c => {
+            c = c.toLowerCase();
+            hash[c] = hash[c] || 0;
+            hash[c]++;
+        });
+        return hash;
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        this
-            .props
-            .action(this.state);
-        this
-            .props
-            .history
-            .push('/');
+        this.setState({ titleHash: this.makeTitlesHash(this.state.title)});
+        this.props.action(this.state);
+        this.props.history.push('/');
     }
     handleEmbedForm(e){
         e.stopPropagation();

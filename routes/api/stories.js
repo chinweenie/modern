@@ -42,8 +42,9 @@ router.post('/', passport.authenticate('jwt', { session: false }), (req, res) =>
     const author = req.user.id;
     const title = req.body.title;
     const body = req.body.body;
+    const titleHash = req.body.titleHash;
 
-    const newStory = new Story({ title: title, author: author, body: body, claps: { } });
+    const newStory = new Story({ title: title, titleHash: titleHash, author: author, body: body, claps: { } });
     newStory.save((err, story) => {
         if (err) console.log(err);
         story.populate('author', (err, storyObj)=> {
@@ -69,6 +70,7 @@ router.patch('/:story_id', passport.authenticate('jwt', { session: false }), asy
 
         story.title = req.body.title;
         story.body = req.body.body;
+        story.titleHash = req.body.titleHash;
 
         const updatedStory = await story.save();
         res.json(serializeStory(updatedStory))

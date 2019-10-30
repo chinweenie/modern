@@ -10,6 +10,9 @@ const StorySchema = new Schema({
         type: String,
         required: true
     },
+    titleHash: {
+        type: Map
+    },
     body: {
         type: String,
         required: true
