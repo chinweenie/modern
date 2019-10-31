@@ -5,11 +5,16 @@ You can view the original website here: [Medium](https://medium.com)
 
 [Live Demo](https://modern-5566.herokuapp.com/#/)
 
+## Technologies
 
-## Technologies and Technical Challenges
-
-* Backend: MongoDB, Express, Node.js
-* Frontend: React
+* MongoDB
+* Express
+* React
+* Node.js
+* Redux
+* Cloudinary DB
+* LinkPreview API
+* Quill
 
 ## Features
 
@@ -25,14 +30,6 @@ You can view the original website here: [Medium](https://medium.com)
 * Actions such as creating publications and updating publications for logged in users only
 * Interactive and responsive UI such as modal session form
 * Search functionality for articles, authors, and a master command `all` to display all stories, with keyboard navigation ![search](images/search.gif)
-
-
-## Group Members
-Team members:
-
-* [Roger](https://github.com/yuichiu416)
-* [Stan](https://github.com/stanbond)
-* [Winnie](https://github.com/chinweenie)
 
 ## Code snippets
 1. The titles are parsed and stored in the database so when fetching the stories from the database, we have the hashes that can be used to compare with user inputs, allowing the user to search the story based on non-continuous characters.
@@ -57,3 +54,10 @@ Team members:
         return matches;
     }
 ```
+
+## Group Members
+Team members:
+
+* [Roger](https://github.com/yuichiu416)
+* [Stan](https://github.com/stanbond)
+* [Winnie](https://github.com/chinweenie)
