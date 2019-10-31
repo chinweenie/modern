@@ -11,43 +11,28 @@ You can view the original website here: [Medium](https://medium.com)
 * Backend: MongoDB, Express, Node.js
 * Frontend: React
 
-
 ## Features
 
-* Individual users can create accounts to sign with an email address. The Demo Modern button allows users to sign in without an account.
-<img src="images/demo-login.gif" max-width=600px/>
-
+* Individual users can create accounts to sign with an email address. The Demo Modern button allows users to sign in without an account. ![demo-login](images/demo-login.gif)
 * User authorization functionality allows the site to seemlessly restrict content based on login status.
 * Stories can be created, read, updated, and deleted.
 * Profiles can also be created, read
-* A feed that shows published stories
-<img src="images/feed.jpg" max-width=600px/>
-
-* Upload/delete profile picture
-<img src="images/updateProfilePicture.gif" max-width=600px/>
-
-* An intergrated editor that allows formatting/uploading pictures/embed url
-<img src="images/editor.gif" max-width=600px/>
-  
-* Users can "clap" stories (similar to likes or upvotes)
-<img src="images/clap.gif" max-width=600px/>
-
-* Users can leave responses (comments) on stories
-<img src="images/response.gif" max-width=600px/>
-
+* A feed that shows published stories ![feed](images/feed.jpg)
+* Upload/delete profile picture ![feed](images/updateProfilePicture.gif)
+* An intergrated editor that allows formatting/uploading pictures/embed url ![editor](images/editor.gif)
+* Users can "clap" stories (similar to likes or upvotes) ![clap](images/clap.gif)
+* Users can leave responses (comments) on stories ![response](images/response.gif)
 * Actions such as creating publications and updating publications for logged in users only
 * Interactive and responsive UI such as modal session form
-* Search functionality for articles, authors, and a master command `all` to display all stories, with keyboard navigation
-<img src="images/search.gif" max-width=600px/>
+* Search functionality for articles, authors, and a master command `all` to display all stories, with keyboard navigation ![search](images/search.gif)
 
 
-## Group Members and Work Breakdown
+## Group Members
 Team members:
 
 * [Roger](https://github.com/yuichiu416)
 * [Stan](https://github.com/stanbond)
 * [Winnie](https://github.com/chinweenie)
-* [Senyo](https://github.com/sdkag)
 
 ## Code snippets
 1. The titles are parsed and stored in the database so when fetching the stories from the database, we have the hashes that can be used to compare with user inputs, allowing the user to search the story based on non-continuous characters.
