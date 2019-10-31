@@ -88,6 +88,7 @@ class SearchForm extends React.Component {
         });
         return matches;
     }
+    
     findStoryIdByTitle(title){
         const find = this.props.stories.find(story => (story.title === title));
         if(find)

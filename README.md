@@ -5,21 +5,14 @@ You can view the original website here: [Medium](https://medium.com)
 
 [Live Demo](https://modern-5566.herokuapp.com/#/)
 
-## Background and Overview
-Modern taps into the brains of the world's most insightful writers, thinkers
-and storytellers to bring you the smartest takes on topics that matter. So 
-whatever your interest is, you can always find fresh thinking and unique 
-perspectives.
 
-We will need to:
+## Technologies and Technical Challenges
 
-* Make a MERN stack web app that allows users to login, signup and logout
-* Build a Mongo database that store data of users, stories, comments, follows and claps, followers and followees
-* Build responsive frontend components using React
-* Make sure the communication between backend and frontend is instantaneous
+* Backend: MongoDB, Express, Node.js
+* Frontend: React
 
 
-## Functionality and MVP
+## Features
 
 * Individual users can create accounts to sign with an email address. The Demo Modern button allows users to sign in without an account.
 <img src="images/demo-login.gif" max-width=600px/>
@@ -48,19 +41,6 @@ We will need to:
 <img src="images/search.gif" max-width=600px/>
 
 
-## Technologies and Technical Challenges
-
-* Backend: MongoDB, Express, Node.js
-* Frontend: React
-
-Technical challenges:
-
-* Reading data from MongoDB and reorganize the data for frontend use
-* Building a search functionality
-* Implementing the logic for search functionality on users and publications
-* Implementing joined table such as claps 
-
-
 ## Group Members and Work Breakdown
 Team members:
 
@@ -69,7 +49,26 @@ Team members:
 * [Winnie](https://github.com/chinweenie)
 * [Senyo](https://github.com/sdkag)
 
-## Usage:
-`npm install` in the root directory **AND** in the frontend directory
+## Code snippets
+1. The titles are parsed and stored in the database so when fetching the stories from the database, we have the hashes that can be used to compare with user inputs, allowing the user to search the story based on non-continuous characters.
+2. A master command `*all*` that lists all stories in the database. 
 
-`npm run dev`
+```javascript
+    matches() {
+        const matches = [];
+        if (this.state.inputVal.length === 0)
+            return [];
+        const input = this.state.inputVal;
+        if(input === "*all*"){
+            return Object.keys(this.props.hashesToCompare);
+        }
+        Object.keys(this.props.hashesToCompare).forEach(title => {
+            for (let i = 0; i < input.length; i++) {
+                if (!this.props.hashesToCompare[title][input[i]])
+                    return [];
+            }
+            matches.push(title);
+        });
+        return matches;
+    }
+```
