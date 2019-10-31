@@ -31,7 +31,7 @@ You can view the original website here: [Medium](https://medium.com)
 * Interactive and responsive UI such as modal session form
 * Search functionality for articles, authors, and a master command `all` to display all stories, with keyboard navigation ![search](images/search.gif)
 
-## Code snippets
+## Code snippet example
 1. The titles are parsed and stored in the database so when fetching the stories from the database, we have the hashes that can be used to compare with user inputs, allowing the user to search the story based on non-continuous characters.
 2. A master command `*all*` that lists all stories in the database. 
 
