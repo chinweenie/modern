@@ -59,16 +59,7 @@ export default class profile extends Component {
                 {stories.map((story, idx) => {
                     return  <tbody key={story.title + idx}>
                                 <tr>
-                                {/* <th>Title</th> */}
-                                </tr>
-                                <tr>
-                                    <td className="profile-story-title">{story.title}</td>
-                                </tr>
-                                <tr>
-                                    {/* <th>Body</th> */}
-                                </tr>
-                                <tr>
-                                    {/* <td>{ReactHtmlParser(story.body)}</td> */}
+                                    <td className="profile-story-title"><Link to={`stories/${story._id}`} className="profile-story-title" >{story.title}</Link></td>
                                 </tr>
                             </tbody>
                 })}
@@ -85,17 +76,12 @@ export default class profile extends Component {
                             <h1 className="profile-username">{currentUser.name}</h1>
                             <p className="profile-user-bio"> The smallest company in the world can look as large as the largest company on the web. -Steve Jobs</p>
                             <div className="profile-left-content">
-                                {/* <h1 className="profile-username">{currentUser.name}</h1> */}
-                                {/* <div className="pro-btn btn-three"> */}
-                                
-                                <Link className="profile-following" to={`/${currentUser.name}/following`}>{followings} followers</Link>
                                 <div> &nbsp; </div>
                                 <div> &nbsp; </div>
                                 <Link className="profile-edit-link" to={`/${currentUser.name}/edit`}>Edit Profile</Link>
                             </div>
                         </div>
                         
-                        {/* </div> */}
                         <img src={this.state.profileURL} className="profile-picture" alt="profile"/>
                     </div>
                     <div className="profile-pic-changes">
@@ -109,8 +95,6 @@ export default class profile extends Component {
                             </label>
                             
                         </div>
-                        {/* <input className="upload-profile-pic-button" type="file" onChange={this.handleUploadFile} /> */}
-                        {/* <img width='320' src={this.props.fileURL} /> */}
                         <div className="box-2">
                             <div onClick={this.handleDeleteFile} className="pro-btn btn-two">
                                 <span>Delete Profile Picture</span>
@@ -123,7 +107,6 @@ export default class profile extends Component {
                            {stories}
                        
                     </div>
-                  {/* <button onClick={this.handleDeleteFile}>Delete profile picture</button> */}
                 </div>
             </div>
         )
