@@ -5,6 +5,8 @@ You can view the original website here: [Medium](https://medium.com)
 
 [Live Demo](https://modern-5566.herokuapp.com/#/)
 
+Update 2022/11/22: old account for Mongo db is down so live demo currently doesn't work as expected.
+
 ## Technologies
 
 * MongoDB
